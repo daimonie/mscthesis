@@ -1,0 +1,60 @@
+\documentclass[usenames,dvipsnames.linkcolor=tudelft-green, citecolor=tudelft-sea-green, urlcolor=tudelft-orange]{dissertation}
+
+\renewcommand{\thefootnote}{\Roman{footnote}}
+\usepackage{subcaption} 
+\usepackage[english]{babel}
+\usepackage{mathrsfs}
+\usepackage{amsthm,amsmath,amssymb,amsfonts} 
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{makeidx}
+\makeindex
+\begin{document}
+
+%% Specify the title and author of the thesis. This information will be used on
+%% the title page (in title/title.tex) and in the metadata of the final PDF.
+\title[Capacitive Interactions in the non-Equilibrium Green's function formalism]{Green Interactions}
+\author{Josko}{de Boer}
+
+%% Use Roman numerals for the page numbers of the title pages and table of
+%% contents.
+\frontmatter
+
+\include{title/title}
+
+%% The (optional) dedication can be used to thank someone or display a
+%% significant quotation.
+\dedication{\epigraph{They say a little knowledge is a dangerous thing,
+
+but it's not one half so bad as a lot of ignorance.}{Sir Terry Pratchett}}
+
+\include{preface/preface}
+
+\tableofcontents
+
+%% Use Arabic numerals for the page numbers of the chapters.
+\mainmatter
+
+%% Turn on thumb indices.
+\thumbtrue
+
+\include{contents/chapter1}
+\include{contents/chapter2}
+\include{contents/chapter3}
+\include{contents/chapter4}
+\include{contents/chapter5}
+
+%% Use letters for the chapter numbers of the appendices.
+\appendix
+
+%\include{appendix-a/appendix-a}
+
+%% Turn off thumb indices for unnumbered chapters.
+%\thumbfalse
+
+%\include{summary/summary}
+%\include{cv/cv}
+%\include{publications/publications}
+\include{contents/index}
+\end{document}
+
