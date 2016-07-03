@@ -39,7 +39,7 @@ On the experimental side, various aspects are quite involved. For instance, the 
 
 For theory, on the other hand, the challenge lies in removing the mismatch between theory and experiment. In particular, predicting transport gaps and determining the Fermi energy have proven very challenging~\cite{perrin}. 
 
-Primarily we focus on incorporating interactions into the formalism. Normally, only single-electron transport is considered, partially because the appropriate formalism  was not available. Starting from a note by Dr. Jos Seldenthuis, we develop the appropriate formalism. We apply this to a model that has been shown to qualitatively work well to explain the behaviour of thiolated arelythynylene with a dihydroanthracene core ~\cite{perrinnano}. We also consider a novel version of that model that incorporates spin. 
+Primarily I focus on incorporating interactions into the formalism. Normally, only single-electron transport is considered, partially because the appropriate formalism  was not available. Starting from a note by Dr. Jos Seldenthuis, I develop the appropriate formalism. I apply this to a model that has been shown to qualitatively work well to explain the behaviour of thiolated arelythynylene with a dihydroanthracene core ~\cite{perrinnano}. I also consider a novel version of that model that incorporates spin. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experimental}
 I will shortly review a number of the more popular techniques for single-molecule experiments. To wit, these are Atomic Force Microscopy (AFM), Scanneling Tunneling Microscopy (STM), Electromigration and finally Mechanically Controlled Break Junctions (MCBJ). I think it important to have some knowledge of the experimental reality of the nanoscopic devices I investigate theoretically.
@@ -54,7 +54,9 @@ The Scanneling Tunneling Microscopy method features similar advantages \cite{Joa
 
 Electromigration is a method of gap formation that is conceptually interesting. An overlapping set of gold leads is made, which is put through voltage ramps at ambient laboratory conditions. The voltages increase the mobility of the gold atoms, which move away from the future gap. The gap formed by this method is reproducible~\cite{electromigration}.
 
-Finally, the index{Molecular Controlled Break Junction} is the technique used by~\citet{perrinnano}, which we will discuss later in section~\ref{sec:perrin}. Most of the following descriptions is based on~\citet{perrin} or conversations with him. In figure~\ref{fig:mcbj} the basic setup of a Mechanically Controllable Break Junction (MCBJ) is shown. These offer high electrode stability and fine-tuning of the electrode spacing. 
+Finally, the Molecular Controlled Break Junction is the technique used by~\citet{perrinnano}, which I will discuss later in section~\ref{sec:perrin}. 
+
+In figure~\ref{fig:mcbj} the basic setup of a Mechanically Controllable Break Junction (MCBJ) is shown~\citet{perrin} . These offer high electrode stability and fine-tuning of the electrode spacing. 
 \begin{figure}[!bp]
     \centering
     \includegraphics[height=0.3\textheight,page=2, clip=true, trim=2.5cm 16.5cm 11cm 6cm]{pdf/perrinnnano.pdf}
@@ -69,7 +71,7 @@ The allowed voltage over such a MCBJ junction ranges from $0.5$ V at room temper
 A number of experimental findings~\cite{koole} regarding electron transports are the Coulomb blockade~\cite{Park2000, Park2002}, the Kondo effect~\cite{Park2002}, vibrational excitations~\cite{vib1, vib2} and electronic excitations~\cite{elec1}.
 
 \section{Theory}
-While we work primarily in the non-equilibrium Green's Function Formalism (chapter~\ref{ch:chapter_2}), here I will also briefly describe another formalism often used, namely the Master Equation approach \cite{seldenthuis}. One very large benefit of the Master Equation approach over the non-equilibrium Green's Function approach is that it allows simple conceptual thinking.
+While I work primarily in the non-equilibrium Green's Function Formalism (chapter~\ref{ch:chapter_2}), here I will also briefly describe another formalism often used, namely the Master Equation approach \cite{seldenthuis}. One very large benefit of the Master Equation approach over the non-equilibrium Green's Function approach is that it allows simple conceptual thinking.
 
 I will also give a short description of Density Functional Theory (DFT), a method often used with the non-equilibrium Green's Formalism which will be discussed and derived in analytical detail in chapter~\ref{ch:chapter_2}  .
 
@@ -89,12 +91,22 @@ The atomic overlap $\left| \braket{ \phi_f | \phi_i }\right|^2$ is known as a Fr
 
 The ME approach is very suited to handling vibrational excitations and interactions up to any desired order \cite{seldenthuis}. However, it is most suited when electronic interactions are weak, and vibrational interactions are strong. The non-equilibrium Green's Formalism (chapter~\ref{ch:chapter_2}) is its opposite, and is more suited to strong electronic interactions where vibrational coupling can be mainly ignored. 
 
-I will now describe Density Functional Theory (DFT) as it pertains to transport calculations for single-molecule junctions. 
+I will now describe Density Functional Theory (DFT) as it pertains to transport calculations for single-molecule junctions. This theory is very well known and recognised, as is evident by the 1998 Nobel Prize in Chemistry, shared equally between Walter Kohn "for his development of the density-functional theory" and John A. Pople "for his development of computational methods in quantum chemistry"~\cite{nobel1998}. 
 
+The starting point for modern DFT is that the ground-state density $n(r)$ for any electronic system uniquely determines the system, even if interacting. At first, it seemed a different viewpoint, from the perspective of the electron density $n(r)$. Effective approximations for the functionals lead to the DFT calculations of today (e.g. LDA, GGA). 
+Let us describe, briefly, the way DFT works in the Kohn-Sham approximation \cite{kohnsham}. This is a self-consistent method that is expected to converge, so that we start with some initial guess $n^0(r)$. From this initial guess, we can find the effective potential. Note that one of the approximations is in the exchange-correlation functional, which is a part of the effective potential. Once the effective potential describing the effective background for a particle, we can use the Kohn-Sham equation to find the wavefunction $\ket{\Psi}$. Of course, that gives us the final electron density $n^1(r)$. So, at this point you either start anew or the calculation converged. That is the basic process of a DFT calculation. Depending on the implementation, a basis set might have to be chosen in addition to the exchange-correlation functional.
 
-\section{A brief history of molecular electronics}
-It seems both pertinent and interesting to review some of the triumphs of the field. Here, I present a synthesis of experimental and theoretical triumphs.
-
+At this point, the DFT calculation returns the Hamiltonian of the system on the chosen basis. That is where the non-equilibrium Green's Function Formalism (chapter~\ref{ch:chapter_2}) begins, and I will discuss this method at length for both arbitrary and model Hamiltonians.
 
 \section{Outline of thesis}
+In this M. Sc. Thesis, the focus lies on interactions in the non-equilibrium Green's function formalism, specifically capacitive interactions.
+
+First, in chapter~\ref{ch:chapter_2} I derive the non-equilibrium Green's Function formalism from first principles for a generic Hamiltonian $H$. 
+
+Next, I will look at the derivation that incorporates interactions in chapter~\ref{ch:chapter_3}. The first result and fundament of this thesis are the capacitive interactions of section~\ref{sec:capacitive}, but we will also took a brief look at vibrational excitations.
+
+I then apply the new theory  in chapter~\ref{ch:chapter_4}. Specifically, I apply it on the two site model Hamiltonian used in \citet{perrinnano} and discuss the results. 
+
+Finally, in chapter~\ref{ch:chapter_5} I discuss the findings and implications of the new theory. I also summarise the thesis and make suggestions for future research.
+
 \references{dissertation}
