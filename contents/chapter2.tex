@@ -20,13 +20,13 @@
 }{Sir Terry Pratchett}
 
 \begin{abstract}
-In this section, I fully derive the non-equilibrium Green's Function Formalism, the Dyson and Keldysh Equations, the Langreth rules and several other useful quantities. We will look explicitly at properties of interest, such as the occupation of the levels of and the current through the molecule.
+In this section, I fully derive the non-equilibrium Green's Function Formalism, the Dyson and Keldysh Equations, and several other useful quantities. We will look explicitly at properties of interest, such as the occupation of the levels of and the current through the molecule.
 \end{abstract}
 
 %% Start the actual chapter on a new page.
 \newpage
 \section{Introduction}
-Any quantum mechanical system can in principe be described by the Schr\"odinger equation. For a system with a finite number of particles, there are several methods for solving the many-body Sch\"odinger equation, for instance the popular Hartree-Fock (HF) and density-functional theory (DFT) quantum chemistry methods.
+Any quantum mechanical system can in principle be described by the Schr\"odinger equation. For a system with a finite number of particles, there are several methods for solving the many-body Sch\"odinger equation, for instance the popular Hartree-Fock (HF) and density-functional theory (DFT) quantum chemistry methods.
 
 However, no laboratory system is a finite system. A molecule is coupled to metallic electrodes, which connect to a voltage source. The circuit is further extended with measurement equipment, refrigeration instruments and so forth. The system might also not be in equilibrium, such as when a bias voltage is applied between the two electrodes. In this situation, solving the Schr\"odinger equation directly is unfeasible \cite{seldenthuis}.
 
@@ -37,7 +37,7 @@ For a closed system in equilibrium, the GF formalism is exact because it is simp
 
 It is perhaps illuminating to first go over a number of assumptions and approximations \cite{seldenthuis}. 
 
-First, the metallic electrodes or leads are considered as infite reservoirs that are non-interacting and are in equilibrium and not influenced by the molecule. Note that the leads are not required to be in equilibrium with each other. Although the immediate environment of the molecule is likely to be influenced by the molecule, it is possible to partition the system as you desire. The Extended molecule that also includes the lead-tip thus solves the problem of molecule-lead influence.
+First, the metallic electrodes or leads are considered as infinite reservoirs that are non-interacting and are in equilibrium and not influenced by the molecule. Note that the leads are not required to be in equilibrium with each other. Although the immediate environment of the molecule is likely to be influenced by the molecule, it is possible to partition the system as you desire. The Extended molecule that also includes the lead-tip thus solves the problem of molecule-lead influence.
 
 Second, there is an assumption of adiabatic temporal evolution, so that the system in the infinite past can be considered as isolated leads and molecule.  
 
@@ -45,7 +45,7 @@ Finally, the system is an open quantum system. Electrons travel to the leads and
 
 These tree approximations or assumptions are sufficient to obtain closed expressions for the properties of interest. However, as usual the equations become unwieldy for systems that approach the complexity of an actual laboratory nanoscopic system, requiring ridiculous computational resources.
 
-It is for this reason that other approximations are employed for practical equations, such as the mean-field approximation. In this approximations the interactions are essentially averaged out, which makes \emph{ab initio} quantum transport problems tractable. However, you lose certain transport phenomena, most notably the \emph{Coloumb Blockade} (section~\ref{sec:capacitive}).
+It is for this reason that other approximations are employed for practical application, such as the mean-field approximation. In this approximations the interactions are essentially averaged out, which makes \emph{ab initio} quantum transport problems tractable. However, you lose certain transport phenomena, most notably the \emph{Coloumb Blockade} (section~\ref{sec:capacitive}).
 
 This chapter is outlined as follows. First, I will consider the unwieldy many-body Schr\"odinger equation in section~\ref{sec:schrodinger}. We will then introduce Slater determinants and move on to the Fock-space and the formalism of second quantisation in section~\ref{sec:secondquantisation}. 
 
@@ -59,10 +59,8 @@ Finally, I discuss how to find properties of interest in section~\ref{sec:proper
 For an arbitrary number $N$ of particles, both electrons and others, the many-body Schr\"odinger equation is:
 \begin{align}
  \imath \hbar \partial_t\ket{\Psi\left(t, r_0, r_1, \ldots r_N\right)} &= \widehat{H} \ket{\Psi\left(t, r_0, r_1, \ldots r_N\right)} \label{eq:schrodinger}, \\
- \widehat{H} &\equiv V\left(t, r_0, r_1, \ldots r_N\right) - \sum_{i=0}^N \frac{\hbar^2}{2m_i} \nabla_i^2
+ H &\equiv V\left(t, r_0, r_1, \ldots r_N\right) - \sum_{i=0}^N \frac{\hbar^2}{2m_i} \nabla_i^2
 \end{align}
-
-Note that $\widehat{H}$ is an operator, while the $r_i$ are vectors. I will only make the distinction whether something is an operator, matrix, tensor or vector when it seems necessary to clarify.
 
 It is clear that for many-particles ($N\gg 1$), equation~\ref{eq:schrodinger} becomes unwieldy rather rapidly. We will need some approximations before it becomes applicable.
 
@@ -73,7 +71,7 @@ If we consider the Hilbert space of Atoms $H_A$ and that of electrons $H_e$, the
 
 Such a state is separable if there exists vectors in the atomic space $\ket{\Psi_A}$ and in the electron space $\ket{\Psi_e}$ such that $\ket{\Psi} = \ket{\Psi_A} \ket{\Psi_e}$. An alternative formulation is that states that are separable are not entangled.
 
-The Borne-Oppenheimer approximation is that the electron and atom spaces are, indeed, seperable \cite{mattuck}. It is justified because atoms are about three orders of magnitude more massive than electrons, and as such they are expected to move much more slowly. The convenience of the Borne-Oppenheimer approximation is that the effect of the atoms, i.e. that of the molecular skeleton, is to provide an effective background potential for the electronic wave functions.
+The Borne-Oppenheimer approximation is that the electron and atom  states are separable \cite{mattuck}. It is justified because atoms are about three orders of magnitude more massive than electrons, and as such they are expected to move much more slowly. The convenience of the Borne-Oppenheimer approximation is that the effect of the atoms, i.e. that of the molecular skeleton, is to provide an effective background potential for the electronic wave functions.
 
 The Hamiltonian then reduces to the following effective electron-only form:
 \begin{align}
@@ -186,7 +184,7 @@ Note that the greater and lesser Green's functions are simply related to the adv
 G^+_{ij}(t,t') - G^-_{ij}(t,t') &= G^>_{ij}(t,t') - G^<_{ij}(t,t')
 \end{align*}
 
-Finally, the following auxiliaries will be considered shortly.
+Finally, the following auxiliaries are of use for deriving the Langreth rules, ultimately leading to the Keldysh equation.
 \begin{itemize}
 \item The time-ordered Green's function, \begin{align*}
 G^T(t,t^\prime) &= \theta(t-t^\prime) G^>(t,t^\prime)  \mp \theta(t^\prime-t)G^<(t,t^\prime) 
@@ -197,14 +195,14 @@ G^{\tilde{T}}(t,t^\prime) &= - \theta(t^\prime-t) G^>(t,t^\prime)  \pm \theta(t-
 \item The contour-ordered Green's function, \begin{align*}
 G^C(t,t^\prime) &= \theta^C(t-t^\prime) G^>(t,t^\prime)  \mp \theta^C(t^\prime-t)G^<(t,t^\prime) 
 \end{align*}
-\item The anti-time-ordered Green's function, \begin{align*}
+\item The anti-contour-ordered Green's function, \begin{align*}
 G^{\tilde{C}}(t,t^\prime) &= - \theta^C(t^\prime-t) G^>(t,t^\prime)  \pm \theta^C(t-t^\prime)G^<(t,t^\prime)
 \end{align*} 
 \end{itemize}
 
 An important distinction is between $\theta (t)$ and $\theta^C(t)$. The first is defined on the real time-axis, whereas the second is defined on the Keldysh contour \footnote{An excellent explanation of the Keldysh contour starting from the time-evolution operator can be found in \citet{diventra}.}. The use of this will become more clear in the next section. 
 
-The countour and anti-contour ordered Green's functions are also simply related to the lesser and greater Green's functions:
+The contour and anti-contour ordered Green's functions are also simply related to the lesser and greater Green's functions:
 \begin{align*}
 G^C_{ij}(t,t') - G^{\tilde{C}}_{ij}(t,t') &= G^>_{ij}(t,t') - G^<_{ij}(t,t')
 \end{align*}
@@ -215,7 +213,7 @@ The starting point of the derivation of the Langreth rules are integrals of the 
 C^C(t,t^\prime) &= \int_C\:d\tau\:A^C(t,\tau) B^C (\tau, t^\prime)
 \end{align*}
 
-The complete derivation of Langreth's rules is extremely tedious despite the usefulness of the results. For that derivation, I refer readers to Refs.~\cite{mattuck,haugjauho}. I will 
+The complete derivation of Langreth's rules is extremely tedious despite the usefulness of the results. For that derivation, I refer readers to Refs.~\cite{mattuck,haugjauho}.
  
 Under the condition that the functions depend purely on $t-t^\prime$\footnote{Recall that this means, in general, that the Hamiltonian is not time-dependent.}, the final result in the Fourier (Energy) domain is:
 \begin{align*}
@@ -258,14 +256,13 @@ G^< &= g^<  + g^< \Sigma^< G^< \\
 &= G^+ (g^+)^{-1} g^< \left((g^-)^{-1}G^-  \right) + G^+  \Sigma^< G^- \\
 \end{align*}
 
-We will see that the first term vanishes, leaving us with:
+The above equation is called the Keldysh equation. It can be shown that the first term vanishes for a system that is non-interacting in the infinite past, which means that all interactions are contained in the self energy. Of course, that was one of the assumptions discussed at the start of the chapter. This yields the reduced form of the Keldysh equation:
 \begin{align*}
 G^< &=  G^+ \Sigma^< G^- 
 \end{align*}
 
 Which is called the Keldysh equation.
-
-Technically, the first term doesn't vanish if $G^+ = g^+$ for a particular particle. However, this means it is only subject to $H_0$ and therefore doesn't interact; this particle would thus be irrelevant.
+ 
 
 \section{Equation of Motion method}
 \label{sec:eommethod}
@@ -303,7 +300,7 @@ Where we see that, by substituting $\dot{d}_i$ and take the Fourier transform, w
 G_{ij}^+ (\epsilon) &= g_{ij}^+ \left( 1 + \sum_{\dot{k}} V_{\dot{k}i} G_{\dot{k}j}^+ \right)
 \end{align*}
 
-Where we see a contact-device Green's function $G_{\dot{k}j}^+$, which is defined in exactly the same way as the device function but with the $d_i \rightarrow c_{\dot{k}}$.
+Where we see a contact-device Green's function $G_{\dot{k}j}^+$\footnote{I call this a contact-device Green's function because it involves the indices $\dot{k}$ and $j$, where the first is defined to be on the contact and the second is defined to be on the molecule.}, which is defined in exactly the same way as the device function but with the $d_i \rightarrow c_{\dot{k}}$.
 
 The contact-device Green's function can be found by the same method, by finding the commutator of $\dot{c}_{\dot{k}}$ and substituting this in the time-derivative of the contact-device Green's function. We find:
 \begin{align*}
@@ -355,12 +352,11 @@ A_{ij}(t, t') &= \frac{\imath}{\hbar} \left\{ d_i(t), d_j^\dagger(t')\right\} \\
 A &=- \frac{1}{\pi} \text{Im}\left\{ G^+\right\}
 \end{align*}
 
-For a non-interacting system ($\Sigma=0$), the spectral function is simply a diagonal matrix with delfta functions at the eigenvalues of the hamiltonian, hence:
+For a non-interacting system ($\Sigma=0$), the spectral function is simply a diagonal matrix with delta functions at the eigenvalues of the Hamiltonian, hence the Density of states (DOS) is simply found:
 \begin{align}
-D &= \text{Tr}\left\{A\right\}
+\text{DOS} &= \text{Tr}\left\{A\right\}
 \label{eq:dos}
 \end{align}
-
 
 
 However, we are most often interested in the current. The derivation of the current is slightly more involved, but the end result is elegantly simple.
