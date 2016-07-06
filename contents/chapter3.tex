@@ -11,22 +11,281 @@
 
 %% The '0pt' option ensures that no extra vertical space follows this epigraph,
 %% since there is another epigraph after it.
-\epigraph[0pt]{
-    "quote1"
-}{attribution}
+%\epigraph[0pt]{
+%    "quote1"
+%}{attribution}
 
 \epigraph{
-    “quote2”
-}{attribution}
+    “Everything starts somewhere, although many physicists disagree.”
+}{Sir Terry Pratchett}
 
 \begin{abstract}
-abstract
+In this chapter, we look at the inclusion of interaction effects in the non-equilibrium Green's Function formalism. In particular, we focus on capacitive interactions as these are the primary investigation of this thesis. However, some attention is given to phononic interactions in an elaborate expansion that seems promising.
 \end{abstract}
 
 %% Start the actual chapter on a new page.
 \newpage
+\section{Introduction}
+This chapter is mostly self-contained; it is about two new derivations. Note that the capacitive interaction derivation was first performed by Dr. Jos Seldenthuis, but not previously published.
+
+We consider a rather general model system, that consists of a diagonal Hamiltonian representing the molecular orbits, a tunnelling term and a generalised interaction, which we approximate as capacitive. For this generalised system we can find a closed expression that includes capacitive interactions.
+
+We will see that the result is conceptually simple, merely a thermal average of the Green's Function of every many-body state. It turns out that this conceptual picture is also a valid derivation of the many-body Green's function in closed form.
+
+We then consider a model system that is also coupled to a single vibrational mode. The only term that does not commute with the electron annihilation operator is that of an electronic transition in which a phonon is absorbed or emitted. 
+
+Nevertheless, this is the point where people have often turned away from that derivation because it seems like that phononic self-energy term is not captured easily in the NEGF formalism. However, the methods used to find the capacitive interaction are found to work for the phononic self-energy as well. The result is extremely elaborate because of a binomial expansion for non-commuting terms. 
+
+The outline of this chapter is as follows. First, we discuss a general number operator for many-body states in section~\ref{sec:gno}. Next, I calculate the capacitive self-energy in section~\ref{sec:capacitive}. Since the result is still an operator, I develop the expression in section~\ref{sec:mbgfno}. A matrix expression for the density of states and the expression for current are given in section~\ref{sec:calcprop}. Finally, we discuss the novel interaction treatment in section~\ref{sec:discussioncapacitive}.
+
+Then we briefly look at vibrational interactions and include these in a similar manner as the capacitive interactions in section~\ref{sec:phononic}. We discuss the result and a preliminary figure in section~\ref{sec:phononicdiscussion}. However, we do not continue with vibrational modes because of time constraints.
+\section{Generalised number operator}
+\label{sec:gno}
+
+
+Define, under the convention that \emph{latin} subscripts indicate molecular orbits and \emph{greek} subscripts indicate many-body states\footnote{This convention is here used because of the latin subscripts being more numerous in the manuscript.}:
+\begin{align*}
+\Psi_\kappa (t) &\equiv \sum_{ \left\{\kappa\right\}} C_\kappa(t) a_\kappa^\dagger \ket{0} \\
+a^\dagger_\kappa &\equiv \prod_{ i \in \left\{\kappa\right\}} a_i^\dagger \\
+\rho_{\kappa,\kappa^\prime} & \equiv C_\kappa^\star (t) C_\kappa (t)
+\\
+\widehat{\rho}_{\kappa\kappa^\prime}(t) &\equiv \rho_{\kappa,\kappa^\prime} (t) a_{\kappa}^\dagger \ket{0}\bra{0}a_{\kappa^\prime}
+\end{align*}
+
+Now, we want to look at the `generalised' number operator, $n_{\kappa\kappa^\prime} \equiv a^\dagger_\kappa a_\kappa$:
+\begin{align*}
+n_{\kappa\kappa^\prime} (t) &= \braket{\Psi (t) \left| \widehat{n}_{\kappa\kappa^\prime}\right|\Psi (t)} \\
+&=\sum_{\lambda\lambda^\prime} \braket{0\left| C_\lambda^\star (t) C_{\lambda^\prime} (t) a_\lambda a_\kappa^\dagger a_{\kappa^\prime} a_{\lambda^\prime}^\dagger \right|0}
+\\
+&= \sum_{\lambda\lambda^\prime} \rho_{\lambda\lambda^\prime} \braket{0\left| \prod_{p \in \lambda\setminus{\kappa}} a_p a_\kappa a_\kappa^\dagger a_{\kappa^\prime} a_{\kappa^\prime}^\dagger \prod_{q \in \lambda^\prime\setminus{\kappa^\prime}}a_q^\dagger \right|0}
+\\
+&= \sum_{\lambda\lambda^\prime} \rho_{\lambda\lambda^\prime} \prod_{p \in \lambda\setminus{\kappa} \wedge q \in \lambda^\prime\setminus{\kappa^\prime}} \tilde{\delta}_{pq}
+\\
+&=  \sum_{\lambda\lambda^\prime} \rho_{\lambda\lambda^\prime}
+\end{align*}
+
+Under the conditions that:
+\begin{itemize}
+\item $\lambda\supseteq\kappa$. The story here is a bit confused, because $\kappa$ itself is some sort of set. In principle, it means that the orbital occupation in $\kappa$ is the minimum for a possible $\lambda$. So if $\kappa$ specifies orbitals $i$ and $i^\prime$ are occupied, then for all $\lambda$ the orbitals $i$ and $i^\prime$ are occupied. This allows for the expansion that includes the subscripts $p$ and $q$.
+\item The set differences $\lambda\setminus{\kappa}$ and $\lambda^\prime\setminus{\kappa^\prime}$ must be equal, otherwise the term on the next to final rule will not reduce to one. 
+\item $\tilde{\delta}$ is a very imprecise term, which is why I marked it with a tilde. The term means that, as long as the $\prod_{pq}$ has the same sets p and q, it will evaluate to $1$. It also assumes that no sign changes are introduced by possible commuting.
+\end{itemize}
+
+To be absolutely clear, the effect of the generalised number operator $n_\kappa$ on some arbitrary many-body state $\kappa'$ is:
+\begin{align}
+n_\kappa \ket{\kappa'} &= \begin{cases} \ket{\kappa'}&\quad \kappa'\supseteq\kappa \\
+0 & \quad \text{otherwise} \end{cases}
+\label{eq:generalisednumberoperator}\\
+&\equiv \Delta^{\kappa}_{\kappa'} \ket{\kappa'},\nonumber
+\end{align}
+where $\Delta^{\kappa}_{\kappa'}$ is a convenient short hand.
+
 \section{Capacitive Interactions} 
 \label{sec:capacitive}
-\section{Phonons and rate equations}
+In section~\ref{sec:eommethod} I have already discussed the molecule and the leads. Here, I did not specify the Hamiltonian and therefore it could include tunnelling between the levels. I will now separate the tunnelling between levels from the molecule Hamiltonian. The interaction between electron states is between two electrons. While there might be perhaps three and more particle interactions, we do not consider them at this time. We are looking for Coloumb interactions which are two-particle.
+
+The device interaction Hamiltonian has the following form:
+\begin{align*}
+H^\prime_D &= \sum_{ij} \tau_{ij} d^\dagger_i d_j + \frac{1}{2} \sum_{ijkl} W_{ijkl} d^\dagger_i d_j d^\dagger_k d_l \\
+&\approx \sum_{ij} \tau_{ij} d^\dagger_i d_j + \frac{1}{2} \sum_{ij} U_{ij} n_i n_j
+\end{align*}
+
+In the approximation I have effectively assumed that the capacitive interactions do not mix the eigenstates of the unperturbed Hamiltonian. 
+
+We can easily find the commutator of annihilation operator with the capacitive interaction term:
+\begin{align*}
+\left[ d_l, H^\prime_D\right] &= \sum_j \tau_{lj}d_j + \sum_{j} \frac{1}{2} \left( U_{lj} + U_{jl}\right) n_j d_l + U_{ll} d_l
+\end{align*}
+
+The last term is capacitive self-interaction, which is unphysical and therefore vanishes. Likewise,the symmetry of the Hamiltonian specifies that $U_{ij} = U_{ji}$ and that $U_{ij} \in \Re$. 
+
+Thus, we find that:
+\begin{align*}
+\left[ d_i, H^\prime_D\right] &= \sum_j \tau_{ij}d_j + \sum_{j}U_{ij} n_j d_i
+\end{align*}
+
+From here, it is relatively easy to see that if we define $U^k_{ij} \equiv U_{ik}\delta_{ij}$ we can turn the last term into a matrix product of $U^k$ and $G^+$ after substitution in the EOM for $G^ +$. That ultimately leads to the device-self-energy:
+\begin{align*}
+\Sigma^{d\pm} &= \tau + \sum_k U^k n_k
+\end{align*}
+
+We can now find the retarded (advanced) Green's functions:
+\begin{align*}
+\left(\epsilon-\epsilon_i\right) G^\pm (\epsilon) &= \delta_{ij} + \sum_k \left\{ \tau_{ik} + \sum_l U^l_{ik} n_l + \Sigma^\pm_{ik}\right\} G^\pm_{kj}
+\end{align*}
+
+Leading to the (matrix) expression:
+\begin{align*}
+G^\pm &= \left[ \epsilon \mathbf{1} - \epsilon_i - \Sigma^{d\pm} - \Sigma^\pm \right]^{-1}
+\end{align*}
+
+Recall that I denote a many body state by $\kappa$, a Greek index instead of a (dotted) Latin index. While the following definition seems arbitrary, it is well justified in the next section. Define the Many-Body Green's Function:
+\begin{align*}
+G^{\kappa\pm}_{ij}(t, t^\prime) &= \mp \frac{\imath}{\hbar} \theta( \pm(t-t^\prime)) \left\{ n_\kappa(t) d_i (t), d_j(t^\prime)\right\},
+\end{align*}
+where $n_\kappa$ is the generalised number operator (equation~\ref{eq:generalisednumberoperator}).
+
+I now only take first-order tunnelling into account, i.e. $\left[ n_\kappa, H^\prime \right] = 0$:
+\begin{align}
+\mathscr{G}^\pm &= \left[ \epsilon - \epsilon_i - \Sigma^{d\pm} - \Sigma^\pm \right]^{-1} n_\kappa \label{eq:mbgf}
+\end{align}
+ 
+\section{The many-body Green's Function and number operators}
+\label{sec:mbgfno}
+The matrix inverse in equation~\ref{eq:mbgf} might seem ill-defined, because we took the inverse of a series of number operators. However, we can get a well-defined expression by Taylor expanding the matrix inverse, e.g.:
+\begin{align}
+\left[ A^{-1} - B\right]^{-1} &= A + ABA + ABABA + \ldots
+\label{eq:inversionexpansion}
+\end{align}
+
+This is an extremely sensible Taylor expansion in this context. If you recall, the common single-particle retarded (advanced) Green's functions are $G = \left[ g^{-1} \pm \Sigma \right]^{-1}$, which would be expanded as $G = g + g\Sigma g + g\Sigma g\Sigma g + \ldots$ - which is the expansion in various orders we used intuitively to arrive at the Dyson equation (equation~\ref{eq:dyson}).
+
+
+The idea is to group terms with the same combination of occupation number operators while taking into account the fact that $n_i = n_i n_i$ and that $n_i = (1-n_j)n_i + n_j n_i$. We only show the extension to more particles, for which the general result is\footnote{I will use $\mathscr{E}$ for the variable, the rest are matrices}:
+\begin{align*}
+\left[ \mathscr{E} - \epsilon - \tau -\Sigma^{d\pm} - \Sigma^\pm \right] n_\kappa &= \sum_\kappa \left( \prod_{i\in\kappa} \prod_{j\notin\kappa} n_i (1-n_j) \right) \left[ \mathscr{E} - \epsilon -\tau - \Sigma_{i \in \kappa}U^i - \Sigma^\pm \right]^{-1} n_\kappa\\
+&= \sum_\kappa P_{\kappa\kappa} \left[ \mathscr{E} - \epsilon - \tau - \sum_{i\in\kappa} U^i - \Sigma^\pm \right]^{-1}n_\kappa
+\end{align*}
+The appearance of $n_\kappa$ in the expression for the many-body Green's function indicates that the sum is only over the super set of $\kappa$ \footnote{This might be referred to as the `superset many-body advanced(retarded) Green's function'.}:
+\begin{align*}
+\mathscr{G}^{\kappa\pm} &= \sum_{\lambda\supseteq\kappa} P_{\lambda\lambda} G^{\lambda\pm},
+\end{align*}
+
+where 
+\begin{align*}
+G^{\lambda\pm} &= \left[\mathscr{E} - \mu^\lambda - \tau - \Sigma^\pm \right]^{-1},
+\end{align*} in which
+\begin{align}
+\mu^\lambda_{ij} &= \delta_{ij} \left( \epsilon_i + \sum_{p\in\lambda} U_{ip} \right) \label{eq:result}
+\end{align}
+
+In fact, we recognise $H^\kappa = \mu^\kappa + \tau$ as the effective single-particle Hamiltonian of the system in the many-body state $\kappa$. This can be directly obtained from DFT calculations.   
+
+In particular, \emph{many} DFT calculations together can give us (a good approximation of) the full shape of $\epsilon_i$ and $U_{ip}$, leading to a more complete description of transport through the formulae derived above. In particular the formalism should be more accurate for excitations, and could potentially explain coulomb blockades.
+
+\section{Calculating properties}
+\label{sec:calcprop}
+A simpler derivation for the thermal average of the Green's Function is possible. We use the definition of equation~\ref{eq:mbgf}. The thermal average makes good use of the properties of the generalised number operator (equation~\ref{eq:generalisednumberoperator}). First, recall the thermal many-body wavefunction $\ket{\Psi}$:
+\begin{align*}
+\ket{\Psi} &= \sum_\lambda C_\lambda \ket{\lambda}
+\end{align*}
+
+It is then relatively simple to evaluate:
+\begin{align*}
+\braket{\lambda^\prime \left| \mathscr{G}^\kappa \right| \lambda } &= 
+\braket{\lambda^\prime \left|  \widehat{G} n_\kappa \right| \lambda } \\
+&= \braket{\lambda^\prime \left| \widehat{G} \Delta^\lambda_\kappa \right| \lambda }
+\end{align*}
+
+Because the retarded (advanced) Green's function only had a remaining interaction operator $\sum_i U^i \widehat{n}_i$, which is a diagonal operator, I can Taylor-expand the Green's function as we did before. Since $n_i \ket{\lambda}=\Delta^\lambda_i\ket{\lambda}$\footnote{Yes, $i \in \lambda$ is equivalent to $\lambda\supseteq i$!}, without changing the state, we can just write down the 'number', as opposed to operator,  $G^\lambda$! 
+\begin{align*}
+&= \braket{\lambda^\prime \left| \left[ A + ABA + ABABA \right] \Delta^\lambda_\kappa \right| \lambda } \\
+&=  G^\lambda \Delta^\lambda_\kappa \braket{\lambda^\prime | \lambda }\\
+&=  G^\lambda \Delta^\lambda_\kappa \delta^\lambda_{\lambda^\prime}
+\end{align*}
+
+To evaluate the final, many-body Green's function, I simply take its average:
+\begin{align*}
+\braket{ \mathscr{G}^{\kappa\pm}} &= \sum_{\lambda,\lambda^\prime}C_{\lambda^\prime}C_\lambda^\star \braket{\lambda^\prime \left| \mathscr{G}^{\kappa\pm} \right| \lambda } \\
+&= \sum_{\lambda,\lambda^\prime} C_{\lambda^\prime}C_\lambda^\star  G^{\lambda\pm} \Delta^\lambda_\kappa \delta^\lambda_{\lambda^\prime}\\
+&= \sum_{\lambda \supseteq \kappa} \rho_{\lambda\lambda}(t) G^{\lambda\pm}
+\end{align*}
+
+This derivation is very sensible. It makes use of the same expansion as the earlier derivation, but by immediately looking for the thermal value of the Green's function rather than the intermediary operator form, it becomes a very simple derivation.
+
+
+Starting from the Keldysh equation (equation~\ref{eq:keldysh}), we can derive the super set (many-body) lesser Green's function from the advanced and retarded ones:
+\begin{align*}
+    \mathscr{G}^{\kappa<} &= \mathscr{G}^{\kappa+} \Sigma^< \mathscr{G}^{\kappa-} \\
+    &= \sum_{\lambda\supseteq\kappa, \lambda^\prime \supseteq\kappa}P_{\lambda'\lambda'} P_{\lambda\lambda} G^{\lambda+} \Sigma^< G^{\lambda^\prime-} \\
+\end{align*}
+\begin{align}
+    \mathscr{G}^{\kappa<} &= \sum_{\lambda\supseteq\kappa} P_{\lambda\lambda} G^{\lambda<} \label{eq:mblessergf}
+\end{align}
+Where I have used that $P_{kk} \ket{k'}$ is $\ket{k}$ if $k'=k$ and zero otherwise. I think the above makes clear that, if we define the many body Green's function as in equation~\ref{eq:mbgf}, the final result will just be the thermal average. I think this is an important conceptual message.
+
+\subsection{Density matrix}
+Many quantum are concerned with finding the density matrix of the problem. This is often troublesome when interaction is included. In this section we outline a convenient method for 
+
+If we transform the result for the lesser many-body Green's function back to the time domain and set $t=t^\prime$, we find that:
+\begin{align*}
+n_\kappa d_j^\dagger d_i &= \sum_{\lambda\supseteq\kappa} P_{\lambda\lambda} \int^\infty_{-\infty} \frac{d\epsilon}{2\pi\imath} G^{\lambda<}_{ij}(\epsilon)
+\end{align*}
+
+Taking the expectation value, we find:
+\begin{align*}
+    \sum_{\lambda\supseteq\kappa} K_{ij} \rho_{\lambda\lambda} &= \sum_{\lambda\supseteq\kappa} \rho_{\lambda\lambda} W_{ij},
+\end{align*}
+where we have defined:
+\begin{align*}
+K_{ij} &\equiv \braket{d_j^\dagger d_i} \\
+    W^\lambda_{ij} &\equiv   \int^\infty_{-\infty} \frac{d\epsilon}{2\pi\imath} G^{\lambda<}_{ij}(\epsilon) \\
+\end{align*}
+
+The expression is clearer in matrix notation:
+\begin{align*}
+    \left(W-K\right) \rho(t) &= 0
+\end{align*}
+
+Now, it is not guaranteed that the solution to this equation is unique or equivalently that the null-space of $W-K$ is one-dimensional. In practise, one would start from an equilibrium situation and take the ground state occupation probability as the initial guess, so that the non-equilibrium interactions can be turned on adiabatically. In this way, we can solve the system adiabatically to obtain the non-equilibrium ground state. This can be interpreted as a variation of the Gell-Mann and Low theorem \cite{gellmannlow, molinari}.
+
+Notice that we can have $i\neq j$ for only one side of the equation, with the other side only containing products of $n$. The only degrees of freedom in the system are therefore the diagonal elements of the density matrix. The off-diagonal elements are linear combinations of these.
+
+The current derivation is straightforward. We can motivate it using the thermal average $\braket{I}$. The current is a eigenstate, in the sense that $ \widehat{I} \ket{\kappa} = I^\kappa \ket{\kappa}$. As a result, the thermal average will become a sum of diagonal density matrix elements times the current in that many-body state. The current in that many-body state is then rather trivially equation~\ref{eq:landauer} but with the many-body Green's function substituted, i.e. $G \rightarrow \mathscr{G}^{\kappa\pm}$.
+
+Finally, we state the result for the current:
+\begin{align*}
+\widehat{I} &\equiv \sum_\kappa P_{\kappa\kappa} \braket{ \kappa \left|\widehat{I}\right|\kappa}=\sum_\kappa P_{\kappa\kappa} \widehat{I}^k\\ 
+I(t) &= \sum_\kappa \rho_{\kappa\kappa}(t) I^\kappa \\
+I^\kappa&\equiv \frac{e}{\hbar} \int^\infty_{-\infty} \frac{d\epsilon}{2\pi} \left[ f_L(\epsilon) - f_R (\epsilon) \right] T^\kappa (\epsilon)\\
+T^\kappa(\epsilon) &\equiv \text{Tr}\left\{ \Gamma^L \mathscr{G}^{\kappa+} \Gamma^R \mathscr{G}^{\kappa-} \right\}
+\end{align*}
+
+
+
+\section{Discussion of capacitive interactions}
+\label{sec:discussioncapacitive}
+It is of interest to consider how our approximation and the result (eq~\ref{eq:result}) compare to other results, for instance the BBGKY hierarchy (see Ref.~\cite{diventra}).
+
+It is relatively simple to show that our results only treat a subset of the BBGKY hierarchy. If we start from a relatively simple Hamiltonian that includes two-body interaction:
+\begin{align*}
+H &= -\sum_i \frac{\hbar^2}{2m} \nabla_i^2 + \sum_{ij} w(r_i - r_j)
+\end{align*}
+
+The resulting Heisenberg equation for the field operator $\psi$ reads:
+\begin{align*}
+\imath\hbar\partial_t \psi(r, t) &= -\frac{\hbar^2}{2m} \nabla^2 \psi(r,t) + \int dr^\prime \: \left[ w(r-r^\prime) \psi^\dagger (r^\prime, t) \psi(r^\prime,t) \psi(r,t)\right]
+\end{align*}
+
+It is a conceptually simple term, featuring the transition from $k\rightarrow k^\prime$ by absorption (release) of a phonon. Note that the Feynman Diagrams of such an interaction are in principle unlimited; one can make many, many transitions and later re-absorb the sum of these transitions to transition back. We would then expect, similar to the non-interacting contacts case, to simply expect a contribution to the self-energy directly obtained from comparison of the equation of motion method result with the Dyson equation.
+
+
+From there, we can find the equation of motion for the single-particle time-ordered Green's function:
+\begin{align*}
+G(r,t;r^\prime,t^\prime) &= -\frac{\imath}{\hbar}\braket{T \left\{ \psi(r,t) \psi^\dagger(r^\prime,t^\prime)\right\}} \\
+\left(\imath\hbar\partial_{t_1} + \frac{\hbar^2}{2m}\nabla_i^2\right) G(r_1, t_1; r_1^\prime, t_1^\prime) &= \delta(r_1 - r_1^\prime) \delta(t_1 - t_1^\prime) \\&- \imath \int dr\left[w(r_1 - r) ) \psi^\dagger (r^\prime, t) \psi(r^\prime,t) \psi(r,t) \psi(r_1^\prime, t_1^\prime)^\dagger\right]
+\end{align*}
+
+If we now expand the field operators into particle operators, with $\phi_k$ representing a single-particle wave function:
+\begin{align*}
+\psi(r, t) &= \sum_k \braket{r|\phi_k} a_k\\
+\psi(r, t)^\dagger &= \sum_k \braket{\phi_k|r} a_k^\dagger \\
+\int dr\ldots &= \int dr \sum_{ijkl} W_{ijkl} a_i(t_1) a_j (t_1) a_k^\dagger(t_1^+) a_l^\dagger(t_1^\prime)
+\end{align*}
+
+Which is the interaction term we started with, but approximated using $U_{ij} = W_{ijji}$ to lead to our relatively simple interaction term $\frac{1}{2} \sum_{ij} U_{ij} n_i n_j$. As a result, we can clearly see that we regard only a subset of the BBGKY hierarchy, which is to be expected due to the presence of not only contacts but a many-body interaction that is usually hidden in the effective Hamiltonian calculated by DFT.
+
+In a paper by Datta\cite{mura}, they outline that the rich spectrum of excitations is problematic to capture within any self-consistent field (SCF) theory. They illustrate this problem by elaborating on a spin-degenerate level that is very similar to the general model discussed above. They mostly point this out as a motivation for turning to a Master Equation Approach. 
+
+It is pertinent because they specifically mention that the SCF approach misses the fact that subsequent spin addition/removal processes need not contribute equally to the overall current.
+
+My derivation above explicitly incorporates the many-body character of the problem with capacitive interactions, and should therefore be able to to capture such effects.
+
+From my derivation and the discussion above, it seems that this extension to the Formalism does include the relevant electron-electron interactions and should prove to be a method to calculate the Coulomb Blockade in a consistent manner within the non-equilibrium Green's Function formalism.
+\section{Phonons}
 \label{sec:phononic}
+
+\section{Discussion of vibrational interaction}
+\label{sec:phononicdiscussion}
+
 \references{dissertation}

@@ -143,10 +143,10 @@ G &= g + g \Sigma g + g \Sigma g \Sigma g
 \end{align*}
 
 The continuation of these terms is very clear. It has a very nice solution, though:
-\begin{align*}
-G &= g + g \Sigma g + g \Sigma g \Sigma g+ \ldots \\
-&= g + g \Sigma G
-\end{align*}
+\begin{align}
+G &= g + g \Sigma g + g \Sigma g \Sigma g+ \ldots \nonumber\\
+&= g + g \Sigma G \label{eq:dyson}
+\end{align}
 
 This equation is known as the Dyson equation. We will see that the Dyson-equation is of fundamental importance to transport calculations in section~\ref{sec:eommethod}.
 
@@ -227,7 +227,7 @@ A^{>,<} (\epsilon)
 B^- (\epsilon) \\
 \end{align*}
 
-Which are called the Langreth rules. We will apply to derive the Keldysh equation starting from the Dyson equation.
+Which are called the Langreth rules. We will apply these to derive the Keldysh equation starting from the Dyson equation.
  
 The notation is becoming rather tedious; we will therefore lose both the hats and the variable, e.g. write $G^<$ instead of $G^<(\epsilon)$.
 
@@ -253,8 +253,10 @@ G^< &= g^<  + g^< \Sigma^< G^< \\
  &= g^<  + g^< \Sigma^- G^- + g^+ \left[ \Sigma^+ G^< + \Sigma^< G^- \right]\\
  &= (1 - g^+ \Sigma^+)^{-1} \left( g^<  + g^< \Sigma^- G^- + g^+ \Sigma^< G^-\right) \\
  &= \left(G^+ (g^+)^{-1}\right)\left( g^<  + g^< \Sigma^- G^- + g^+ \Sigma^< G^-\right) \\ 
-&= G^+ (g^+)^{-1} g^< \left((g^-)^{-1}G^-  \right) + G^+  \Sigma^< G^- \\
 \end{align*}
+\begin{align}
+G^< &= G^+ (g^+)^{-1} g^< \left((g^-)^{-1}G^-  \right) + G^+  \Sigma^< G^- \label{eq:keldysh}
+\end{align}
 
 The above equation is called the Keldysh equation. It can be shown that the first term vanishes for a system that is non-interacting in the infinite past, which means that all interactions are contained in the self energy. Of course, that was one of the assumptions discussed at the start of the chapter. This yields the reduced form of the Keldysh equation:
 \begin{align*}
@@ -267,6 +269,8 @@ Which is called the Keldysh equation.
 \section{Equation of Motion method}
 \label{sec:eommethod}
 A non-interacting contact is described by a regular number Hamiltonian and a tunnelling interaction with the device. From this, we can determine a rather fundamental and commonly used relation. 
+
+The model system consists of a molecule, the leads and finally the lead-molecule interaction. The latter include both an electron hopping from the lead to the molecule and hopping from the molecule to the lead. The molecule consists of the single-electron orbitals, while the lead is just a bath of electrons at all energies included for completeness.
 
 The Hamiltonian is:
 \begin{align}
@@ -415,7 +419,7 @@ I &= \frac{\imath e}{\hbar} \int \frac{d\epsilon}{2\pi} \text{Tr}\left\{ \Gamma^
 which, discarding the correlations between the device and the contacts, turns into the Landauer formula:
 \begin{align}
 I &= \frac{e}{\hbar} \int \frac{d\epsilon}{2\pi} \left[ f_L(\epsilon) - f_R(\epsilon)\right] T(\epsilon) \label{eq:landauer}\\
-T(\epsilon)&\equiv \text{Tr}\left\{ \Gamma^L G^+ \Gamma^R G^-\right\}
+T(\epsilon)&\equiv \text{Tr}\left\{ \Gamma^L G^+ \Gamma^R G^-\right\}\nonumber
 \end{align}
 
 \section{Synthesis: Common Application}
