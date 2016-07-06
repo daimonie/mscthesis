@@ -71,6 +71,7 @@ The allowed voltage over such a MCBJ junction ranges from $0.5$ V at room temper
 A few examples of experimental findings~\cite{koole} involving molecular electronics are the Coulomb blockade~\cite{Park2000, Park2002}, the Kondo effect~\cite{Park2002}, vibrational excitations~\cite{vib1, vib2} and electronic excitations~\cite{elec1}.
 
 \section{Theory}
+\label{sec:theoryintro}
 While I work primarily in the non-equilibrium Green's Function Formalism (chapter~\ref{ch:chapter_2}), here I will also briefly describe another formalism often used, namely the Master Equation approach \cite{seldenthuis}. One very large benefit of the Master Equation approach over the non-equilibrium Green's Function approach is that it allows simple conceptual thinking.
 
 I will also give a short description of Density Functional Theory (DFT), a method often used with the non-equilibrium Green's Formalism which will be discussed and derived in analytical detail in chapter~\ref{ch:chapter_2}  .
@@ -90,6 +91,10 @@ W_{i\rightarrow f} &= \frac{2\pi}{\hbar} \left| \braket{\phi_f \psi_f \left|H'\r
 The atomic overlap $\left| \braket{ \phi_f | \phi_i }\right|^2$ is known as a Franck-Condon factor (section~\ref{sec:phononic}). Note that different electronic eigenstates very often have a slightly different atomic state, which means that the Franck-Condon factor between non-identical states become non-zero. Theoretically, this can be understood as a basis change; $\ket{\phi_i}$ and $\ket{\phi_f}$ are no longer pure eigenstates in the new basis. 
 
 The ME approach is very suited to handling vibrational excitations and interactions up to any desired order \cite{seldenthuis}. However, it is most suited when electronic interactions are weak, and vibrational interactions are strong. The non-equilibrium Green's Formalism (chapter~\ref{ch:chapter_2}) is its opposite, and is more suited to strong electronic interactions where vibrational coupling can be mainly ignored. 
+
+One particular feature is that the ME approach assumes that electrons remain on a `dot' for long times, losing all phase information. Therefore, quantum interference is a feature that the ME approach does not cover, thereby requiring that the level spacing is larger than the effective coupling $\delta \epsilon_i \gg \Gamma$.
+
+Both the ME approach and the NEGF formalism deal with molecules; small functional blocks. However, you need to characterise the molecule or at the very least its single-electron orbitals at the HOMO and LUMO level. 
 
 I will now describe Density Functional Theory (DFT) as it pertains to transport calculations for single-molecule junctions. This theory is very well known and recognised, as is evident by the 1998 Nobel Prize in Chemistry, shared equally between Walter Kohn "for his development of the density-functional theory" and John A. Pople "for his development of computational methods in quantum chemistry"~\cite{nobel1998}. 
 

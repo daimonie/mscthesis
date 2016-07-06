@@ -147,9 +147,9 @@ The idea is to group terms with the same combination of occupation number operat
 &= \sum_\kappa P_{\kappa\kappa} \left[ \mathscr{E} - \epsilon - \tau - \sum_{i\in\kappa} U^i - \Sigma^\pm \right]^{-1}n_\kappa
 \end{align*}
 The appearance of $n_\kappa$ in the expression for the many-body Green's function indicates that the sum is only over the super set of $\kappa$ \footnote{This might be referred to as the `superset many-body advanced(retarded) Green's function'.}:
-\begin{align*}
-\mathscr{G}^{\kappa\pm} &= \sum_{\lambda\supseteq\kappa} P_{\lambda\lambda} G^{\lambda\pm},
-\end{align*}
+\begin{align}
+\mathscr{G}^{\kappa\pm} &= \sum_{\lambda\supseteq\kappa} P_{\lambda\lambda} G^{\lambda\pm},\label{eq:mbgfresult}
+\end{align}
 
 where 
 \begin{align*}
@@ -177,7 +177,7 @@ It is then relatively simple to evaluate:
 &= \braket{\lambda^\prime \left| \widehat{G} \Delta^\lambda_\kappa \right| \lambda }
 \end{align*}
 
-Because the retarded (advanced) Green's function only had a remaining interaction operator $\sum_i U^i \widehat{n}_i$, which is a diagonal operator, I can Taylor-expand the Green's function as we did before. Since $n_i \ket{\lambda}=\Delta^\lambda_i\ket{\lambda}$\footnote{Yes, $i \in \lambda$ is equivalent to $\lambda\supseteq i$!}, without changing the state, we can just write down the 'number', as opposed to operator,  $G^\lambda$! 
+Because the retarded (advanced) Green's function only had a remaining interaction operator $\sum_i U^i \widehat{n}_i$, which is a diagonal operator, I can Taylor-expand the Green's function as we did before (equation~\ref{eq:inversionexpansion}). Since $n_i \ket{\lambda}=\Delta^\lambda_i\ket{\lambda}$\footnote{Yes, $i \in \lambda$ is equivalent to $\lambda\supseteq i$!}, without changing the state, we can just write down the 'number', as opposed to operator,  $G^\lambda$! 
 \begin{align*}
 &= \braket{\lambda^\prime \left| \left[ A + ABA + ABABA \right] \Delta^\lambda_\kappa \right| \lambda } \\
 &=  G^\lambda \Delta^\lambda_\kappa \braket{\lambda^\prime | \lambda }\\
@@ -188,7 +188,7 @@ To evaluate the final, many-body Green's function, I simply take its average:
 \begin{align*}
 \braket{ \mathscr{G}^{\kappa\pm}} &= \sum_{\lambda,\lambda^\prime}C_{\lambda^\prime}C_\lambda^\star \braket{\lambda^\prime \left| \mathscr{G}^{\kappa\pm} \right| \lambda } \\
 &= \sum_{\lambda,\lambda^\prime} C_{\lambda^\prime}C_\lambda^\star  G^{\lambda\pm} \Delta^\lambda_\kappa \delta^\lambda_{\lambda^\prime}\\
-&= \sum_{\lambda \supseteq \kappa} \rho_{\lambda\lambda}(t) G^{\lambda\pm}
+&= \sum_{\lambda \supseteq \kappa} \rho_{\lambda\lambda}(t) G^{\lambda\pm} 
 \end{align*}
 
 This derivation is very sensible. It makes use of the same expansion as the earlier derivation, but by immediately looking for the thermal value of the Green's function rather than the intermediary operator form, it becomes a very simple derivation.
@@ -199,6 +199,7 @@ Starting from the Keldysh equation (equation~\ref{eq:keldysh}), we can derive th
     \mathscr{G}^{\kappa<} &= \mathscr{G}^{\kappa+} \Sigma^< \mathscr{G}^{\kappa-} \\
     &= \sum_{\lambda\supseteq\kappa, \lambda^\prime \supseteq\kappa}P_{\lambda'\lambda'} P_{\lambda\lambda} G^{\lambda+} \Sigma^< G^{\lambda^\prime-} \\
 \end{align*}
+So that we find:
 \begin{align}
     \mathscr{G}^{\kappa<} &= \sum_{\lambda\supseteq\kappa} P_{\lambda\lambda} G^{\lambda<} \label{eq:mblessergf}
 \end{align}
@@ -285,7 +286,137 @@ From my derivation and the discussion above, it seems that this extension to the
 \section{Phonons}
 \label{sec:phononic}
 
+Vibrational modes are a large part of the Ph. D. thesis of Dr. Jos Seldenthuis \cite{seldenthuis}, and I considered them briefly. 
+
+Bosonic interactions are the inclusion of phonon or photon interaction with electronic transitions.
+
+For instance, one could consider photon emission where the transition from state $\ket{i}$ to $\ket{i'}$ is paired with the emission of a photon at energy $\hbar \omega$, called electroluminescence \cite{electroluminescence}. An interaction term of this sort would have the form $\hbar\omega b^\dagger d_{i'}^\dagger d_i$.
+
+I consider vibrational excitations of a single mode in weakly coupled single-molecule junctions using a generalisation of the above relation, which is in principle correct for phonons as well as photons. The generalisation is also known as a Fr\"ohlich interaction and the resulting Hamiltonian is known as the Fr\"ohlich Hamiltonian \cite{frohlich}. The Hamiltonian is given by adding the following terms to the device-Hamiltonian (including capacitive interactions):
+\begin{align}
+H_\text{phonon} &= \hbar \omega \left(b^\dagger b + \frac{1}{2}\right) + \lambda \hbar \omega (b + b^\dagger) d^\dagger d, \label{eq:phononhamiltonian}
+\end{align}
+where $\lambda$ is the dimensionless electron-phonon coupling \cite{kaspermothpoulsen}.
+
+Most treatments of phononic interactions, be it electroluminescence \cite{electroluminescence} or vibrational modes of the molecule \cite{vibrationcomputation} make use of a Master Equation Approach. Contrary to these treatments I will attempt to include interaction with a single phononic mode into the non-equilibrium Green's Function Formalism.
+
+Recall that in section~\ref{sec:theoryintro}, when describing the Master Equation Approach, I described the Borne-Oppenheimer approximation and that Fermi's Golden Rule includes the absolute square of the overlap between two vibrational (atomic) wavefunctions. This is called a Franck-Condon factor, and it has a simple expresion for ground-to excited state transitions \cite{kaspermothpoulsen}:
+\begin{align}
+\mathscr{F}_{n0} &= \frac{\lambda^{2n}}{n!} e^{-\lambda^2},
+\label{eq:fcfactor}
+\end{align}
+where $\lambda$ is the electron-phonon coupling introduced in equation~\ref{eq:phononhamiltonian}.  Note that the overlap matrix is defined by a recursion relation, so that in principle all phononic transitions have a known overlap and Franck-Condon factor.
+
+\begin{figure}[!bp]
+    \centering
+    \includegraphics[height=.3\textheight]{png/fcfig.png}
+    \caption{Filled contour plot of the ground-to-excited state Franck Condon factors for low coupling. The horizontal-axis describes the coupling strength, whereas the vertical axis denotes the phononic excitation with \emph{number} photons.}
+    \label{fig:fc}
+\end{figure}
+
+In figure~\ref{fig:fc}, I show the FC-factors for weak electron-phonon coupling. As you can see, there are some distinct regions. In the $\lambda\ll 1$ region, the only accessible states appear to be those without phonons. As you move closer to unity, exited states become available. Moving away from unity, the zero-excited transition becomes exclude, a phenomon known as the Franck-Condon blockade \cite{fcblockade}.
+
+A typical way in which one confirms the presence of phononic excitations is lines running parallel to the diamond edges in the stability diagram, which is a filled contour plot of the conductance as a function of bias and gate voltage \cite{vibrationcomputation}.
+
+We have already found that the many-body Green's function can be most simply derived as the thermal average of the Green's function operator that includes a complex many-body self-energy operator. I must emphasise that we are working on an extend Hilbert space that does not include that of electrons $H_e$ but also that of the single-mode vibrations $H_b$. This simplification allows a relatively simple derivation of the many-body Green's function that clearly shows Franck-Condon blockade and vibrational excitations. I will assume, as I do elsewhere in my thesis, that the many-body occupation of the molecule is dictated by the Boltzmann-distribution.
+
+
+It is worth emphasising that the overlap matrix is not diagonal, because the equilibrium geometry of the molecule changes when the electronic state switches. In a more pedestrian explanation, I would point to classical mechanics. Consider for a moment a very large metal ruler extended over the edge of a desk. On it, I attach a heavy magnet. The ruler would act as a cantilever, vibrating in a specific mode. If I suddenly (instantaneously) move the magnet, the mass distribution of  the magnet-ruler system changes, and thus its eigenmodes do as well. However, the ruler is still vibrating in the old mode, which is no longer an eigenmode of the system but rather a superposition of the new eigenmodes, i.e. $\ket{x_j} \rightarrow \sum c_i \ket{x'_i}$. Therefore, the old eigenmode and the new eigenmode are not necessarily orthogonal but have an overlap element. 
+
+I want to use the EOM method to find the self-energy operator. First, it is clear that the commutator between $d_l$ and the Fr\"ohlich interaction is:
+\begin{align*}
+ \left[ d_l, (b^\dagger + b) d_i^\dagger d_j \right] &= (b^\dagger + b) d_l \delta^j_l
+\end{align*}
+
+So that the equation of motion method for the (many-body) Green's function yields:
+\begin{align*}
+\left(\epsilon-\epsilon_i - \lambda \hbar \omega \left(b^\dagger + b\right) \right) G^\pm (\epsilon) &= \delta_{ij} + \sum_k \left\{ \tau_{ik} + \sum_l U^l_{ik} n_l + \Sigma^\pm_{ik} \right\} G^\pm_{kj}
+\end{align*}
+
+And comparison with the Dyson equation results in the self-energy operator for the electron-phonon interaction \footnote{Formally, the term is a constant times the Green's function, so that we multiply it by the unit operator, resulting in a diagonal contribution.}:
+\begin{align*}
+\Sigma_\text{e-p} &= \lambda \hbar \omega ( b^\dagger + b)
+\end{align*}
+
+Recall that, in our previous treatment of the many-body Green's function, we had identified that:
+\begin{align*}
+\mathscr{G}^{\kappa\pm} \ket{\lambda} &= G^\lambda \Delta^\lambda_\kappa \ket{\lambda}
+\end{align*}
+
+Also, we know that operators that act purely on fermions and operators that act purely on bosons commute. This is very convenient because we can now consider a many-body Green's function of a molecule coupled to a single vibrational level, i.e. $\left\{\ket{\kappa}\right\} \rightarrow \left\{\ket{\kappa}\right\} \otimes \left\{\ket{m}\right\}$, where the latter set is the space of phonons on the vibrational mode.
+\begin{align*}
+\braket{\mathscr{G}^{\kappa\pm}} &\equiv \sum_{\lambda, \lambda^\prime} \sum_{m,n} \bra{\lambda}\bra{n} \mathscr{G}^{\kappa\pm} \ket{\lambda^\prime}\ket{m} 
+\end{align*}
+
+For brevity I define:
+\begin{align*}
+A &=\left[ \epsilon \mathbf{1} - \mathbf{\epsilon} - \mathbf{\Sigma}^{d\pm} - \mathbf{\Sigma}^\pm \right]^{-1} n_\kappa \\
+B &= \Sigma^\pm_\text{e-p}
+\end{align*}
+
+Note that $A$ is an operator that only acts on fermionic space, whereas $B$ is an operator that acts on the phonon space. 
+
+I will use the Taylor expansion (equation~\ref{eq:inversionexpansion}), because I will be able to separate terms\footnote{I introduce $\tilde{\lambda}$ for the electron-phonon coupling constant, as our treatment of the many-body Green's function already included the state $\ket{\lambda}$.} because $A$ and $B$ commute:
+\begin{align*}
+\braket{\mathscr{G}^{\kappa\pm}} &\equiv \sum_{\lambda, \lambda^\prime} \sum_{m,n} \bra{\lambda}\bra{n} \mathscr{G}^{\kappa\pm} \ket{\lambda^\prime}\ket{m} \\
+&= \sum_{\lambda, \lambda^\prime} \sum_{m,n}\rho_{\lambda\lambda^\prime}^{mn} \bra{\lambda}\bra{n}\left[A + ABA + ABABA + ABABABA + \ldots\right] \ket{\lambda^\prime}\ket{m} \\
+&= \sum_{\lambda, \lambda^\prime} \sum_{m,n} \sum_x\rho_{\lambda\lambda^\prime}^{mn} \braket{\lambda \left| A^{x+1} \right| \lambda^\prime} \braket{n\left| B^x \right|m} \\
+&= \sum_{\lambda, \lambda^\prime} \sum_{m,n} \sum_x\rho_{\lambda\lambda^\prime}^{mn} \braket{\lambda \left| A^{x+1} \right| \lambda^\prime} \braket{n\left| \left(\tilde{\lambda}\hbar\omega\right)^x\left(b^\dagger+b\right)^x \right|m} \\ 
+\end{align*}
+
+I cannot use Newton's binomial expansion because $b$ and $b^\dagger$ do not commute. However, it is possible to derive the binomial theorem for non-commuting objects, where $\left[A,B\right] = C$. This derivation depends on the dual of the Baker-Campbell-Hausdorff formula \cite{kaspermothpoulsen}, called the Zassenhaus formula \footnote{It is apparently well known, but see e.g. \href{http://goo.gl/Cw8Xpx}{math overflow, http://goo.gl/Cw8Xpx}.}, and takes the general form:
+\begin{align*}
+(A+B)^n &= \sum_{n\equiv k\:\text{mod}(2)}\left[ \sum^k_{r=0}\left[ \binom{k}{r}A^r B^{k-r} \left(-\frac{C}{2}\right)^\frac{n-k}{2} \frac{n!}{k! \left(\frac{n-k}{2}\right)!}\right]\right] 
+\end{align*}
+Where $n\equiv k\:\text{mod}(2)$ means that $0\leq k\leq$, but $k$ only takes values that are even (odd) if $n$ is even (odd), so that $\frac{n-k}{2}$ is integer.
+
+By applying this formula, I find:
+\begin{align*}
+\braket{n \left| \left(b+b^\dagger\right)^x \right| m}&= \sum_{y=x[2]}^x Q^x_y \sum_{p=0}^{y} P^{m,n}_{p,y} \braket{\left. n-p \right| m-y+p}, \\
+Q^x_y&\equiv \left(-\frac{1}{2}\right)^{\frac{x-y}{2}} \frac{ x! }{ y! \left(\frac{x-y}{2}\right)!},\\
+P_{p,y}^{m,n} &\equiv \binom{y}{p} \sqrt{ \binom{n}{p}} \sqrt{\binom{m}{y-p}}
+\end{align*}
+
+For the result above, I have adapted a trick that is worth mentioning to avoid confusion. First, note that $b^n \ket{m} = \binom{m}{n} \ket{m-n}$. Note also that this requires $m\geq n$ to be nonzero. Furthermore, the Hermitian conjugate gives the relation for $\bra{m} (b^\dagger)^n$. As a result, we absorb the creation (annihilation) operators into terms that also put an upper bind on the powers involved. We can freely do so, because the binomial expansion for non-commuting operators remains symmetric; the commutators are in $Q^x_y$. 
+
+
+The overlap function can be found from the recursion relation, see Ref. \cite{kaspermothpoulsen}:
+\begin{align*}
+\braket{n|m} &= e^{-\frac{\tilde{\lambda}^2}{2}} \sqrt{n! m!} \sum_{k=0}^{ \text{min}\left\{ m, n \right\}} \frac{ \left(-\tilde{\lambda}\right)^{n-k} \left(\tilde{\lambda}\right)^{m-k}}{ k! \left( n -k\right)! \left( m - k \right)!},
+\end{align*} 
+where $\tilde{\lambda}$ is the electron-phonon coupling.
+
+This means that we have found a closed form of the vibrational many-body Green's function $\mathscr{G}^{\kappa\pm}_\text{vibrational}$, where the subscript merely denotes that this is on the space $\left\{\ket{\kappa}\right\} \otimes \left\{\ket{n}\right\}$:
+\begin{align}
+\braket{\mathscr{G}^{\kappa\pm}_\text{vibrational}}&= \sum_{\lambda\supseteq \kappa} \sum_{m,n} \sum_x\rho_{\lambda\lambda^\prime}^{mn}  \left(G^\lambda \right)^{x+1} \left(\tilde{\lambda}\hbar\omega\right)^x
+ \sum_{y=x[2]}^x Q^x_y \sum_{p=0}^{y} P^{m,n}_{p,y} \braket{\left. n-p \right| m-y+p} \label{eq:vibgf}
+\end{align}
+
 \section{Discussion of vibrational interaction}
+
+Note again that the Taylor expansion is effectively the diagrammatic expansion we also used to derive the Dyson equation. This is a very telling result, because it gives a relatively conceptual explanation for the result.
+
+Contrary to fermionic operators, powers of bosonic operators do lead to high multiplicity of specific terms. Although this seems to implicate that the high-order terms cannot be simply assumed to vanish, we must turn to the recursion relation that defines the overlap to investigate this further:
+\begin{align*}
+\braket{\left. n\right|m} &\equiv \sqrt{\frac{n}{m}} \braket{\left. n-1\right|m-1} + \frac{\lambda}{\sqrt{m}} \braket{\left. n\right|m-1}
+\end{align*}
+
+First, note that the overlap goes to zero as $m\gg 1$. The first term will remain valid in that limit, but only for $n~m$, indicating that only few-phonon transitions are possible. If this is combined with the multiplicity of high-order diagrams, this expresses the well-known problem that Feynman diagrammatic expansions are not guaranteed to have vanishing high-order terms \cite{mattuck}.
+
+I think it hopeful that there are various exponentionally decaying terms in the full expansion. Combined with the possibility of high-order terms hitting vacuum, I think it is reasonably certain that the near-diagonal high-order terms will be cancelled by these decaying terms. However, that puts a requirement of $ \lambda \hbar \omega < 1$. Given the typical excitation energies of $~100$ meV, this allows for electron-phonon coupling up to $3-5$, which seems very considerate. In the ground-state Franck-Condon filled contour (Fig.~\ref{fig:fc}), we saw that this includes most of the relevant part of the picture.
+
+I also think that the thermal average helps to filter high-order contributions, simply because either $n-p$ or $m-y+p$ will hit zero, meaning that all possible phonons are released and higher terms are not possible. 
+
+Let us consider, for a moment, a situation where we assume only a single vibrational mode, and only transitions from the vibrational vacuum to the first few excitations, are relevant. This implies very weak coupling, so assume $\hbar \omega \lambda \approx 0.1$, implying that $x>2$ vanishes. I also assume for the purpose of this example that $\rho^{m,n}_{\lambda\lambda} \approx \rho_{\lambda\lambda} \rho^v_{m,n}$. We would be looking at a term:
+\begin{align*}
+\mathscr{G}^{\kappa\pm}_\text{vibrational} &= \sum_{\lambda\supseteq \kappa} \rho_{\lambda \lambda} \left[ G^{\lambda\pm} \left( \rho_{00}^v \braket{0|0} + \rho_{10}^v \braket{1|0} + \rho_{20}^v\braket{2|0}\right) \right. \\ &\left.+ \left(\lambda\hbar\omega\right)\left(G^{\lambda\pm}\right)^2 \left(\rho_{10}^v \braket{1|0}\right) + \left(\lambda\hbar\omega\right)^2 \left(G^{\lambda\pm}\right)^3 \left( \rho_{20}^v \braket{0|0}\right) \right]
+\end{align*}
+
+Looking back at figure~\ref{fig:fc}, we see clearly that this small expansion should display Franck-Condon blockade quite clearly. Suppose, for instance, that the electron-phonon coupling is very weak. In that case, only $\braket{0|0}$ are significant and we see that the expansion reduces to equation~\ref{eq:mbgfresult}. On the other hand, in the Franck-Condon blockade region, we find only a contribution from $\rho^v_{20} \braket{2|0}$, should be significantly smaller because of the 2 phonon density matrix in that expression.
+
+I have not pursued this derivation further due to time constraints. However, I strongly suggest that it is taken up for further investigation.
+
+
 \label{sec:phononicdiscussion}
 
 \references{dissertation}
