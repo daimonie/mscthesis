@@ -1,55 +1,37 @@
 \chapter{Approach: The non-equilibrium Green's Function formalism}
 \label{ch:chapter_2}
 
-%% The following annotation is customary for chapter which have already been
-%% published as a paper.
-%\blfootnote{Parts of this chapter have been published in Annalen der Physik \textbf{324}, 289 (1906) \cite{Einstein1906}.}
-
-%% It is only necessary to list the authors if multiple people contributed
-%% significantly to the chapter.
-%\authors{Albert {\titleshape Einstein}}
-
-%% The '0pt' option ensures that no extra vertical space follows this epigraph,
-%% since there is another epigraph after it.
-%\epigraph[0pt]{
-%    "quote1"
-%}{attribution}
-
 \epigraph{
     “A rock has no detectable opinion about gravity.”
 }{Sir Terry Pratchett}
 
 \begin{abstract}
-In this section, I fully derive the non-equilibrium Green's Function Formalism, the Dyson and Keldysh Equations, and several other useful quantities. We will look explicitly at properties of interest, such as the occupation of the levels of and the current through the molecule.
+In this chapter, I derive the non-equilibrium Green's Function Formalism, the Dyson and Keldysh Equations, and several other useful quantities. I will look explicitly at properties of interest, such as the occupation of the levels of and the current through the molecule.
 \end{abstract}
 
 %% Start the actual chapter on a new page.
 \newpage
 \section{Introduction}
-Any quantum mechanical system can in principle be described by the Schr\"odinger equation. For a system with a finite number of particles, there are several methods for solving the many-body Sch\"odinger equation, for instance the popular Hartree-Fock (HF) and density-functional theory (DFT) quantum chemistry methods.
+Any closed quantum mechanical system can in principle be described by the Schr\"odinger equation. For such a system, there are several methods for solving the many-body Sch\"odinger equation, for instance the popular Hartree-Fock (HF) and density-functional theory (DFT) quantum chemistry methods.
 
-However, no laboratory system is a finite system. A molecule is coupled to metallic electrodes, which connect to a voltage source. The circuit is further extended with measurement equipment, refrigeration instruments and so forth. The system might also not be in equilibrium, such as when a bias voltage is applied between the two electrodes. In this situation, solving the Schr\"odinger equation directly is unfeasible \cite{seldenthuis}.
+However, our systems of interest are not closed. A molecule is coupled to metallic electrodes, which connect to a voltage source. The circuit is further extended with measurement equipment, refrigeration instruments and so forth. The system might also not be in equilibrium, such as when a bias voltage is applied between the two electrodes. In this situation, there is no Scr\"odinger equation \cite{seldenthuis}.
 
-Green's functions are a familiar concept in partial differential equations. Here, Green's functions characterise a partial differential equation completely, allowing you to solve for any given initial and boundary conditions and possible forcing terms rather easily by integration. For instance, the Green's function for the Heat Equation $G(x,t; x_0, t_0)$ expresses the influence of the temperature at $(t_0, x_0)$ on the temperature at $(t,x)$ \cite{haberman}. 
-While I will try to give a self-inclusive derivation of the non-equilibrium Green's Function (NEGF) formalism, I refer the reader to Refs.~\cite{mattuck,diventra,haugjauho} for a more complete overview.
+Green's functions are a familiar concept in partial differential equations. Green's functions characterise a partial differential equation completely, allowing you to obtain a solution for any given initial and boundary conditions and possible forcing terms rather easily, by integration. For instance, the Green's function for the Heat Equation $G(x,t; x_0, t_0)$ expresses the influence of the temperature at $(t_0, x_0)$ on the temperature at $(t,x)$ \cite{haberman}. 
+While I will try to give a self-contained derivation of the non-equilibrium Green's Function (NEGF) formalism, I refer the reader to Refs.~\cite{mattuck,diventra,haugjauho, leeuwen} for a more complete overview.
 
-For a closed system in equilibrium, the GF formalism is exact because it is simply a rephrasing of the Schr\"odinger equation. However, the NEGF method also provides a systematic approach to incorporate some non-equilibrium interactions of nanoscopic systems with infinitely large environments.
+For a closed system in equilibrium, the GF formalism is exact because it is simply a rephrasing of the Schr\"odinger equation. However, the NEGF method also provides a systematic approach to incorporate some non-equilibrium interactions of nanoscopic systems with infinitely large environments, which is still exact in some limit. It is perhaps illuminating to first go over a number of assumptions and approximations \cite{seldenthuis}. 
 
-It is perhaps illuminating to first go over a number of assumptions and approximations \cite{seldenthuis}. 
+First, the metallic electrodes or leads are considered as infinite reservoirs that are non-interacting and are in equilibrium and not influenced by the molecule. Note that the leads are not required to be in equilibrium with each other. Although the immediate environment of the molecule is likely to be influenced by the molecule, it is possible to partition the system. The Extended molecule that also includes the lead-tip thus allows for including  molecule-lead influences.
 
-First, the metallic electrodes or leads are considered as infinite reservoirs that are non-interacting and are in equilibrium and not influenced by the molecule. Note that the leads are not required to be in equilibrium with each other. Although the immediate environment of the molecule is likely to be influenced by the molecule, it is possible to partition the system as you desire. The Extended molecule that also includes the lead-tip thus solves the problem of molecule-lead influence.
-
-Second, there is an assumption of adiabatic temporal evolution, so that the system in the infinite past can be considered as isolated leads and molecule.  
+Second, there is an assumption of adiabatic temporal evolution, so that the system in the infinite past can be considered as two isolated leads and molecule.  
 
 Finally, the system is an open quantum system. Electrons travel to the leads and move into an infinite reservoir, thus losing all information of their dynamics. 
 
-These tree approximations or assumptions are sufficient to obtain closed expressions for the properties of interest. However, as usual the equations become unwieldy for systems that approach the complexity of an actual laboratory nanoscopic system, requiring ridiculous computational resources.
+These three approximations or assumptions are sufficient to obtain closed expressions for the properties of interest. However, as usual the equations become unwieldy for systems that approach the complexity of an actual laboratory nanoscopic system, requiring unrealistic computational resources.
 
-It is for this reason that other approximations are employed for practical application, such as the mean-field approximation. In this approximations the interactions are essentially averaged out, which makes \emph{ab initio} quantum transport problems tractable. However, you lose certain transport phenomena, most notably the \emph{Coloumb Blockade} (section~\ref{sec:capacitive}).
+It is for this reason that other approximations are employed for practical application, such as the mean-field approximation. In this approximation the interactions are essentially averaged out, which makes \emph{ab initio} quantum transport problems tractable. However, you lose certain transport phenomena, most notably the \emph{Coulomb Blockade} (section~\ref{sec:capacitive}).
 
-This chapter is outlined as follows. First, I will consider the unwieldy many-body Schr\"odinger equation in section~\ref{sec:schrodinger}. We will then introduce Slater determinants and move on to the Fock-space and the formalism of second quantisation in section~\ref{sec:secondquantisation}. 
-
-I will then derive the application of the Green's Functions in section~\ref{sec:greensfunctions}. How to find them will be discussed in section~\ref{sec:eommethod}.
+This chapter is set up as follows. First, I will consider the many-body Schr\"odinger equation in section~\ref{sec:schrodinger}. We will then introduce Slater determinants and move on to the Fock-space and the formalism of second quantisation in section~\ref{sec:secondquantisation}. I will then derive the application of the Green's Functions in section~\ref{sec:greensfunctions}. How to find them will be discussed in section~\ref{sec:eommethod}. Separately, I discuss how that method can be applied to find the tunnelling contribution to the Green's Functions in section~\ref{sec:tunnelling}.
 
 Finally, I discuss how to find properties of interest in section~\ref{sec:properties} and the common application of the formalism in section~\ref{sec:synthesis}.
 
@@ -58,11 +40,11 @@ Finally, I discuss how to find properties of interest in section~\ref{sec:proper
 
 For an arbitrary number $N$ of particles, both electrons and others, the many-body Schr\"odinger equation is:
 \begin{align}
- \imath \hbar \partial_t\ket{\Psi\left(t, r_0, r_1, \ldots r_N\right)} &= \widehat{H} \ket{\Psi\left(t, r_0, r_1, \ldots r_N\right)} \label{eq:schrodinger}, \\
- H &\equiv V\left(t, r_0, r_1, \ldots r_N\right) - \sum_{i=0}^N \frac{\hbar^2}{2m_i} \nabla_i^2
+ \imath \hbar \partial_t\ket{\Psi\left(t, r_0^\mu, r_1^\mu, \ldots r_N^\mu\right)} &= \widehat{H} \ket{\Psi\left(t, r_0^\mu, r_1^\mu, \ldots r_N^\mu\right)} \label{eq:schrodinger}, \\
+ H &\equiv V\left(t, r_0^\mu, r_1^\mu, \ldots r_N^\mu\right) - \sum_{i=0}^N \frac{\hbar^2}{2m_i} \nabla_i^2
 \end{align}
 
-It is clear that for many-particles ($N\gg 1$), equation~\ref{eq:schrodinger} becomes unwieldy rather rapidly. We will need some approximations before it becomes applicable.
+It is clear that for many-particles ($N\gg 1$), equation~\ref{eq:schrodinger} becomes too complex rather rapidly. We will need some approximations before it becomes applicable.
 
 If we consider the Hilbert space of Atoms $H_A$ and that of electrons $H_e$, then their composite Hilbert space is $H = H_A \otimes H_e$. If the basis of $H_A$ is $\ket{\phi_i}$ and that of $H_e$ is $\ket{\psi_j}$, then an arbitrary state is:
 \begin{align}
@@ -71,11 +53,11 @@ If we consider the Hilbert space of Atoms $H_A$ and that of electrons $H_e$, the
 
 Such a state is separable if there exists vectors in the atomic space $\ket{\Psi_A}$ and in the electron space $\ket{\Psi_e}$ such that $\ket{\Psi} = \ket{\Psi_A} \ket{\Psi_e}$. An alternative formulation is that states that are separable are not entangled.
 
-The Borne-Oppenheimer approximation is that the electron and atom  states are separable \cite{mattuck}. It is justified because atoms are about three orders of magnitude more massive than electrons, and as such they are expected to move much more slowly. The convenience of the Borne-Oppenheimer approximation is that the effect of the atoms, i.e. that of the molecular skeleton, is to provide an effective background potential for the electronic wave functions.
+The Born-Oppenheimer approximation is based on the assumption that the electron and atom  states are separable \cite{mattuck}. It is justified because atoms are about three orders of magnitude more massive than electrons, and as such they are expected to move much more slowly. The convenience of the Borne-Oppenheimer approximation is that the effect of the atoms, i.e. that of the molecular skeleton, is to provide an effective background potential for the electronic wave functions.
 
 The Hamiltonian then reduces to the following effective electron-only form:
 \begin{align}
-H_e &= \sum \frac{p^2}{2m} + V_A + H',
+H_e &= \sum_i \frac{p_i^2}{2m} + V_A + H',
 \end{align}
 where $V_A$ is the effective atomic background potential and $H'$ simply describes the interactions.
 
@@ -84,14 +66,14 @@ where $V_A$ is the effective atomic background potential and $H'$ simply describ
 If we consider a single-particle (fermion) basis $H_{sp}$ with the wave function or states of the $i$-th particle at momentum $k_j$ denoted $\ket{\phi_{k_j}(r_i)}$\footnote{Here and elsewhere, I do not literally write down the spin of a state. Consider it understood that spin is included in the labelling of the states, i.e. $k \rightarrow \sigma, k$.}, with the full electron Hilbert space the successive tensor products $H_{e} = H_{sp} \otimes H_{sp} \otimes \ldots \otimes H_{sp}$ the separable single-particle wave function products still span the space $H_e$. However, the symmetry requirements of the Pauli exclusion principle have to be satisfied, leading to the Slater determinant\cite{yuli}:
 \begin{align}
 \ket{\Phi_k} &= \frac{1}{\sqrt{N!}} \begin{vmatrix}
-\ket{\phi_{k_0}(r_0)} & \ket{\phi_{k_0}(r_1)} &\ldots& \ket{\phi_{k_0}(r_N)} \\
-\ket{\phi_{k_1}(r_0)} & \ket{\phi_{k_1}(r_1)} &\ldots& \ket{\phi_{k_1}(r_N)} \\
+\ket{\phi_{k_0}(r_0^\mu)} & \ket{\phi_{k_0}(r_1^\mu)} &\ldots& \ket{\phi_{k_0}(r_N^\mu)} \\
+\ket{\phi_{k_1}(r_0^\mu)} & \ket{\phi_{k_1}(r_1^\mu)} &\ldots& \ket{\phi_{k_1}(r_N^\mu)} \\
 \ldots&\ldots&\ldots&\ldots&\\
-\ket{\phi_{k_N}(r_0)} & \ket{\phi_{k_N}(r_1)} &\ldots& \ket{\phi_{k_N}(r_N)} \\
+\ket{\phi_{k_N}(r_0^\mu)} & \ket{\phi_{k_N}(r_1^\mu)} &\ldots& \ket{\phi_{k_N}(r_N^\mu)} \\
 \end{vmatrix},
 \label{eq:slaterdeterminant}
 \end{align}
-which describes a full state under the requirement of a specific momentum. Note that the matrix must be $N\times N$. If there are less states than particles, the Pauli exclusion principle cannot be satisfied. If there are more states than particles, then some are simply not occupied and shouldn't be in the product.
+which describes a full state under the requirement of a specific momentum. Note that the matrix must be $N\times N$. If there are fewer states than particles, the Pauli exclusion principle cannot be satisfied. If there are more states than particles, then some are simply not occupied and shouldn't be in the product.
 
 That leads us to the notion of a Fock state. A Fock state fully specifies a quantum many-body state by essentially listing the occupied states. However, it does not tell you which particle is in what state, which fits the Slater determinant splendidly:
 \begin{align}
@@ -113,7 +95,7 @@ d_k \ket{\ldots, 1_k, \ldots} &=\ket{\ldots, 0_k, \ldots}
 
 Note that the commutator $\left\{ d_k, d_{k'}^\dagger\right\} = \delta_{kk'}$, while the commutators $\left\{ d_k, d_{k'}\right\}$ and $\left\{ d_k^\dagger, d_{k'}^\dagger\right\}$ are zero. The operator $n_k = d_k^\dagger d_k$ is called the number operator. 
 
-The above technique is called second quantisation \cite{yuli}. Second quantisation allows for easy dealing on many-body Hamiltonians and Fock space, as any state can be created by a series of creation operators acting on a vacuum state $\ket{0}$. 
+The above technique is called second quantisation \cite{yuli}. Second quantisation allows for easy dealing with many-body Hamiltonians and Fock space, as any state can be created by a series of creation operators acting on a vacuum state $\ket{0}$. 
  
 
 \section{Green's Functions}
@@ -122,16 +104,16 @@ In the following chapters, I largely follow \citet{seldenthuis} for a general tr
 
 We define the single-particle Green's function as:
 \begin{align}
-G_{ij} (t-t') &= -\frac{\imath}{\hbar} \braket{ T\left\{d_i(t)d_j^\dagger(t')\right\}},
+G_{ij} (t-t') &= -\frac{\imath}{\hbar} T\left\{d_i(t)d_j^\dagger(t')\right\},
 \label{eq:greensfunction}
 \end{align}
 where $T$ is the time-ordering operator, which moves operators at earlier times to the right. For a time-independent Hamiltonian, the Green's function will depend only on the time difference $\delta t = t - t'$. 
 
 The Green's function can be interpreted as a propagator. If a particle is created in state $\ket{i'}$ at time $t'$, the Green's function gives us the probability that it is found in state $\ket{i}$ at time $t$, i.e. that it propagated from $\ket{i'}$ to $\ket{i}$.
 
-As you might have expected, the main problem is finding a closed expression. Usually this means we start out by approximation the full propagator with the free propagator $g_{ij}(t-t')$, the propagator in the absence of any interactions. 
+The main problem is finding a closed expression. I start out by approximation the full propagator $G_{ij}(t,t')$ with the free propagator $g_{ij}(t,t')$, the propagator in the absence of any interactions. 
 
-The full propagator does of course interact. But, it can be expanded diagrammatically \cite{mattuck}. The first diagram is the free propagator. The second diagram is when the particle moves from $\ket{i'}$ at time $t'$ to a different state $\ket{i''}$ at time $t''$, interacts with a potential and scatters to state $\ket{i'''}$ at time $t'''$ and finally propagates to $\ket{i}$ at time $t$. We could write this down in the time-domain, but it is far more convenient to write it down as a matrix equation in the energy (Fourier) domain:
+The full propagator does of course interact. But, it can be expanded diagrammatically \cite{mattuck}. The first diagram is the free propagator. The second diagram is the first order approximation, when the particle moves from $\ket{i'}$ at time $t'$ to a different state $\ket{i''}$ at time $t''$, interacts with a potential and scatters to state $\ket{i'''}$ at time $t'''$ and finally propagates to $\ket{i}$ at time $t$. We could write this down in the time-domain, but it is far more convenient to write it down as a matrix equation in the energy (Fourier) domain:
 \begin{align*}
 G &= g + g \Sigma g,
 \end{align*}
@@ -184,7 +166,7 @@ Note that the greater and lesser Green's functions are simply related to the adv
 G^+_{ij}(t,t') - G^-_{ij}(t,t') &= G^>_{ij}(t,t') - G^<_{ij}(t,t')
 \end{align*}
 
-Finally, the following auxiliaries are of use for deriving the Langreth rules, ultimately leading to the Keldysh equation.
+Finally, the following auxiliaries are of use for deriving the Langreth rules, which are ultimately used to derive the Keldysh equation.
 \begin{itemize}
 \item The time-ordered Green's function, \begin{align*}
 G^T(t,t^\prime) &= \theta(t-t^\prime) G^>(t,t^\prime)  \mp \theta(t^\prime-t)G^<(t,t^\prime) 
@@ -192,6 +174,10 @@ G^T(t,t^\prime) &= \theta(t-t^\prime) G^>(t,t^\prime)  \mp \theta(t^\prime-t)G^<
 \item The anti-time-ordered Green's function, \begin{align*}
 G^{\tilde{T}}(t,t^\prime) &= - \theta(t^\prime-t) G^>(t,t^\prime)  \pm \theta(t-t^\prime)G^<(t,t^\prime) 
 \end{align*} 
+\end{itemize}
+
+An important distinction is between $\theta (t)$ and $\theta^C(t)$. The first is defined on the real time-axis, whereas the second is defined on the Keldysh contour \footnote{An excellent explanation of the Keldysh contour starting from the time-evolution operator can be found in \citet{diventra}.}. The use of this will become more clear in the next section. 
+\begin{itemize}
 \item The contour-ordered Green's function, \begin{align*}
 G^C(t,t^\prime) &= \theta^C(t-t^\prime) G^>(t,t^\prime)  \mp \theta^C(t^\prime-t)G^<(t,t^\prime) 
 \end{align*}
@@ -200,7 +186,6 @@ G^{\tilde{C}}(t,t^\prime) &= - \theta^C(t^\prime-t) G^>(t,t^\prime)  \pm \theta^
 \end{align*} 
 \end{itemize}
 
-An important distinction is between $\theta (t)$ and $\theta^C(t)$. The first is defined on the real time-axis, whereas the second is defined on the Keldysh contour \footnote{An excellent explanation of the Keldysh contour starting from the time-evolution operator can be found in \citet{diventra}.}. The use of this will become more clear in the next section. 
 
 The contour and anti-contour ordered Green's functions are also simply related to the lesser and greater Green's functions:
 \begin{align*}
@@ -208,12 +193,12 @@ G^C_{ij}(t,t') - G^{\tilde{C}}_{ij}(t,t') &= G^>_{ij}(t,t') - G^<_{ij}(t,t')
 \end{align*}
 
 \section{Langreth rules and Keldysh Equation}
-The starting point of the derivation of the Langreth rules are integrals of the following form \footnote{Here, $A \approx G$ and $B \approx [G, \widehat{H}^\prime]$.}:
+The Langreth rules apply to expression of the following form\footnote{Here, $A \approx G$ and $B \approx [G, \widehat{H}^\prime]$.}:
 \begin{align*}
 C^C(t,t^\prime) &= \int_C\:d\tau\:A^C(t,\tau) B^C (\tau, t^\prime)
 \end{align*}
 
-The complete derivation of Langreth's rules is extremely tedious despite the usefulness of the results. For that derivation, I refer readers to Refs.~\cite{mattuck,haugjauho}.
+The complete derivation of Langreth's rules is tedious despite the usefulness of the results. For that derivation, I refer readers to Refs.~\cite{mattuck,haugjauho}.
  
 Under the condition that the functions depend purely on $t-t^\prime$\footnote{Recall that this means, in general, that the Hamiltonian is not time-dependent.}, the final result in the Fourier (Energy) domain is:
 \begin{align*}
@@ -231,20 +216,12 @@ Which are called the Langreth rules. We will apply these to derive the Keldysh e
  
 The notation is becoming rather tedious; we will therefore lose both the hats and the variable, e.g. write $G^<$ instead of $G^<(\epsilon)$.
 
-We will need the Dyson equation:
-\begin{align*}
-G &= g + g\Sigma G \\
-(1 - g\Sigma)^{-1} &=G  g^{-1} \\
-+ \Sigma G &= g^{-1} G
-\end{align*}
-
-The Dyson equation is valid for any of the auxiliary Green's functions, e.g. the Dyson equation for the lesser Green's function:
+The Dyson equation (equation~\ref{eq:dyson}) is valid for any of the auxiliary Green's functions, e.g. the Dyson equation for the lesser Green's function:
 \begin{align*}
 G^< &= g^< + g^< \Sigma^< G^<  
 \end{align*}
 
-Here, we apply the Langreth rules twice. First, we will use it on the terms $g^<$ and $\Sigma^< G^<$, which works towards removing $g^<$ from the equation. The remainder involving this term will later vanish. Secondly, we use the Langreth rules on the $\Sigma^<$ and $G^<$ terms, which works towards an equation with $G^<$ on the left side only.
-
+To derive the next result, I will apply the Langreth rules twice. First, I will use it on the terms $g^<$ and $\Sigma^< G^<$, so that the form of that term becomes one that can be seen to vanish. Secondly, we use the Langreth rules on the $\Sigma^<$ and $G^<$ terms, which works towards an equation with $G^<$ on the left side only. This is in contrast with the Dyson equation, which is formulated purely in terms of the lesser functions.
 
 \begin{align*}
 G &= g + g\Sigma G \\
@@ -254,6 +231,8 @@ G^< &= g^<  + g^< \Sigma^< G^< \\
  &= (1 - g^+ \Sigma^+)^{-1} \left( g^<  + g^< \Sigma^- G^- + g^+ \Sigma^< G^-\right) \\
  &= \left(G^+ (g^+)^{-1}\right)\left( g^<  + g^< \Sigma^- G^- + g^+ \Sigma^< G^-\right) \\ 
 \end{align*}
+
+Finally, the result:
 \begin{align}
 G^< &= G^+ (g^+)^{-1} g^< \left((g^-)^{-1}G^-  \right) + G^+  \Sigma^< G^- \label{eq:keldysh}
 \end{align}
@@ -263,8 +242,7 @@ The above equation is called the Keldysh equation. It can be shown that the firs
 G^< &=  G^+ \Sigma^< G^- 
 \end{align*}
 
-Which is called the Keldysh equation.
- 
+The advanced and retarded Green's Functions are more easily found than the lesser Green's function. The use of the Keldysh equation lies thus in simplification of finding the form of the lesser Green's Function.
 
 \section{Equation of Motion method}
 \label{sec:eommethod}
@@ -280,78 +258,139 @@ H &= H_1 + H_2 + H^\prime, \label{eq:hamiltonian}
 where $H_1$ describes the electron states, $H_2$ describes the electron reservoir in the leads and $H'$ describes the lead-molecule interaction:
 \begin{align*}
 H_1 &= \sum_n \epsilon_n d^\dagger_n d_n \\
-H_2 &= \sum_{\dot{m}} c^\dagger_{\dot{m}} c_{\dot{m}} \\
-H^\prime &= \sum_{\dot{k}, l} V_{\dot{k}, l} c^\dagger_{\dot{k}} d_l + \text{h.c.}
+H_2 &= \sum_{m} c^\dagger_{m} c_{m} \\
+H^\prime &= \sum_{k, l} V_{k, l} c^\dagger_{k} d_l + \text{h.c.}
 \end{align*}
 
-Here, operators $d_n$ are defined on the device, $c_{\dot{k}}$ on the contact. The dotted indices are to emphasise the difference between contact/device operators, which I find useful when describing Green's functions. 
+Here, operators $d_n$ are defined on the device, $c_{k}$ on the contact. The dotted indices are to emphasise the difference between contact/device operators, which I find useful when describing Green's functions. 
 
-The Green's function can be found through the Equation Of Motion method. One first finds the Heisenberg relation for $d_i$:
+The Green's function can be found through the Equation Of Motion method. Let's first consider the non-interaction Green's function $g_{ij}^+$. In the Heisenberg picture, we first find the time-derivative of $d_i$ without interaction. We then take the Fourier transform of the time-derivative of the non-interacting Green's function. to find the form of the non-interaction Green's function:
 \begin{align*}
-\left[ d_i, H^\prime\right] &= \sum_{\dot{k}l}\left[d_i, V_{\dot{k}, l} c^\dagger_{\dot{k}} d_l + \text{h.c.}\right] \\
-&= \sum_{\dot{k}l}\delta_{li} V_{\dot{k}i} c_{\dot{k}}\\
-\imath\hbar \dot{d}_i &= \epsilon_i d_i + \sum_{\dot{k}}V_{\dot{k}i} c_{\dot{k}}
+\imath \hbar \dot{d}_i &= \left[d_i, H_1\right] \\
+&= \epsilon_i d_i \\
+\partial_t g_{ij}^+ &= \delta_{ij} \delta(t-t') + \theta(t-t')\left\{ \dot{d}_i, d_j^\dagger\right\} \\
+\mathscr{F}\left\{\partial_t g_{ij}^+ \right\}&= \mathscr{F}\left\{\delta_{ij} \delta(t-t') + \theta(t-t')\left\{ \dot{d}_i, d_j^\dagger\right\}\right\} \\
+\mathscr{F}\left\{\partial_t g_{ij}^+ \right\}&= \mathscr{F}\left\{\delta_{ij} \delta(t-t') +\epsilon_i \theta(t-t')\left\{ d_i, d_j^\dagger\right\}\right\} \\ 
+\epsilon g_{ij}^+ &= \delta_{ij} + \epsilon_i g_{ij}^+ \\
+g_{ij}^+ &= \frac{ \delta_{ij} }{ \epsilon - \epsilon_i + \imath 0^+},
 \end{align*}
+where the $\imath 0^+$ is included so that the Green's function converges when $\epsilon$ is a diagonal element of $H_1$.
 
-Now, we need the (retarded) Green's function and its derivative to $t$:
+I will now turn the the interacting Green's function $G_{ij}^+$. The method is the same.
+First, we find the Heisenberg relation for $d_i$:
 \begin{align*}
-G_{ij}^+ &= - \frac{\imath}{\hbar} \theta(t-t^\prime) \left\{ d_i(t), d_j^\dagger(t^\prime) \right\} \\
+\imath \hbar \dot{d}_i &= \left[ d_i, H_1 + H^\prime\right] \\
+&=\epsilon_i d_i + \sum_{kl}\left[d_i, V_{k, l} c^\dagger_{k} d_l + \text{h.c.}\right] \\
+&=\epsilon_i d_i + \sum_{kl}\delta_{li} V_{ki} c_{k}
+\end{align*}
+The final Heisenberg EOM for $d_i$ is thus:
+\begin{align}
+\imath \hbar \dot{d}_i &= \epsilon_i d_i + \sum_{k}V_{ki} c_{k} \label{eq:heisenbergdotd}
+\end{align}
+
+Now, we take the full derivative to $t$ of the (retarded) Green's function. First, recall that:
+\begin{align*}
+G_{ij}^+ &= - \frac{\imath}{\hbar} \theta(t-t^\prime) \left\{ d_i(t), d_j^\dagger(t^\prime) \right\}
+\end{align*}
+So that the full time derivative takes the form:
+\begin{align}
 \imath\hbar \dot{G}_{ij}^+ &= \delta_{ij} \delta(t - t^\prime) + \theta(t-t^\prime) \left\{ \dot{d}_i, d_j^\dagger\right\}
-\end{align*}
+\label{eq:eomgf}
+\end{align}
 
-Where we see that, by substituting $\dot{d}_i$ and take the Fourier transform, we can immediately find an expression for $G_{ij}^+$:
+Where by substituting $\dot{d}_i$ and taking the Fourier transform, we can immediately find an expression for $G_{ij}^+$:
 \begin{align*} 
-G_{ij}^+ (\epsilon) &= g_{ij}^+ \left( 1 + \sum_{\dot{k}} V_{\dot{k}i} G_{\dot{k}j}^+ \right)
+\mathscr{F}\left\{ \imath\hbar \dot{G}_{ij}^+ \right\}&= \mathscr{F}\left\{\delta_{ij} \delta(t - t^\prime)  + \theta(t-t^\prime) \left\{ \dot{d}_i, d_j^\dagger\right\} \right\}\\
+\epsilon G_{ij}^+ &= \delta_{ij} + \epsilon_i G^+_{ij}+ \sum_k V_{ki} G^+_{ki}\\
+G_{ij}^+ (\epsilon) &= g_{ij}^+ \left( 1 + \sum_{k} V_{ki} G_{kj}^+ \right)
 \end{align*}
 
-Where we see a contact-device Green's function $G_{\dot{k}j}^+$\footnote{I call this a contact-device Green's function because it involves the indices $\dot{k}$ and $j$, where the first is defined to be on the contact and the second is defined to be on the molecule.}, which is defined in exactly the same way as the device function but with the $d_i \rightarrow c_{\dot{k}}$.
+Where we see a contact-device Green's function $G_{kj}^+$\footnote{I call this a contact-device Green's function because it involves the indices $k$ and $j$, where the first is defined to be on the contact and the second is defined to be on the molecule.}, which is defined in exactly the same way as the device function but with the $d_i \rightarrow c_{k}$.
 
-The contact-device Green's function can be found by the same method, by finding the commutator of $\dot{c}_{\dot{k}}$ and substituting this in the time-derivative of the contact-device Green's function. We find:
+The contact-device Green's function can be found by the same method, by finding the commutator of $\dot{c}_{k}$ with $H$ and substituting this in the time-derivative of the contact-device Green's function. We find:
 \begin{align*}
-G_{\dot{k}j}^+ (\epsilon) &= g_{\dot{k}\dot{k}}^+ \sum_l V_{\dot{k}l} G_{lj}^+
+G_{kj}^+ (\epsilon) &= g_{kk}^+ \sum_l V_{kl} G_{lj}^+
 \end{align*}
 
 Note that it can be shown that $(G^+)^\dagger=G^-$ in the Fourier domain.
 
-By substituting this expression in the latter result for $G_{ij}^+$ and comparing to the Dyson equation, we finally determine the self-energy:
+By substituting this expression in the latter result for $G_{ij}^+$ and comparing to the Dyson equation (equation~\ref{eq:dyson}), we finally determine that self-energy which incorporates the lead-molecule interactions is:
 \begin{align*}
-\Sigma_{ij}^+ &= \sum_{\dot{k}} V_{\dot{k}i}^\star V_{\dot{k}j} g_{\dot{k}\dot{k}}^+ \\
-&= \lim_{\eta\rightarrow 0^+} \sum_{\dot{k}}\frac{ V_{\dot{k}i}^\star V_{\dot{k}j}}{\epsilon-\epsilon_{\dot{k}} + i\eta} \\
-&= \lim_{\eta\rightarrow 0^+}\sum_{\dot{k}} \left\{V_{\dot{k}i}^\star V_{\dot{k}j} \frac{ \left(\epsilon-\epsilon_{\dot{k}}\right) \mp \imath \eta}{  \left(\epsilon-\epsilon_{\dot{k}}\right)^2 + \eta^2}\right\}
+\Sigma_{ij}^+ &= \sum_{k} V_{ki}^\star V_{kj} g_{kk}^+ \\
+&= \lim_{\eta\rightarrow 0^+} \sum_{k}\frac{ V_{ki}^\star V_{kj}}{\epsilon-\epsilon_{k} + i\eta} \\
+&= \lim_{\eta\rightarrow 0^+}\sum_{k} \left\{V_{ki}^\star V_{kj} \frac{ \left(\epsilon-\epsilon_{k}\right) \mp \imath \eta}{  \left(\epsilon-\epsilon_{k}\right)^2 + \eta^2}\right\}
 \end{align*} 
 
-The lesser self-energy $\Sigma^<_{ij}$ is simply $\sum_{\dot{k}} V_{\dot{k}i}^\star V_{\dot{k}j} g_{\dot{k}\dot{k}}^<$.
-
-It is common to define  $\Lambda, \Gamma$ through $\Sigma$. These are just the real and \emph{twice} the imaginary part:
+The lesser self-energy $\Sigma^<_{ij}$ is simply $\sum_{k} V_{ki}^\star V_{kj} g_{kk}^<$. It is common to define  $\Lambda, \Gamma$. These are just the real and \emph{twice} the imaginary part of $\Sigma$:
 \begin{align*}
 \Sigma &= \Lambda + \frac{\imath}{2} \Gamma \\
-\Lambda &=  \lim_{\eta\rightarrow 0^+}\sum_{\dot{k}} \left\{ \frac{V_{\dot{k}i}^\star V_{\dot{k}j} \left(\epsilon-\epsilon_{\dot{k}}\right)}{  \left(\epsilon-\epsilon_{\dot{k}}\right)^2 + \eta^2}\right\} \\
+\Lambda &=  \lim_{\eta\rightarrow 0^+}\sum_{k} \left\{ \frac{V_{ki}^\star V_{kj} \left(\epsilon-\epsilon_{k}\right)}{  \left(\epsilon-\epsilon_{k}\right)^2 + \eta^2}\right\} \\
 \Gamma &= 
-\lim_{\eta\rightarrow 0^+}\sum_{\dot{k}} \left\{ \frac{2 \eta V_{\dot{k}i}^\star V_{\dot{k}j}}{  \left(\epsilon-\epsilon_{\dot{k}}\right)^2 + \eta^2}\right\}
+\lim_{\eta\rightarrow 0^+}\sum_{k} \left\{ \frac{2 \eta V_{ki}^\star V_{kj}}{  \left(\epsilon-\epsilon_{k}\right)^2 + \eta^2}\right\}
 \end{align*}
 
-These are Lorentzian functions, meaning they are peaks with a thickness parameter $\eta$. It is then clear that for $\eta\rightarrow 0^+$, $\Gamma_{\dot{k}}$ \footnote{Here, I mean the $\dot{k}$ term under the $\sum_{\dot{k}}$.} $\propto \delta(\epsilon-\epsilon_{\dot{k}})$. 
+These are Lorentzian functions, meaning they are peaks with a width $\eta$. It is then clear that for $\eta\rightarrow 0^+$, $\Gamma_{k}$ \footnote{Here, I mean the $k$ term under the $\sum_{k}$.} $\propto \delta(\epsilon-\epsilon_{k})$. 
 
-If we discard all correlations between the electrons in the contacts and those on the device, the expectation value of the occupation number operator on the contact is $\braket{c_{\dot{k}}^\dagger c_{\dot{k}}}=f_{fd}(\epsilon)$, where the right hand side is the fermi-dirac distribution on the contact. The lesser function then becomes rather simple\footnote{NB:Contrary to most of our discussion so far, this is not the operator but the thermal average of it. When you see temperature suddenly eppear, you can assume a thermal average has been taken.}:
+If we discard all correlations between the electrons in the contacts and those on the device, the expectation value of the occupation number operator on the contact is $\braket{c_{k}^\dagger c_{k}}=f_{fd}(\epsilon)$, where the right hand side is the fermi-dirac distribution on the contact. The lesser function then becomes rather simple\footnote{NB:Contrary to most of our discussion so far, this is not the operator but the thermal average of it.}:
 \begin{align*}
-g^<_{\dot{k}\dot{k}} &= 2\pi\imath \delta(\epsilon-\epsilon_{\dot{k}}) f(\epsilon_{\dot{k}})
+g^<_{kk} &= 2\pi\imath \delta(\epsilon-\epsilon_{k}) f(\epsilon_{k})
 \end{align*}
 
 The lesser self-energy also takes a simple form:
 \begin{align*}
-\Sigma^<_{ij} &= \sum_{\dot{k}} V_{\dot{k}i}^\star V_{\dot{k}j} g_{\dot{k}\dot{k}}^< \\&= \sum_{\dot{k}} V_{\dot{k}i}^\star V_{\dot{k}j} \left\{2\pi\imath \delta(\epsilon-\epsilon_{\dot{k}}) f(\epsilon_{\dot{k}})\right\}
+\Sigma^<_{ij} &= \sum_{k} V_{ki}^\star V_{kj} g_{kk}^< \\&= \sum_{k} V_{ki}^\star V_{kj} \left\{2\pi\imath \delta(\epsilon-\epsilon_{k}) f(\epsilon_{k})\right\}
 \end{align*}
-Because of the Dirac function, $\epsilon=\epsilon_{\dot{k}}$. As a result, we find:
+Because of the Dirac function, $\epsilon=\epsilon_{k}$. As a result, we find:
 \begin{align*}
 \Sigma^<_{ij} &= \imath \Gamma_{ij} f(\epsilon)
 \end{align*}
+\section{Tunnelling Hamiltonian}
+\label{sec:tunnelling}
+Transport through a molecule is not necessarily through only one of the  molecular orbitals captured in $H_1$. The electron states are connected, and electrons can tunnel from one state to the next. This is captured in the tunnelling Hamiltonian:
+\begin{align}
+H_\tau &= \sum_{ij} \tau_{ij} d_i^\dagger d_j,
+\label{eq:tunnelling}
+\end{align}
+where $\tau_ij$ describes the tunnelling strength from state $i$ to $j$. The tunnelling matrix $\tau_{ij}$ has no diagonal terms, because $d_i^\dagger d_i = n_i$, which means that `diagonal' tunnelling elements are just the energy of that particular state.
+
+
+We already know how to include this term in the EOM to find the contribution to the Green's Function. First, we find its commutator with $d_i$:
+\begin{align*}
+\left[ d_l, \sum_{ij} \tau_{ij} d_i^\dagger d_j\right] &= \sum_j \tau_{lj} d_j
+\end{align*}
+
+We add this to the Heisenberg equation of motion for $\dot{d}_i$ (equation~\ref{eq:heisenbergdotd}): (equation~\ref{eq:eomgf}):
+\begin{align*}
+\imath \hbar \dot{d}_i 
+&= \epsilon_i d_i +  \sum_{j} \tau_{ij} d_j + \sum_{k}V_{ki} c_{k},
+\end{align*}
+, which is substituted into the time derivative of the Green's function, of which we take the Fourier transform
+\begin{align*}
+\epsilon G_{ij}^+ &= \delta_{ij} + \epsilon_i G^+_{ij}+ \sum_k \tau_{ik} G_{kj} + \sum_k V_{ki} G^+_{ki},
+\end{align*}
+where we see quite clearly that it is a matrix product. Finally, we find the form of the retarded (advanced) Green's Functions including tunnelling:
+\begin{align*}
+G^\pm(\epsilon) &= \left(\epsilon - H_1 - \tau \pm \imath 0^+\right)^{-1} 
+\end{align*}
+
+This explicitly includes the tunnelling Hamiltonian into the problem. Alternatively, I could have just included $\tau_{ij}$ as off-diagonal elements of $H_1$. However, this has also served the purpose of a demonstration.
+
+
 \section{Properties of Interest}
 \label{sec:properties}
-The spectral function $A$ is the simplest property of interest. Making use of the fact that $\left(G^+\right)^\dagger = G^-$ in the energy domain, the spectral function can be found:
-\begin{align*}
+The spectral function $A$ is the simplest property of interest. It is defined as\cite{seldenthuis}:
+\begin{align}
 A_{ij}(t, t') &= \frac{\imath}{\hbar} \left\{ d_i(t), d_j^\dagger(t')\right\} \\
 &= \imath \frac{ G^>_{ij}(t, t') - G^<_{ij}(t, t')}{2\pi} \\
 &= \imath \frac{G^+_{ij}(t, t') - G^-_{ij}(t, t')}{2\pi}\\
+\label{eq:spectral}
+\end{align}
+
+The spectral function tells you the probability that a particle with a certain momentum has a specific energy. 
+
+Making use of the fact that $\left(G^+\right)^\dagger = G^-$ in the energy domain, the spectral function can be found:
+\begin{align*}
+A_{ij}(t, t') &= \imath \frac{G^+_{ij}(t, t') - G^-_{ij}(t, t')}{2\pi}\\
 &= - \frac{1}{\pi} \text{Im}\left\{ G^+_{ij}(t, t')\right\} \\
 A &=- \frac{1}{\pi} \text{Im}\left\{ G^+\right\}
 \end{align*}
@@ -365,28 +404,25 @@ For a non-interacting system ($\Sigma=0$), the spectral function is simply a dia
 
 However, we are most often interested in the current. The derivation of the current is slightly more involved, but the end result is elegantly simple.
 
-Let us first partition the contact-momentum space from $\dot{k}$ to $\alpha\dot{k}$. This is just to include multiple contacts.
-
-The current is just the charge times the rate of change of the number generation. Through the Heisenberg equation, I will derive a formula for the current contribution of one contact. I will then rewrite this to find an expression extremely similar to the famous Landauer formula within the non-equilibrium Green's function formalism.
+Let us first partition the contact-momentum space, $k \rightarrow \alpha k$. This is just to include multiple contacts, where $\alpha$ represents a particular contact.  The current is just the charge times the rate of change of the number generation. Through the Heisenberg equation, I will derive a formula for the current contribution of one contact. I will then rewrite this to find an expression extremely similar to the famous Landauer formula within the non-equilibrium Green's function formalism.
 
 I start from the rate of change for the number operator times the charge\footnote{I will write summations once, then leave them implied for simplicity/brevity.}.  
 \begin{align*}
-I_\alpha &= - e \sum_{\dot{k}} \partial_t c^\dagger_{\alpha\dot{k}} c_{\alpha\dot{k}} \\
-&= \frac{\imath e}{\hbar} \left[ c^\dagger_{\alpha\dot{k}} c_{\alpha\dot{k}}, H\right] \\
-&= \frac{\imath e}{\hbar}\sum_i \left\{ V_{\alpha\dot{k}i} c^\dagger_{\alpha\dot{k}} d_i - V^\star_{\alpha\dot{k}i} d_i^\dagger c_{\alpha\dot{k}}\right\} \\
-&= e \left\{ V_{\alpha\dot{k}i} G^<_{i\alpha\dot{k}} + V_{\alpha\dot{k}i}^\star G^<_{\alpha\dot{k}i}\right\}\\
-&= -2e V^\star_{\alpha\dot{k}i}G^<_{\alpha\dot{k}i} \\
-&= -2e \int \frac{d\epsilon}{2\pi\hbar} \text{Re}\left\{ V^\star_{\alpha\dot{k}i} G^<_{\alpha\dot{k}i} (\epsilon) \right\}
+I_\alpha &= - e \sum_{k} \partial_t c^\dagger_{\alpha k} c_{\alpha k} \\
+&= \frac{\imath e}{\hbar} \left[ c^\dagger_{\alpha k} c_{\alpha k}, H\right] \\
+&= \frac{\imath e}{\hbar}\sum_i \left\{ V_{\alpha ki} c^\dagger_{\alpha k} d_i - V^\star_{\alpha ki} d_i^\dagger c_{\alpha k}\right\} \\
+&= e \left\{ V_{\alpha ki} G^<_{i\alpha k} + V_{\alpha ki}^\star G^<_{\alpha ki}\right\}\\
+&= -2e V^\star_{\alpha ki}G^<_{\alpha ki} \\
+&= -2e \int \frac{d\epsilon}{2\pi\hbar} \text{Re}\left\{ V^\star_{\alpha ki} G^<_{\alpha ki} (\epsilon) \right\},
 \end{align*}
+where in the penultimate step, I have used that the lesser Green's function is anti-Hermitian. 
 
-In the penultimate step, I have used that the lesser Green's function is anti-Hermitian. 
-
-Replacing the contact-device Green's function $G^<_{\alpha\dot{k}i}$ by a device-only Green's function, for which we found the expression in the last section, and immediately substitute the self-energies, we find:
+Replacing the contact-device Green's function $G^<_{\alpha ki}$ by a device-only Green's function, for which we found the expression in the last section, and immediately substituting the self-energies, we find:
 \begin{align*}
-\sum_{\dot{k}} V^\star_{\alpha\dot{k}i} G^<_{\alpha\dot{k}i} &= \left[\Sigma^{\alpha+} G^< + \Sigma^{\alpha <} G^-\right]_{ii}
+\sum_{k} V^\star_{\alpha ki} G^<_{\alpha ki} &= \left[\Sigma^{\alpha+} G^< + \Sigma^{\alpha <} G^-\right]_{ii}
 \end{align*}
 
-So, the sum over $\dot{k}$ is absorbed into this expression and the sum over $i$ leads to a trace:
+So, the sum over $k$ is absorbed into this expression and the sum over $i$ leads to a trace:
 \begin{align*}
 I_\alpha &= -\frac{2e}{\hbar} \int \frac{d\epsilon}{2\pi} \text{Re} \left\{ \text{Tr} \left \{ \Sigma^{\alpha+} G^< + \Sigma^{\alpha <} G^-\right\}\right\}
 \end{align*}
@@ -394,13 +430,12 @@ I_\alpha &= -\frac{2e}{\hbar} \int \frac{d\epsilon}{2\pi} \text{Re} \left\{ \tex
 Now, I want to find the real part of the trace. Here are a few of the things I will use:
 \begin{itemize}
 \item the lesser Green's function is purely imaginary (anti-Hermitian). 
-\item $(G^\pm)^\dagger = G^\mp$ in the energy-domain.
-\item Therefore, we can write $\text{Im} G^- = - \frac{1}{2} \left( G^+ - G^- \right)$.
+\item $(G^\pm)^\dagger = G^\mp$ in the energy-domain. Therefore, we can write $\text{Im} G^- = - \frac{1}{2} \left( G^+ - G^- \right)$.
 \item Given $A=a+\imath b, B = c + \imath d$, we find that $\text{Re}\left\{ AB \right\} = ac - db$.
 \item $\Sigma^< = \sum_\alpha \Sigma^{\alpha<}$
 \end{itemize}
 
-Using these , I find that:
+I then find that:
 \begin{align*}
 \text{Re}\left\{\text{Tr}\left\{ \Sigma^{\alpha+} G^<\right\}\right\} &= - \frac{\imath}{2} \text{Tr}\left\{ \Gamma^\alpha G^< \right\} \\
 \text{Re}\left\{\text{Tr}\left\{ \Sigma^{\alpha<} G^-\right\}\right\} &= - \frac{\imath}{2} \text{Tr}\left\{\Sigma^{\alpha<} \left(G^+ - G^-\right)\right\}
@@ -411,11 +446,10 @@ Applying the Keldysh equation on the difference in the second term, I find for t
 I_\alpha &= \frac{\imath e}{\hbar} \sum_\beta \int \frac{d\epsilon}{2\pi} \text{Tr}\left\{ \Gamma^\alpha G^+ \Sigma^{\beta <}G^- - \Sigma^{\alpha<}G^+\Gamma^\beta G^- \right\}
 \end{align*}
 
-Current conservation for a two-contact scenario ($\alpha=L,R$) requires that $2 I = I_L - I_R$. Using the cyclic property of the trace, I find that:
+Current conservation for a two-contact scenario ($\alpha=L,R$) requires that $2 I = I_L - I_R$. Using the cyclic property of the trace, I find that in the stationary case:
 \begin{align*}
-I &= \frac{\imath e}{\hbar} \int \frac{d\epsilon}{2\pi} \text{Tr}\left\{ \Gamma^L G^+ \Sigma^R G^- - \Sigma^L G^+ \Gamma^R G^-\right\}
+I &= \frac{\imath e}{\hbar} \int \frac{d\epsilon}{2\pi} \text{Tr}\left\{ \Gamma^L G^+ \Sigma^R G^- - \Sigma^L G^+ \Gamma^R G^-\right\},
 \end{align*}
-
 which, discarding the correlations between the device and the contacts, turns into the Landauer formula:
 \begin{align}
 I &= \frac{e}{\hbar} \int \frac{d\epsilon}{2\pi} \left[ f_L(\epsilon) - f_R(\epsilon)\right] T(\epsilon) \label{eq:landauer}\\
@@ -428,19 +462,18 @@ T(\epsilon)&\equiv \text{Tr}\left\{ \Gamma^L G^+ \Gamma^R G^-\right\}\nonumber
 
 In my experience, the derivation of the non-equilibrium Green's Function Formalism does not immediately lead to clarity of its application. That is why I will now present a Synthesis.
 
-The common application is to use a quantum chemistry computation to find the single-particle orbitals. These make the Hamiltonian $H_1$ (equation~\ref{eq:hamiltonian}). We add tunneling between the different states by use of a tunneling matrix $\tau_{ij}$, which immediately enters the NEGF as a self-energy matrix. 
+The common application is to use a quantum chemistry computation to find the single-particle orbitals of the (extended) molecule. This produces the Hamiltonian $H_1$ (equation~\ref{eq:hamiltonian}). We add tunneling between the different states by use of a tunneling matrix $\tau_{ij}$, which immediately enters the NEGF as a self-energy matrix. 
 
-The contacts are described in the so-called Wide-Band Limit (WBL) as a constant self-energy matrix in the energy domain \cite{wbl}, based on the notion that the density of states of the leads is fairly constant near the Fermi energy. Most often, its elements are $\frac{\imath \Gamma}{2}$ for the orbital states closest to the leads, and zero otherwise. The coupling $\Gamma$ can be directly interpreted as the broadening of the energy-eigenstates.
+The contacts are described in the so-called Wide-Band Limit (WBL) as a constant self-energy matrix in the energy domain \cite{wbl}, based on two notions. First, that the density of those states in the leads that contribute to transport  is fairly constant near the Fermi energy. Second, that the broadening of transport-contributing states in the molecule due to the leads is also constant. Usually the WBL gives the best results in the weak-coupling regime.
 
-So, we can immediately write down the retarded (advanced) Green's function:
+The elements of the self-energy matrix in the WBL are most often $\frac{\imath \Gamma^{L,R}}{2}$ for the orbital states closest to the leads, and zero otherwise. The coupling $\Gamma^{L,R}$ can be directly interpreted as the broadening of the energy-eigenstates due to the presence of the leads. The Hamiltonian $H_1$ is assumed to be a diagonal matrix, with the energies $\epsilon_i$ on the diagonal. So, we can immediately write down the retarded (advanced) Green's function:
 \begin{align}
-G^\pm(\epsilon) &= \left(\epsilon - H_1 - \tau \pm \Sigma\right)^{-1}
-\label{eq:commongf}
+G^\pm(\epsilon)_{ij} &= \left(\epsilon - \epsilon_i - \tau_{ij} \pm \Sigma_{ij}\right)^{-1}
+\label{eq:commongf},
 \end{align}
-
-Suppose only a single orbital is coupled to the leads. Then we can immediately write down the Transmission function:
+through which we can find the transmission function:
 \begin{align}
-T(\epsilon) &= \Gamma^2\text{Tr}\left\{G^+ G^-\right\}
+T(\epsilon) &= \text{Tr}\left\{\Gamma^L G^+ \Gamma^R G^-\right\}
 \label{eq:commonte}
 \end{align}
 
