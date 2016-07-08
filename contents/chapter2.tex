@@ -466,7 +466,7 @@ The common application is to use a quantum chemistry computation to find the sin
 
 The contacts are described in the so-called Wide-Band Limit (WBL) as a constant self-energy matrix in the energy domain \cite{wbl}, based on two notions. First, that the density of those states in the leads that contribute to transport  is fairly constant near the Fermi energy. Second, that the broadening of transport-contributing states in the molecule due to the leads is also constant. Usually the WBL gives the best results in the weak-coupling regime.
 
-The elements of the self-energy matrix in the WBL are most often $\frac{\imath \Gamma^{L,R}}{2}$ for the orbital states closest to the leads, and zero otherwise. The coupling $\Gamma^{L,R}$ can be directly interpreted as the broadening of the energy-eigenstates due to the presence of the leads. The Hamiltonian $H_1$ is assumed to be a diagonal matrix, with the energies $\epsilon_i$ on the diagonal. So, we can immediately write down the retarded (advanced) Green's function:
+The elements of the self-energy matrix in the WBL are most often $\frac{\imath \Gamma^{L,R}}{2}$ for the orbital states closest to the leads, and zero otherwise. The coupling $\Gamma^{L,R}$ can be directly interpreted as the broadening of the energy-eigenstates due to the presence of the leads. The lead-molecule self-energy is given by $\Sigma = \frac{\imath}{2} \left( \Gamma^L + \Gamma^R \right)$. The Hamiltonian $H_1$ is assumed to be a diagonal matrix, with the energies $\epsilon_i$ on the diagonal. So, we can immediately write down the retarded (advanced) Green's function:
 \begin{align}
 G^\pm(\epsilon)_{ij} &= \left(\epsilon - \epsilon_i - \tau_{ij} \pm \Sigma_{ij}\right)^{-1}
 \label{eq:commongf},

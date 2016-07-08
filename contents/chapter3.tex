@@ -1,26 +1,12 @@
 \chapter{Incorporating interactions}
 \label{ch:chapter_3}
 
-%% The following annotation is customary for chapter which have already been
-%% published as a paper.
-%\blfootnote{Parts of this chapter have been published in Annalen der Physik \textbf{324}, 289 (1906) \cite{Einstein1906}.}
-
-%% It is only necessary to list the authors if multiple people contributed
-%% significantly to the chapter.
-%\authors{Albert {\titleshape Einstein}}
-
-%% The '0pt' option ensures that no extra vertical space follows this epigraph,
-%% since there is another epigraph after it.
-%\epigraph[0pt]{
-%    "quote1"
-%}{attribution}
-
 \epigraph{
     “Everything starts somewhere, although many physicists disagree.”
 }{Sir Terry Pratchett}
 
 \begin{abstract}
-In this chapter, we look at the inclusion of interaction effects in the non-equilibrium Green's Function formalism. In particular, we focus on capacitive interactions as these are the primary investigation of this thesis. However, some attention is given to phononic interactions.
+In this chapter, we look at the inclusion of interaction effects in the non-equilibrium Green's Function formalism. In particular, we focus on capacitive interactions (e.g. Coulomb interaction) as these are the primary investigation of this thesis. We formulate a many-body Green's function that incorporates capacitive interaction. Additionally, some attention is given to electron-phonon interactions, leading to a very similar many-body Green's function that incorporates these interactions.
 \end{abstract}
 
 %% Start the actual chapter on a new page.
@@ -101,16 +87,12 @@ We can easily find the commutator of annihilation operator with the capacitive i
 \left[ d_l, H^\prime_D\right] &= \sum_{j} \frac{1}{2} \left( U_{lj} + U_{jl}\right) n_j d_l + U_{ll} d_l
 \end{align*}
 
-The last term is capacitive self-interaction, which is unphysical and therefore zero. Likewise,the symmetry of the Hamiltonian specifies that $U_{ij} = U_{ji}$ and that $U_{ij} \in \Re$. 
-
-Thus, we find that:
+The last term is capacitive self-interaction, which is unphysical and therefore zero. Likewise,the symmetry of the Hamiltonian specifies that $U_{ij} = U_{ji}$ and that $U_{ij} \in \Re$. Thus, we find that:
 \begin{align*}
 \left[ d_i, H^\prime_D\right] &=  \sum_{j}U_{ij} n_j d_i \\
 &= \sum_j U^j_{ij} n_j d_i,
 \end{align*}
-where I have defined $U^k_{ij} = U_{ik} \delta_{ij}$ to simplify future expressions.
-
-We then turn to the Fourier-transformed full time derivative of the Green's Function:
+where I have defined $U^k_{ij} = U_{ik} \delta_{ij}$ to simplify future expressions. We then turn to the Fourier-transformed full time derivative of the Green's Function:
 \begin{align*}
 \epsilon G_{ij}^\pm &= \delta_{ij} + \epsilon_i G_{ij}^\pm + \sum_k \tau_{ik} G_{kj}^\pm + \sum_k U^k_{ik} n_k G_{ij}^\pm,
 \end{align*}
@@ -130,9 +112,7 @@ The matrix inverse in the previous section might seem ill-defined, because we to
 \label{eq:inversionexpansion}
 \end{align}
 
-This is an extremely sensible Taylor expansion in this context. If you recall, the common single-particle retarded (advanced) Green's functions are $G = \left[ g^{-1} \pm \Sigma \right]^{-1}$, which would be expanded as $G = g + g\Sigma g + g\Sigma g\Sigma g + \ldots$ - which is the expansion in various orders we used intuitively to arrive at the Dyson equation (equation~\ref{eq:dyson}).
-
-Let's look explicitly at a two-particle Green's Function in the WBL:
+This is an extremely sensible Taylor expansion in this context. If you recall, the common single-particle retarded (advanced) Green's functions are $G = \left[ g^{-1} \pm \Sigma \right]^{-1}$, which would be expanded as $G = g + g\Sigma g + g\Sigma g\Sigma g + \ldots$ - which is the expansion in various orders we used intuitively to arrive at the Dyson equation (equation~\ref{eq:dyson}). Let's look explicitly at the result for two-particle Green's Function in the WBL:
 \begin{align*}
 G^\pm  &= \left[ A^{-1} - B_1 n_1 - B_2 n_2 \right]^{-1},
 \end{align*}
@@ -158,9 +138,7 @@ The idea is to group terms with the same combination of occupation number operat
 \left[ \mathscr{E} - \epsilon - \tau -\Sigma^{d\pm} - \Sigma^\pm \right]  &= \sum_\kappa \left( \prod_{i\in\kappa} \prod_{j\notin\kappa} n_i (1-n_j) \right) \left[ \mathscr{E} - \epsilon -\tau - \Sigma_{i \in \kappa}U^i - \Sigma^\pm \right]^{-1} \\
 &= \sum_\kappa P_{\kappa\kappa} \left[ \mathscr{E} - \epsilon - \tau - \sum_{i\in\kappa} U^i - \Sigma^\pm \right]^{-1},
 \end{align*}
-where $k$ sums over all possible combinations of occupation number operators. Note that $P_{kk}$ is the diagonal of the probability operator, so that its expectation value is the diagonal of the reduced density matrix of the device. 
-
-I want to discuss transport through a specific many-body state $\kappa$. Therefore, I define the many-body Green's Function as\footnote{This might be referred to as the `superset many-body advanced(retarded) Green's function'.}:
+where $k$ sums over all possible combinations of occupation number operators. Note that $P_{kk}$ is the diagonal of the probability operator, so that its expectation value is the diagonal of the reduced density matrix of the device. I want to discuss transport through a specific many-body state $\kappa$. Therefore, I define the many-body Green's Function as\footnote{This might be referred to as the `superset many-body advanced(retarded) Green's function'.}:
 \begin{align}
 \mathscr{G}^{\kappa\pm}_{ij} (t,t') &= \mp \frac{\imath}{\hbar} \theta(\pm(t-t'))\left\{ n_\kappa d_i(t), d_j^\dagger (t')\right\},
 \label{eq:mbgfdef}
@@ -184,7 +162,7 @@ in which
 \mu^\lambda_{ij} &= \delta_{ij} \left( \epsilon_i + \sum_{p\in\lambda} U_{ip} \right) \label{eq:result}
 \end{align}
 
-In fact, we recognise $H^\kappa = \mu^\kappa + \tau$ as the effective single-particle Hamiltonian of the system in the many-body state $\kappa$. This can be directly obtained from DFT calculations.   
+We recognise $H^\kappa = \mu^\kappa + \tau$ as the effective single-particle Hamiltonian of the system in the many-body state $\kappa$. This can be directly obtained from DFT calculations. This is a very useful fact, as some molecules are hard to capture otherwise, e.g. Ref.~\cite{frisenda}.
 
 In particular, \emph{many} DFT calculations together can give us (a good approximation of) the full shape of $\epsilon_i$ and $U_{ip}$, leading to a more complete description of transport through the formulae derived above. In particular the formalism should be more accurate for excitations, and could potentially explain coulomb blockades.
 
@@ -216,10 +194,7 @@ Therefore, to evaluate the many-body Green's function, I simply take its thermal
 &= \sum_{\lambda \supseteq \kappa} \rho_{\lambda\lambda}(t) G^{\lambda\pm} 
 \end{align*}
 
-This derivation is very sensible. It makes use of the same expansion as the earlier derivation, but by immediately looking for the thermal value of the Green's function rather than the intermediary operator form, it becomes a very simple derivation.
-
-
-Starting from the Keldysh equation (equation~\ref{eq:keldysh}), we can derive the super set (many-body) lesser Green's function from the advanced and retarded ones:
+This derivation is very sensible. It makes use of the same expansion as the earlier derivation, but by immediately looking for the thermal value of the Green's function rather than the intermediary operator form, it becomes a simple derivation.Starting from the Keldysh equation (equation~\ref{eq:keldysh}), we can derive the super set (many-body) lesser Green's function from the advanced and retarded ones:
 \begin{align*}
     \mathscr{G}^{\kappa<} &= \mathscr{G}^{\kappa+} \Sigma^< \mathscr{G}^{\kappa-} \\
     &= \sum_{\lambda\supseteq\kappa, \lambda^\prime \supseteq\kappa}P_{\lambda'\lambda'} P_{\lambda\lambda} G^{\lambda+} \Sigma^< G^{\lambda^\prime-} \\
@@ -231,9 +206,9 @@ So that we find:
 Where I have used that $P_{kk} \ket{k'}$ is $\ket{k}$ if $k'=k$ and zero otherwise. I think the above makes clear that, if we define the many body Green's function as in equation~\ref{eq:mbgfmatrix}, the final result will just be the thermal average. I think this is an important conceptual message.
 
 \subsection{Density matrix}
-Many quantum are concerned with finding the density matrix of the problem. This is often troublesome when interaction is included. In this section we outline a convenient method for 
+Many quantum are concerned with finding the density matrix of the problem. This is often troublesome when interaction is included. In this section we outline a convenient method for the calculation of the density matrix $\rho(t)$.
 
-If we transform the result for the lesser many-body Green's function back to the time domain and set $t=t^\prime$, we find that:
+I start by transforming the result for the lesser many-body Green's function back to the time domain and setting $t=t^\prime$, resulting in:
 \begin{align*}
 n_\kappa d_j^\dagger d_i &= \sum_{\lambda\supseteq\kappa} P_{\lambda\lambda} \int^\infty_{-\infty} \frac{d\epsilon}{2\pi\imath} G^{\lambda<}_{ij}(\epsilon)
 \end{align*}
@@ -301,9 +276,7 @@ If we now expand the field operators into particle operators, with $\phi_k$ repr
 
 Which is the interaction term we started with, but approximated using $U_{ij} = W_{ijji}$ to lead to our relatively simple interaction term $\frac{1}{2} \sum_{ij} U_{ij} n_i n_j$. As a result, we can clearly see that we regard only a subset of the BBGKY hierarchy, which is to be expected due to the presence of not only contacts but a many-body interaction that is usually hidden in the effective Hamiltonian calculated by DFT.
 
-In a paper by Datta\cite{mura}, they outline that the rich spectrum of excitations is problematic to capture within any self-consistent field (SCF) theory. They illustrate this problem by elaborating on a spin-degenerate level that is very similar to the general model discussed above. They mostly point this out as a motivation for turning to a Master Equation Approach. 
-
-It is pertinent because they specifically mention that the SCF approach misses the fact that subsequent spin addition/removal processes need not contribute equally to the overall current.
+In a paper by Datta\cite{mura}, they outline that the rich spectrum of excitations is problematic to capture within any self-consistent field (SCF) theory. They illustrate this problem by elaborating on a spin-degenerate level that is very similar to the general model discussed above. They mostly point this out as a motivation for turning to a Master Equation Approach.  It is pertinent because they specifically mention that the SCF approach misses the fact that subsequent spin addition/removal processes need not contribute equally to the overall current.
 
 My derivation above explicitly incorporates the many-body character of the problem with capacitive interactions, and should therefore be able to to capture such effects.
 
@@ -311,11 +284,7 @@ From my derivation and the discussion above, it seems that this extension to the
 \section{Phonons}
 \label{sec:phononic}
 
-Vibrational modes are a large part of the Ph.D. thesis of Dr. Jos Seldenthuis \cite{seldenthuis}, and I considered them briefly. 
-
-Bosonic interactions are the inclusion of phonon or photon interaction with electronic transitions.
-
-For instance, one could consider photon emission where the transition from state $\ket{i}$ to $\ket{i'}$ is paired with the emission of a photon at energy $\hbar \omega$, called electroluminescence \cite{electroluminescence}. An interaction term of this sort would have the form $\hbar\omega b^\dagger d_{i'}^\dagger d_i$.
+Vibrational modes are a large part of the Ph.D. thesis of Dr. Jos Seldenthuis \cite{seldenthuis}, and I considered them briefly. Bosonic interactions are the inclusion of phonon or photon interaction with electronic transitions. For instance, one could consider photon emission where the transition from state $\ket{i}$ to $\ket{i'}$ is paired with the emission of a photon at energy $\hbar \omega$, called electroluminescence \cite{electroluminescence}. An interaction term of this sort would have the form $\hbar\omega b^\dagger d_{i'}^\dagger d_i$.
 
 I consider vibrational excitations of a single mode in weakly coupled single-molecule junctions using a generalisation of the above relation, which is in principle correct for phonons as well as photons. The generalisation is also known as a Fr\"ohlich interaction and the resulting Hamiltonian is known as the Fr\"ohlich Hamiltonian \cite{frohlich}. The Hamiltonian is given by adding the following terms to the device-Hamiltonian (including capacitive interactions):
 \begin{align}
@@ -325,7 +294,7 @@ where $\lambda$ is the dimensionless electron-phonon coupling \cite{kaspermothpo
 
 Most treatments of phononic interactions, be it electroluminescence \cite{electroluminescence} or vibrational modes of the molecule \cite{vibrationcomputation} make use of a Master Equation Approach. Contrary to these treatments I will attempt to include interaction with a single phononic mode into the non-equilibrium Green's Function Formalism.
 
-Recall that in section~\ref{sec:theoryintro}, when describing the Master Equation Approach, I described the Borne-Oppenheimer approximation and that Fermi's Golden Rule includes the absolute square of the overlap between two vibrational (atomic) wavefunctions. This is called a Franck-Condon factor, and it has a simple expresion for ground-to excited state transitions \cite{kaspermothpoulsen}:
+Recall that in section~\ref{sec:theoryintro}, when describing the Master Equation Approach, I described the Born-Oppenheimer approximation and that Fermi's Golden Rule includes the absolute square of the overlap between two vibrational (atomic) wavefunctions. This is called a Franck-Condon factor, and it has a simple expresion for ground-to excited state transitions \cite{kaspermothpoulsen}:
 \begin{align}
 \mathscr{F}_{n0} &= \frac{\lambda^{2n}}{n!} e^{-\lambda^2},
 \label{eq:fcfactor}
