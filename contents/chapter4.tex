@@ -32,7 +32,7 @@ While I have found the rather elegant many-body Green's Function (equation~\ref{
 
 In \citet{perrinnano}, the authors found a pronounced Negative-Differential Conductance (NDC) which is readily explained from a two site model, which I present here. Note that while the NDC was qualitatively explained by the two-site model, they used a prefactor $7.2 \times 10^{-5}$ to match the absolute values of the current. This has yet to be explained, and the Coulomb interaction was our prime suspect.
 
-In section~\ref{sec:twosite}, I define the model both with and without spin. I then move on to look at the transmission functions in section~\ref{sec:twositetransmission}. The $I(V)$ characteristics for selected parameter sweeps are presented in section~\ref{sec:twositeparamsweep}. Finally, the improvement on quantitative agreement with the experiment of Ref.~\cite{perrinnano} is shown in section~\ref{sec:perrin}.
+In section~\ref{sec:twosite}, I define the model both with and without spin. I consider some general characteristics and expectations in section~\ref{sec:expectations}. I then look at the transmission functions in section~\ref{sec:twositetransmission}. The $I(V)$ characteristics for selected parameter sweeps are presented in section~\ref{sec:twositeparamsweep}. Finally, the improvement on quantitative agreement with the experiment of Ref.~\cite{perrinnano} is shown in section~\ref{sec:perrin}.
 
 
 \section{Two site model} 
@@ -52,18 +52,18 @@ where $\Gamma$ is the molecule-lead coupling strength. The capacitive self-energ
 \begin{align*}
 \Sigma^c &= \begin{bmatrix} U & 0 \\ 0 & 0 \end{bmatrix} n_2 + \begin{bmatrix} 0 & 0 \\ 0 & U \end{bmatrix} n_1,
 \end{align*}
-where $U$ is the capacitive interaction strength.  The model is depicted schematically in figure~\ref{fig:twosite}, where I have explicitly drawn the capacitive interaction. The leads are at different heights due to applied bias.
+where $U$ is the capacitive interaction strength.  The model is depicted schematically in figure~\ref{fig:twosite}, where I have explicitly drawn the capacitive interaction. The leads are at different heights due to applied bias. In this model, where capacitive interaction is between two electrons instead of the electrons and the entire molecular background, the capacitive interaction is just the Coulomb Interaction\footnote{As previously indicated in section~\ref{sec:mbgfno}, there are molecules for which the interaction term is slightly more complicated and we can directly get the results from a number of DFT calculations.}.
 
 
 \begin{figure}[!bt]
     \begin{subfigure}[b]{0.48\textwidth}
-        \includegraphics[height=.20\textheight]{pdf/non_interacting_schematics.pdf}\caption{Non-interacting}\label{fig:twositea}
+        \includegraphics[height=.20\textheight]{pdf/non_interacting_schematics.pdf}\caption{non\hyp{}interacting}\label{fig:twositea}
     \end{subfigure}
     ~
     \begin{subfigure}[b]{0.48\textwidth}
         \includegraphics[height=.20\textheight]{pdf/interacting_schematics.pdf}\caption{Interacting}\label{fig:twositeb}
     \end{subfigure}
-    \caption{Schematic pictures of the spinless two site model. The red dashed line denotes the Fermi-level. Figure~\ref{fig:twositea} shows the non-interacting case, where $\Gamma$ is the molecule-lead coupling, $\epsilon \pm \frac{1}{2} \alpha V$ are the left (right) level and $\tau$ is the tunnelling strength between the levels. In Figure~\ref{fig:twositeb}, an electron (large green arrow) occupies the right level. The swirly line is meant to indicate an interaction with electrons on the left level, thereby raising the level with the capacitive interaction or charging energy $U$.} \label{fig:twosite}
+    \caption{Schematic pictures of the spinless two site model. The red dashed line denotes the Fermi-level. Figure~\ref{fig:twositea} shows the non\hyp{}interacting case, where $\Gamma$ is the molecule-lead coupling, $\epsilon \pm \frac{1}{2} \alpha V$ are the left (right) level and $\tau$ is the tunnelling strength between the levels. In Figure~\ref{fig:twositeb}, an electron (large green arrow) occupies the right level. The swirly line is meant to indicate an interaction with electrons on the left level, thereby raising the level with the capacitive interaction or charging energy $U$.} \label{fig:twosite}
 \end{figure}
 
 When no capacitive interaction is included (i.e. $U=0$), the common method (section~\ref{sec:synthesis}) can be applied to find the transmission analytically: \cite{perrinnano}\footnote{If the bias voltage is assumed to be distributed symmetrically over the leads, then the current can be found analytically as well. However, this serves no purpose in this discussion.}:
@@ -104,8 +104,57 @@ and the capacitive self-energy is:
 \end{align*}
 where $\zeta U$ describes the strength of capacitive interaction between the left and right site (intersite), whereas $\xi U$ describes the strength of capacitive interaction on the left or right site (onsite).
 
+The definitions for the coupling matrices $\Gamma^{R,L}$ allow us to directly calculate the transmission analytically in terms of the retarded and advanced Green's Function:
+\begin{align*}
+T(\epsilon) &= \Gamma^2 \left( G^+_{13} G^-_{31} + G^+_{14} G^-_{41} + G^+_{23} G^-_{32} + G^+_{24} G^-_{42} \right),
+\end{align*}
+where $\Gamma$ is the WBL coupling constant.Note that there is in principle a maximum of $4$ peaks. Because $\left(G^+\right)_{ij}^\star = G^-_{ji}$ in the energy-domain, there is no quantum interference and the function is real valued, as it should be.
+
+\section{Expectations}
+\label{sec:expectations}
+\subsection{Spinless model}
+{\color{red} start by evaluating occupied states, then make predictions for the transmission.}
+ 
+\subsection{Spinfull model}
+My expectations for the spinfull model are similar as those for the spinless model. Only a single state will be occupied in the low-temperature limit, so the Hamiltonian is $4\times 4$ and we can expect 4 transmission peaks. However, the parameters $\xi, \zeta$ can be tuned so that the spinfull model reduces to the spinless model, which essentially means that there will be two degenerate energies and thus two transmission peaks. It might be possible to have parameters for which we find three peaks, but I cannot justify this case. 
+
 \section{Transmission}
 \label{sec:twositetransmission}
+
+First, let us look at the transmission for the spinless model. In figure~\ref{fig:spinlesstransmissionu0} the non\hyp{}interacting transmission ($U=0$) for otherwise arbitrary but physical parameters is depicted. As you can see, the transmission peaks are exactly at the eigenvalues of the lead-molecule Hamiltonian $H_1 + H_\tau$. If I increase the capacitive interaction strength to $U=0.05$, depicted in figure~\ref{fig:spinlesstransmissionu1}, two things happen. The peak value of $T(\epsilon)$ reduces from $.16$ to $.13$, because the sites are further removed from resonance. The second transmission peak shifts slightly to the right and is exactly $U$ removed from the corresponding eigenvalue. Further increasing $U$ to e.g. $U=0.5$ in figure~\ref{fig:spinlesstransmissionu4} yields a more pronounced effect, which is otherwise the same; the peak height reduces and the rightmost peak is exactly $U$ removed from the corresponding eigenvalue.
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.35\textheight,clip=true,trim=7cm 2cm 7cm 4cm]{pdf/trans/decospinlesstransmissionarbitraryu0.pdf}
+    \caption{Transmission spectra for $\alpha=0.74$, $\tau=0.024$, $\Gamma=0.031$, $\epsilon_0 = - 0.05$, $V=0.50$ and $U=0.0$. This a set of parameters for which the system is non\hyp{}interacting . In this picture, the influence of the Stark effect pulling the levels out of resonance is clear in the reduction of peak height which is unity at zero bias.}
+    \label{fig:spinlesstransmissionu0}
+\end{figure}
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.35\textheight,clip=true,trim=7cm 2cm 7cm 4cm]{pdf/trans/decospinlesstransmissionarbitraryu1.pdf}
+    \caption{Transmission spectra for $\alpha=0.74$, $\tau=0.024$, $\Gamma=0.031$, $\epsilon_0 = - 0.05$, $V=0.50$ and $U=0.05$. These parameters indicate a very-weakly interacting system. In comparison to figure~\ref{fig:spinlesstransmissionu0}, the peak height is smaller and the rightmost peak is clearly displaced from the corresponding eigenvalue (diamond) by $U$. }
+    \label{fig:spinlesstransmissionu1}
+\end{figure}
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.35\textheight,clip=true,trim=7cm 2cm 7cm 4cm]{pdf/trans/decospinlesstransmissionarbitraryu4.pdf}
+    \caption{Transmission spectra for $\alpha=0.74$, $\tau=0.024$, $\Gamma=0.031$, $\epsilon_0 = - 0.05$, $V=0.50$ and $U=0.05$. These parameters are for a strongly-interacting system. In comparison with figure~\ref{fig:spinlesstransmissionu0} and figure~\ref{fig:spinlesstransmissionu1}, the peaks have dropped significantly further and the rightmost peak is still exactly $U$ removed from the corresponding eigenvalue.}
+    \label{fig:spinlesstransmissionu4}
+\end{figure}
+
+All of the figures look as if they are non-interacting two-site spinless models, but the peak values differ. It is perhaps illustrative to consider figure~\ref{fig:perrin_effective}. In this figure the effective parameters change almost linearly with increasing $U$. The effective parameters are those parameters for which the features of the transmission agree with a non-interacting model ignoring peak height.
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.35\textheight]{pdf/trans/perrin_effective.pdf}
+    \caption{In this figure, $\epsilon_0$ and $\tau$ are for a non-interacting model are fitted to an interacting model, leading to `effective' parameters. This ignores the fact that the peaks of an interacting are surpressed. The coupling $\Gamma$ is exactly the same, as is expected.}
+    \label{fig:perrin_effective}
+\end{figure}
+
+
+These figures indicate that a mismatch in peak values such as that found in Ref.~\cite{perrinnano} may well be explained in terms of capacitive interaction. Here, the shape would be fitting for a two-site model without capacitive interaction, but the amplitude element of capacitive interaction is merely seen as quantitative disagreement. This notion will be discussed further in section~\ref{sec:perrin}. 
+
+I now want to look at the transmission of the spinfull model \emph{in comparison} with that of the spinless model. First, recall that $\zeta$ describes the intersite interaction while $\xi$ the onsite interaction. First, I want to look at the case where there is no onsite interaction, in which there are two copies of the system and no cross terms; electrons of different spin do not interact.
+
+
 \section{Current parameter sweeps}
 \label{sec:twositeparamsweep}
 \section{Experimental fit}

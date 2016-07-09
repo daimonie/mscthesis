@@ -21,7 +21,7 @@ While I will try to give a self-contained derivation of the non-equilibrium Gree
 
 For a closed system in equilibrium, the GF formalism is exact because it is simply a rephrasing of the Schr\"odinger equation. However, the NEGF method also provides a systematic approach to incorporate some non-equilibrium interactions of nanoscopic systems with infinitely large environments, which is still exact in some limit. It is perhaps illuminating to first go over a number of assumptions and approximations \cite{seldenthuis}. 
 
-First, the metallic electrodes or leads are considered as infinite reservoirs that are non-interacting and are in equilibrium and not influenced by the molecule. Note that the leads are not required to be in equilibrium with each other. Although the immediate environment of the molecule is likely to be influenced by the molecule, it is possible to partition the system. The Extended molecule that also includes the lead-tip thus allows for including  molecule-lead influences.
+First, the metallic electrodes or leads are considered as infinite reservoirs that are non\hyp{}interacting and are in equilibrium and not influenced by the molecule. Note that the leads are not required to be in equilibrium with each other. Although the immediate environment of the molecule is likely to be influenced by the molecule, it is possible to partition the system. The Extended molecule that also includes the lead-tip thus allows for including  molecule-lead influences.
 
 Second, there is an assumption of adiabatic temporal evolution, so that the system in the infinite past can be considered as two isolated leads and molecule.  
 
@@ -237,7 +237,7 @@ Finally, the result:
 G^< &= G^+ (g^+)^{-1} g^< \left((g^-)^{-1}G^-  \right) + G^+  \Sigma^< G^- \label{eq:keldysh}
 \end{align}
 
-The above equation is called the Keldysh equation. It can be shown that the first term vanishes for a system that is non-interacting in the infinite past, which means that all interactions are contained in the self energy. Of course, that was one of the assumptions discussed at the start of the chapter. This yields the reduced form of the Keldysh equation:
+The above equation is called the Keldysh equation. It can be shown that the first term vanishes for a system that is non\hyp{}interacting in the infinite past, which means that all interactions are contained in the self energy. Of course, that was one of the assumptions discussed at the start of the chapter. This yields the reduced form of the Keldysh equation:
 \begin{align*}
 G^< &=  G^+ \Sigma^< G^- 
 \end{align*}
@@ -246,7 +246,7 @@ The advanced and retarded Green's Functions are more easily found than the lesse
 
 \section{Equation of Motion method}
 \label{sec:eommethod}
-A non-interacting contact is described by a regular number Hamiltonian and a tunnelling interaction with the device. From this, we can determine a rather fundamental and commonly used relation. 
+A non\hyp{}interacting contact is described by a regular number Hamiltonian and a tunnelling interaction with the device. From this, we can determine a rather fundamental and commonly used relation. 
 
 The model system consists of a molecule, the leads and finally the lead-molecule interaction. The latter include both an electron hopping from the lead to the molecule and hopping from the molecule to the lead. The molecule consists of the single-electron orbitals, while the lead is just a bath of electrons at all energies included for completeness.
 
@@ -264,7 +264,7 @@ H^\prime &= \sum_{k, l} V_{k, l} c^\dagger_{k} d_l + \text{h.c.}
 
 Here, operators $d_n$ are defined on the device, $c_{k}$ on the contact. The dotted indices are to emphasise the difference between contact/device operators, which I find useful when describing Green's functions. 
 
-The Green's function can be found through the Equation Of Motion method. Let's first consider the non-interaction Green's function $g_{ij}^+$. In the Heisenberg picture, we first find the time-derivative of $d_i$ without interaction. We then take the Fourier transform of the time-derivative of the non-interacting Green's function. to find the form of the non-interaction Green's function:
+The Green's function can be found through the Equation Of Motion method. Let's first consider the non-interaction Green's function $g_{ij}^+$. In the Heisenberg picture, we first find the time-derivative of $d_i$ without interaction. We then take the Fourier transform of the time-derivative of the non\hyp{}interacting Green's function. to find the form of the non-interaction Green's function:
 \begin{align*}
 \imath \hbar \dot{d}_i &= \left[d_i, H_1\right] \\
 &= \epsilon_i d_i \\
@@ -395,7 +395,7 @@ A_{ij}(t, t') &= \imath \frac{G^+_{ij}(t, t') - G^-_{ij}(t, t')}{2\pi}\\
 A &=- \frac{1}{\pi} \text{Im}\left\{ G^+\right\}
 \end{align*}
 
-For a non-interacting system ($\Sigma=0$), the spectral function is simply a diagonal matrix with delta functions at the eigenvalues of the Hamiltonian, hence the Density of states (DOS) is simply found:
+For a non\hyp{}interacting system ($\Sigma=0$), the spectral function is simply a diagonal matrix with delta functions at the eigenvalues of the Hamiltonian, hence the Density of states (DOS) is simply found:
 \begin{align}
 \text{DOS} &= \text{Tr}\left\{A\right\}
 \label{eq:dos}
