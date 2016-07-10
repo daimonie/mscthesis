@@ -30,7 +30,7 @@ Is this abstract enough?
 \section{Introduction}
 While I have found the rather elegant many-body Green's Function (equation~\ref{eq:mbgfresult}), this does not tell us what the exact predictions are as they largely depend on the particular system or molecule.
 
-In \citet{perrinnano}, the authors found a pronounced Negative-Differential Conductance (NDC) which is readily explained from a two site model, which I present here. Note that while the NDC was qualitatively explained by the two-site model, they used a prefactor $7.2 \times 10^{-5}$ to match the absolute values of the current. This has yet to be explained, and the Coulomb interaction was our prime suspect.
+In \citet{perrinnano}, the authors found a pronounced Negative-Differential Conductance (NDC) which is readily explained from a two site model, which I present here. Note that while the NDC was qualitatively explained by the two-site model, they used a prefactor $7.2 \times 10^{-5}$ to match the absolute values of the current. This has yet to be explained, and the Coulomb interaction was our prime suspect. The explanation lies in that the bias window usually encompasses only a single transmission peak, which is suppressed due to the Stark effect. As a result, the current first peaks before it is suppressed, leading to the NDC. Note that if no peak is in the bias-window at $V\ll1$, the current shape will have a plateau around $V=0$ which extends until a transmission peak enters the bias window. 
 
 In section~\ref{sec:twosite}, I define the model both with and without spin. I consider some general characteristics and expectations in section~\ref{sec:expectations}. I then look at the transmission functions in section~\ref{sec:twositetransmission}. The $I(V)$ characteristics for selected parameter sweeps are presented in section~\ref{sec:twositeparamsweep}. Finally, the improvement on quantitative agreement with the experiment of Ref.~\cite{perrinnano} is shown in section~\ref{sec:perrin}.
 
@@ -52,7 +52,7 @@ where $\Gamma$ is the molecule-lead coupling strength. The capacitive self-energ
 \begin{align*}
 \Sigma^c &= \begin{bmatrix} U & 0 \\ 0 & 0 \end{bmatrix} n_2 + \begin{bmatrix} 0 & 0 \\ 0 & U \end{bmatrix} n_1,
 \end{align*}
-where $U$ is the capacitive interaction strength.  The model is depicted schematically in figure~\ref{fig:twosite}, where I have explicitly drawn the capacitive interaction. The leads are at different heights due to applied bias. In this model, where capacitive interaction is between two electrons instead of the electrons and the entire molecular background, the capacitive interaction is just the Coulomb Interaction\footnote{As previously indicated in section~\ref{sec:mbgfno}, there are molecules for which the interaction term is slightly more complicated and we can directly get the results from a number of DFT calculations.}.
+where $U$ is the capacitive interaction strength.  The model is depicted schematically in Figure~\ref{fig:twosite}, where I have explicitly drawn the capacitive interaction. The leads are at different heights due to applied bias. In this model, where capacitive interaction is between two electrons instead of the electrons and the entire molecular background, the capacitive interaction is just the Coulomb Interaction\footnote{As previously indicated in section~\ref{sec:mbgfno}, there are molecules for which the interaction term is slightly more complicated and we can directly get the results from a number of DFT calculations.}.
 
 
 \begin{figure}[!bt]
@@ -112,16 +112,76 @@ where $\Gamma$ is the WBL coupling constant.Note that there is in principle a ma
 
 \section{Expectations}
 \label{sec:expectations}
-\subsection{Spinless model}
-{\color{red} start by evaluating occupied states, then make predictions for the transmission.}
+\subsection{Spinless two-site model}
+In section~\ref{sec:twositetransmission}, I will look at selected transmission figures for $U=0.0, 0.05, 0.15$ and $0.5$. The many-body character of the new theory makes it imperative to look at the many-body energies before I can make predictions about the different figures. Recall that the low-temperature Boltzmann distribution specifies that only the lowest-energy many-body state is occupied.
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.45\textheight]{pdf/energy/perrin_distribution_u0.pdf}
+    \caption{Energy for the spinless two-site model at $U=0$. The subscripts $E_{ij}$ refer to the many-body state $\ket{i j}$. At $\epsilon_0 \approx 0$, there is one electron on the right level. Lowering $\epsilon_0$ past ~$-0.08$ indicates a shift to an occupation of both the left and right levels.  }
+    \label{fig:perrinenergy0}
+\end{figure}
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.45\textheight]{pdf/energy/perrin_distribution_u1.pdf}
+    \caption{Energy for the spinless two-site model at $U=0.05$. The subscripts $E_{ij}$ refer to the many-body state $\ket{i j}$. At $\epsilon_0 \approx 0$, there is one electron on the right level. Lowering $\epsilon_0$ past ~$-0.12$ indicates a shift to an occupation of both the left and right levels.  }
+    \label{fig:perrinenergy1}
+\end{figure}
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.45\textheight]{pdf/energy/perrin_distribution_u2.pdf}
+    \caption{Energy for the spinless two-site model at $U=0.15$. The subscripts $E_{ij}$ refer to the many-body state $\ket{i j}$. At $\epsilon_0 \approx 0$, there is one electron on the right level. Lowering $\epsilon_0$ past ~$-0.23$ indicates a shift to an occupation of both the left and right levels.  }
+    \label{fig:perrinenergy2}
+\end{figure}
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.45\textheight]{pdf/energy/perrin_distribution_u3.pdf}
+    \caption{Energy for the spinless two-site model at $U=0.50$. The subscripts $E_{ij}$ refer to the many-body state $\ket{i j}$. At $\epsilon_0 \approx 0$, there is one electron on the right level. Lowering $\epsilon_0$ past ~$-0.58$ indicates a shift to an occupation of both the left and right levels, which is no longer visible in this picture  }
+    \label{fig:perrinenergy3}
+\end{figure}
+
+Figure~\ref{fig:perrinenergy0} shows the energies for the spinless model when $U=0$, which should be equivalent to the non-interacting model. We see that there is a `switch' from single to double occupation, but this will not cause the capacitive-self energy value to change, because it is zero at $U=0$. In that regard, Figure~\ref{fig:perrinenergy1} is more interesting, as $U=0.05$, causing the switch from $\ket{01}$ to $\ket{11}$ to have not only a different energy, but to cause different transport behaviour. In the first state, there will be one transmission peak at $\epsilon_R$ and one at $\epsilon_L + U$. However, in the second state the second peak is also raised to $\epsilon_R+U$. Since this moves the levels further off-resonance, the transmission peak will be of lower height. The same behaviour persists for Figure~\ref{fig:perrinenergy2} and Figure~\ref{fig:perrinenergy3}, where I note that the switch moves towards lower values of $\epsilon_0$, which is to be expected as the double occupation energy $E_{11} = 2\epsilon_0 + U$ - higher capacitive interaction strength will raise the double occupation energy.
  
-\subsection{Spinfull model}
-My expectations for the spinfull model are similar as those for the spinless model. Only a single state will be occupied in the low-temperature limit, so the Hamiltonian is $4\times 4$ and we can expect 4 transmission peaks. However, the parameters $\xi, \zeta$ can be tuned so that the spinfull model reduces to the spinless model, which essentially means that there will be two degenerate energies and thus two transmission peaks. It might be possible to have parameters for which we find three peaks, but I cannot justify this case. 
+\subsection{Spinfull two-site model} 
+In this section, I present the energies of the spinfull model at $U=0.0, 0.05, 0.15$ and $0.5$. The parameters $\zeta,\xi$ greatly increase the parameter space for these figures. Here, I will present only the results for $\zeta=1.0$ and the combinations $(U, \xi) = (0.0, 0.0), (0.05, 1.0), (0.15, 1.00), (0.5, 0.50), (0.5, 20.0)$. These are selected to match the transmission figures presented in section~\ref{sec:twositetransmission}.
+
+The Fock-space of occupation states for the spinfull model has dimension $2^4$, so that the figures are full of information. 
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.45\textheight]{pdf/energy/pespin_distribution_u0_k0.pdf}
+    \caption{The energy $E_{ijkl}$ denotes the energy for the state $\ket{ijkl}$. In this figure, $U=0.00, \zeta=1.00, \xi=0.00$. The lowest energy state is $\ket{0011}$ for $\epsilon_0\gtrsim -0.18$, which then switches to $\ket{1011}$ or $\ket{0111}$. Then, as $\epsilon_0 \lesssim -.23$ there is a switch to $\ket{1111}$.}
+    \label{fig:perspinenergy00}
+\end{figure} 
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.45\textheight]{pdf/energy/pespin_distribution_u1_k2.pdf}
+    \caption{The energy $E_{ijkl}$ denotes the energy for the state $\ket{ijkl}$. In this figure, $U=0.05, \zeta=1.00, \xi=1.00$. The lowest energy state is $\ket{0011}$ for $\epsilon_0\gtrsim -0.15$, which then switches to $\ket{1111}$.}
+    \label{fig:perspinenergy12}
+\end{figure} 
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.45\textheight]{pdf/energy/pespin_distribution_u2_k2.pdf}
+    \caption{The energy $E_{ijkl}$ denotes the energy for the state $\ket{ijkl}$. In this figure, $U=0.15, \zeta=1.00, \xi=1.00$. The lowest energy state is $\ket{0001}$ or $\ket{0010}$ for $\epsilon_0\gtrsim -0.11$, which then switches to $\ket{0011}$ until $\epsilon_0\lesssim -0.33$ after which it is $\ket{1011}$ or $\ket{0111}$.}
+    \label{fig:perspinenergy22}
+\end{figure} 
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.45\textheight]{pdf/energy/pespin_distribution_u3_k3.pdf}
+    \caption{The energy $E_{ijkl}$ denotes the energy for the state $\ket{ijkl}$. In this figure, $U=0.5, \zeta=1.00, \xi=1.50$. The lowest energy state is $\ket{0001}$ or $\ket{0010}$ for all visible $\epsilon_0$.}
+    \label{fig:perspinenergy33}
+\end{figure} 
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.45\textheight]{pdf/energy/pespin_distribution_u3_k4.pdf}
+    \caption{The energy $E_{ijkl}$ denotes the energy for the state $\ket{ijkl}$. In this figure, $U=0.5, \zeta=1.00, \xi=20.0$. The lowest energy state is $\ket{0001}$ or $\ket{0010}$ for all visible $\epsilon_0$.}
+    \label{fig:perspinenergy34}
+\end{figure}
+
+In Figures~\ref{fig:perspinenergy00},~\ref{fig:perspinenergy12},~\ref{fig:perspinenergy22},~\ref{fig:perspinenergy33},~\ref{fig:perspinenergy34} I see similar behaviour as in the spinless case. There are switches between different many-body states, which are expected to cause some transmission peaks to shift by $\zeta U$ or $\xi U$ or both. The specifics of the many-body states are indicated in their captions.
 
 \section{Transmission}
 \label{sec:twositetransmission}
-
-First, let us look at the transmission for the spinless model. In figure~\ref{fig:spinlesstransmissionu0} the non\hyp{}interacting transmission ($U=0$) for otherwise arbitrary but physical parameters is depicted. As you can see, the transmission peaks are exactly at the eigenvalues of the lead-molecule Hamiltonian $H_1 + H_\tau$. If I increase the capacitive interaction strength to $U=0.05$, depicted in figure~\ref{fig:spinlesstransmissionu1}, two things happen. The peak value of $T(\epsilon)$ reduces from $.16$ to $.13$, because the sites are further removed from resonance. The second transmission peak shifts slightly to the right and is exactly $U$ removed from the corresponding eigenvalue. Further increasing $U$ to e.g. $U=0.5$ in figure~\ref{fig:spinlesstransmissionu4} yields a more pronounced effect, which is otherwise the same; the peak height reduces and the rightmost peak is exactly $U$ removed from the corresponding eigenvalue.
+\section{Spinless two-site model}
+First, I want to look at the transmission for the spinless model. In Figure~\ref{fig:spinlesstransmissionu0} the non\hyp{}interacting transmission ($U=0$) for otherwise arbitrary but physical parameters is depicted. As you can see, the transmission peaks are exactly at the eigenvalues of the lead-molecule Hamiltonian $H_1 + H_\tau$. If I increase the capacitive interaction strength to $U=0.05$, depicted in Figure~\ref{fig:spinlesstransmissionu1}, two things happen. The peak value of $T(\epsilon)$ reduces from $.16$ to $.13$, because the sites are further removed from resonance. The second transmission peak shifts slightly to the right and is exactly $U$ removed from the corresponding eigenvalue. Further increasing $U$ to e.g. $U=0.5$ in Figure~\ref{fig:spinlesstransmissionu4} yields a more pronounced effect, which is otherwise the same; the peak height reduces and the rightmost peak is exactly $U$ removed from the corresponding eigenvalue.
 \begin{figure}[!bt]
     \centering
     \includegraphics[height=.35\textheight,clip=true,trim=7cm 2cm 7cm 4cm]{pdf/trans/decospinlesstransmissionarbitraryu0.pdf}
@@ -131,17 +191,17 @@ First, let us look at the transmission for the spinless model. In figure~\ref{fi
 \begin{figure}[!bt]
     \centering
     \includegraphics[height=.35\textheight,clip=true,trim=7cm 2cm 7cm 4cm]{pdf/trans/decospinlesstransmissionarbitraryu1.pdf}
-    \caption{Transmission spectra for $\alpha=0.74$, $\tau=0.024$, $\Gamma=0.031$, $\epsilon_0 = - 0.05$, $V=0.50$ and $U=0.05$. These parameters indicate a very-weakly interacting system. In comparison to figure~\ref{fig:spinlesstransmissionu0}, the peak height is smaller and the rightmost peak is clearly displaced from the corresponding eigenvalue (diamond) by $U$. }
+    \caption{Transmission spectra for $\alpha=0.74$, $\tau=0.024$, $\Gamma=0.031$, $\epsilon_0 = - 0.05$, $V=0.50$ and $U=0.05$. These parameters indicate a very-weakly interacting system. In comparison to Figure~\ref{fig:spinlesstransmissionu0}, the peak height is smaller and the rightmost peak is clearly displaced from the corresponding eigenvalue (diamond) by $U$. }
     \label{fig:spinlesstransmissionu1}
 \end{figure}
 \begin{figure}[!bt]
     \centering
     \includegraphics[height=.35\textheight,clip=true,trim=7cm 2cm 7cm 4cm]{pdf/trans/decospinlesstransmissionarbitraryu4.pdf}
-    \caption{Transmission spectra for $\alpha=0.74$, $\tau=0.024$, $\Gamma=0.031$, $\epsilon_0 = - 0.05$, $V=0.50$ and $U=0.05$. These parameters are for a strongly-interacting system. In comparison with figure~\ref{fig:spinlesstransmissionu0} and figure~\ref{fig:spinlesstransmissionu1}, the peaks have dropped significantly further and the rightmost peak is still exactly $U$ removed from the corresponding eigenvalue.}
+    \caption{Transmission spectra for $\alpha=0.74$, $\tau=0.024$, $\Gamma=0.031$, $\epsilon_0 = - 0.05$, $V=0.50$ and $U=0.05$. These parameters are for a strongly-interacting system. In comparison with Figure~\ref{fig:spinlesstransmissionu0} and Figure~\ref{fig:spinlesstransmissionu1}, the peaks have dropped significantly further and the rightmost peak is still exactly $U$ removed from the corresponding eigenvalue.}
     \label{fig:spinlesstransmissionu4}
 \end{figure}
 
-All of the figures look as if they are non-interacting two-site spinless models, but the peak values differ. It is perhaps illustrative to consider figure~\ref{fig:perrin_effective}. In this figure the effective parameters change almost linearly with increasing $U$. The effective parameters are those parameters for which the features of the transmission agree with a non-interacting model ignoring peak height.
+All of the figures look as if they are non-interacting two-site spinless models, but the peak values differ. It is perhaps illustrative to consider Figure~\ref{fig:perrin_effective}. In this figure the effective parameters change almost linearly with increasing $U$. The effective parameters are those parameters for which the features of the transmission agree with a non-interacting model ignoring peak height.
 \begin{figure}[!bt]
     \centering
     \includegraphics[height=.35\textheight]{pdf/trans/perrin_effective.pdf}
@@ -152,11 +212,54 @@ All of the figures look as if they are non-interacting two-site spinless models,
 
 These figures indicate that a mismatch in peak values such as that found in Ref.~\cite{perrinnano} may well be explained in terms of capacitive interaction. Here, the shape would be fitting for a two-site model without capacitive interaction, but the amplitude element of capacitive interaction is merely seen as quantitative disagreement. This notion will be discussed further in section~\ref{sec:perrin}. 
 
-I now want to look at the transmission of the spinfull model \emph{in comparison} with that of the spinless model. First, recall that $\zeta$ describes the intersite interaction while $\xi$ the onsite interaction. First, I want to look at the case where there is no onsite interaction, in which there are two copies of the system and no cross terms; electrons of different spin do not interact.
+\section{Spinfull two-site model}
+I now want to look at the transmission of the spinfull model \emph{in comparison} with that of the spinless model. First, recall that $\zeta$ describes the intersite interaction while $\xi$ the onsite interaction. Given the large amount of possible pictures, here I present only those that are interesting results that are distinct from the spinless model with the exception of Figure~\ref{fig:transmap34} which has extremely strong onsite interaction $\xi$ such that the two models are expected to converge.
+
+
+First, I want to look at the case where there is no onsite interaction, in which there are two copies of the system and no cross terms; electrons of different spin do not interact. Therefore, we expect the spinfull transmission to be simply twice the spinless transmission. While the occupation of the many-body makes switches, this does not lead to a different set of Green's Functions as $\Sigma^C=0$ for $U=0$. In Figure~\ref{fig:transmap00} we see that this expectation is confirmed. 
+
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.38\textheight]{pdf/map/transmap_u0_k0.pdf}
+    \caption{In this figure, $U=0.00, \zeta=1.00, \xi=0.00$. The two models agree very well, with the spinfull model having two non-interacting copies of the spinless model and thus twice the transmission.}
+    \label{fig:transmap00}
+\end{figure}
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.38\textheight]{pdf/map/transmap_u1_k2.pdf}
+    \caption{In this figure, $U=0.05, \zeta=1.00, \xi=1.00$. A distinct difference is very clear, with a three-peak transmission spectrum making a short appearance. See the main text for explanation.}
+    \label{fig:transmap12}
+\end{figure}
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.38\textheight]{pdf/map/transmap_u2_k2.pdf}
+    \caption{In this figure, $U=0.15, \zeta=1.00, \xi=1.00$. There is a very obvious difference, with three peak transmission spectra dominating the spinfull results. See the main text for explanation.}
+    \label{fig:transmap22}
+\end{figure}
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.38\textheight]{pdf/map/transmap_u3_k3.pdf}
+    \caption{In this figure, $U=0.15, \zeta=1.00, \xi=1.00$. The is a very pronounced difference, with three transmission peaks above $\epsilon\approx -0.2$ and only a single peak below that level.  See the main text for explanation.}
+    \label{fig:transmap33}
+\end{figure}
+\begin{figure}[!bt]
+    \centering
+    \includegraphics[height=.38\textheight]{pdf/map/transmap_u3_k4.pdf}
+    \caption{In this figure, $U=0.15, \zeta=1.00, \xi=1.00$. The two models converge, which is expected for this $\xi$. See the main text for explanation.}
+    \label{fig:transmap34}
+\end{figure}
+
+Evidence of the many-body character of both models is clear in Figure~\ref{fig:transmap12}, where there is one switch in transmission peaks for the spinless model and two switches for the spinfull model. The spinless model switches from $\ket{01}$ to $\ket{11}$ (Figure~\ref{fig:perrinenergy1}), displacing one peak by an amount $U$ which agrees well with the transmission figure.  The spinfull model, on the other hand, switches from $\ket{0011}$ to either $\ket{0111}$ or $\ket{1011}$ before switching to $\ket{1111}$ (Figure~\ref{fig:perspinenergy12}). Note that the rightmost peaks corresponds to the left site, and the leftmost peak corresponds to the right site. The first switch displaces the leftmost peak\footnote{Adding an electron to the left level adds $U$ to the right level, which displaces the left peak.}and seems to have placed a third peak at the rightmost peak plus $U$, a likely result because the energy states are degenerate. The second switch then displaces the leftmost peak by $\xi U$. 
+
+Figure~\ref{fig:transmap22} is simply explained for the spinless model in terms of the many-body switches. The spinfull model is slightly more involved. Figure~\ref{fig:perspinenergy22} shows that the state is degenerate for $\epsilon_0 \gtrsim -0.1$, that the degeneracy is lifted initially but that it again becomes degenerate after $\epsilon_0 \lesssim -.36$. The degeneracy is clear in the transmission, because one of the \emph{three} peaks is weaker than the other two. 
+
+Figure~\ref{fig:transmap33} is more simply explained. Figure~\ref{fig:perspinenergy33} indicates that 
 
 
 \section{Current parameter sweeps}
 \label{sec:twositeparamsweep}
 \section{Experimental fit}
 \label{sec:perrin}
+%clearpage dumps all images in the stack. Also prevents images from skipping chapters.
+\clearpage
 \references{dissertation}
