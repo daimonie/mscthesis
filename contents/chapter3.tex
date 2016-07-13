@@ -22,7 +22,7 @@ We then consider a model system that is also coupled to a single vibrational mod
 
 Nevertheless, this is the point where people have often turned away from that derivation because it seems like that phononic self\hyp{}energy term is not captured easily in the NEGF formalism. However, the methods used to find the capacitive interaction are found to work for the phononic self-energy as well. The result is extremely elaborate because of a expansion for arbitrary powers of the sum of non-commuting terms. 
 
-The outline of this chapter is as follows. First, we discuss a generalised number operator for many-body states in section~\ref{sec:gno}. Next, I calculate the capacitive self-energy in section~\ref{sec:capacitive}. The result is defined as a matrix-inverse which seems ill-defined, so I develop the expression in section~\ref{sec:mbgfno}. A matrix expression for the density of states and the expression for current are given in section~\ref{sec:calcprop}. Finally, we discuss the novel interaction treatment in section~\ref{sec:discussioncapacitive}.
+The outline of this chapter is as follows. First, we discuss a generalised number operator for many-body states in section~\ref{sec:gno}. Next, I calculate the capacitive self-energy in section~\ref{sec:capacitive}. The result is defined as a matrix-inverse which seems ill-defined, so I develop the expression in section~\ref{sec:mbgfno}. A matrix equation defining the non-equilibrium density of states and a self-consistent scheme to solve it are given in section~\ref{sec:densitymatrix}.The expression for current is given in section~\ref{sec:calcprop}. Finally, we discuss the novel interaction treatment in section~\ref{sec:discussioncapacitive}.
 
 Then we briefly consider vibrational interactions and include these in a similar manner as the capacitive interactions in section~\ref{sec:phononic}. We discuss the result and a preliminary figure in section~\ref{sec:phononicdiscussion}. However, we do not continue with vibrational modes because of time constraints.
 \section{Generalised number operator}
@@ -191,40 +191,6 @@ Making use of the fact that $P$ is diagonal and using the Keldysh equation for t
 \begin{align}
     \mathscr{G}^{\kappa<} &= \sum_{\lambda\supseteq\kappa} P_{\lambda\lambda} G^{\lambda<} \label{eq:mblessergf},
 \end{align} where I have used that $P_{\kappa\kappa} \ket{\kappa'}$ is $\ket{\kappa}$ if $\kappa'=\kappa$ and zero otherwise. The above shows that the expectation value of the many-body Green's Function (equation~\ref{eq:mbgfmatrix}) can immediately yield the correct expressions without grouping the occupation number operators.
-
-\section{Density matrix}
-Many quantum problems are concerned with finding the density matrix of the problem. This is often troublesome when interaction is included. In this section I outline a convenient method for the calculation of the density matrix $\rho(t)$.
-
-I start by transforming the result for the lesser many-body Green's function back to the time domain and setting $t=t^\prime$, resulting in:
-\begin{align}
-n_\kappa d_j^\dagger d_i &= \sum_{\lambda\supseteq\kappa} P_{\lambda\lambda} \int^\infty_{-\infty} \frac{d\epsilon}{2\pi\imath} G^{\lambda<}_{ij}(\epsilon) \label{eq:tomatrix}.
-\end{align}
-Recall that the expectation value of $P_{\lambda\lambda}$ is the diagonal of the density matrix. 
-
-The expectation values of (combinations of) single-particle number operators do not equal those of the many-body states:
-\begin{align*}
-\braket{n_i} &= \sum_{\kappa: i \in \kappa} P_\kappa
-\end{align*}, where the sum is over those $\kappa$ in which $i$ is occupied. These equations are linear, and by defining $K$ they can be written in matrix form:
-\begin{align*}
-K_{ij} &\equiv \begin{cases} 1 & i \& j = i\\ 0 & \text{otherwise} \end{cases},
-\end{align*} where $\&$ is the binary 'and' operator. Similar expressions are found for e.g. $\braket{n_i n_j}$. The matrix equation for expectation values of (combinations of) the single-particle number operators then becomes $\braket{n} = K P$. For a system with three single particle states, the explicit expression becomes:
-\begin{align*}
-\begin{pmatrix} \braket{n_1} \\\braket{n_2} \\ \braket{n_1 n_2} \\ \braket{n_3} \\ \braket{n_1 n_3} \\ \braket{n_2 n_3} \\ \braket{n_1 n_2 n_3} \end{pmatrix} &= \begin{pmatrix} 1 & 0 & 1 & 0 & 1 & 0 & 1 \\ 0  &  1  & 1 & 0  &  0  &  1  &  1\\ 0 & 0 & 1 & 0 & 0 & 0 & 1\\0 & 0 & 0 & 1 & 1 & 1 & 1 \\ 0  &  0  &  0  &  0  &  1  &  0  &  1 \\ 0  &  0  &  0  & 0 &  0  & 1 & 1\\0 & 0 & 0 & 0 & 0 & 0 & 1\end{pmatrix} \begin{pmatrix} P_{\ket{001}} \\ P_{\ket{010}} \\ P_{\ket{011}} \\ P_{\ket{100}} \\ P_{\ket{101}} \\ P_{\ket{110}} \\ P_{\ket{111}} \end{pmatrix}.
-\end{align*}
-The expectation value of$n_\kappa d_j^\dagger d_i$ can be written in a similar fashion using the matrix $W$:
-\begin{align*}
-W^\lambda_{ij} &\equiv \sum_{\lambda\supseteq \kappa} \rho_{\lambda\lambda}(t) \int^\infty_{-\infty} \frac{d\epsilon}{2\pi\imath} G^{\lambda<}_{ij}(\epsilon), \\
-&= \sum_{\lambda\supseteq \kappa} \rho_{\lambda\lambda}(t) \int^\infty_{-\infty} \frac{d\epsilon}{2\pi\imath} \sum_\alpha f_\alpha(\epsilon) G^{\lambda+}_{ij}(\epsilon) \Gamma^\alpha G^{\lambda-}_{ij}(\epsilon)
-\end{align*} where the final step is by virtue of the Keldysh equation (equation~\ref{eq:keldysh}) and the expression for the lesser self-energy (equation~\ref{eq:lesserself}).
-
-$K$ transforms a vector of probabilities into a vector of the expectation values(combinations of) single-particle occupations. The matrix $W$ does something similar, but has more complicated elements because of the sum. Equation~\ref{eq:tomatrix} equation becomes clearer in matrix notation:
-\begin{align*}
-    \left(W-K\right) \rho(t) &= 0,
-\end{align*}
-Now, it is not guaranteed that the solution to this equation is unique or equivalently that the null-space of $W-K$ is one-dimensional. In practise, one would start from an equilibrium situation and take the ground state occupation probability as the initial guess, so that the non-equilibrium interactions can be turned on adiabatically. In this way, we can solve the system adiabatically to obtain the non-equilibrium ground state. This can be interpreted as a variation of the Gell-Mann and Low theorem \cite{gellmannlow, molinari}.
-
-%Notice that we can have $i\neq j$ for only one side of the equation, with the other side only containing products of $n$. The only degrees of freedom in the system are therefore the diagonal elements of the density matrix. The off-diagonal elements are linear combinations of these.
-
 The derivation of the current is straightforward. It can be motivated by looking at the expectation value,  $\braket{I}$. The current is a eigenvalue, in the sense that $ \widehat{I} \ket{\kappa} = I^\kappa \ket{\kappa}$. As a result, the expectation value will become a sum of diagonal density matrix elements times the current in that many-body state. The current in that many-body state is then rather trivially equation~\ref{eq:landauer} but with the many-body Green's function substituted, i.e. $G \rightarrow \mathscr{G}^{\kappa\pm}$.
 
 Finally, we state the result for the current:
@@ -234,6 +200,57 @@ I(t) &= \sum_\kappa \rho_{\kappa\kappa}(t) I^\kappa, \\
 I^\kappa&\equiv \frac{e}{\hbar} \int^\infty_{-\infty} \frac{d\epsilon}{2\pi} \left[ f_L(\epsilon) - f_R (\epsilon) \right] T^\kappa (\epsilon),\\
 T^\kappa(\epsilon) &\equiv \text{Tr}\left\{ \Gamma^L \mathscr{G}^{\kappa+} \Gamma^R \mathscr{G}^{\kappa-} \right\}.
 \end{align*}
+
+
+
+\section{Density matrix}
+\label{sec:densitymatrix}
+Many quantum problems are concerned with finding the density matrix of the system, a problem that is only enhanced in non-equilibrium situations. This is even more troublesome when interaction is included. In this section I outline a convenient method for the calculation of the density matrix $\rho(t)$, more accurately its diagonal $P_\kappa$.
+
+The starting point is the expectation value of a single-particle number operator $n_i$. This is the occupation probability of the single-particle state, not that of the many-body state where it is the singularly occupied state. It is related to the many-body occupation probabilities via:
+\begin{align*}
+\braket{n_i} &= \sum_{\kappa: i \in \kappa} P_\kappa,
+\end{align*} where the sum is over those $\kappa$ in which $i$ is occupied. These equations are linear, and by defining $K$ they can be written in matrix form. I choose to write the matrix elements as $K_{i\beta}$ to emphasise that $i$ corresponds to a single-particle state while $\beta$ to a many-body state:
+\begin{align*}
+K_{i\beta} &\equiv \begin{cases} 1 & i \& \beta = i\\ 0 & \text{otherwise} \end{cases},
+\end{align*} where $\&$ is the binary `and' operator. The matrix equation for expectation values of a single-particle number operators is then found to be:
+\begin{align*}
+\braket{n_i} &= \sum_{\beta} K_{i\beta} P_\beta, 
+\end{align*}
+so that the vector of single-particle number operators is obtained as:
+\begin{align}
+\braket{n} &= K P \label{eq:nkp}.
+\end{align}
+
+For instance, in a system with three single-particle states the explicit expression becomes \cite{seldenthuis}:
+\begin{align*}
+\begin{pmatrix} \braket{n_1} \\\braket{n_2} \\ \braket{n_3}\end{pmatrix} &= \begin{pmatrix} 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 \\ 0 & 0  &  1  & 1 & 0  &  0  &  1  &  1\\ 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1\\\end{pmatrix} \begin{pmatrix} P_{\ket{000}} \\P_{\ket{001}} \\ P_{\ket{010}} \\ P_{\ket{011}} \\ P_{\ket{100}} \\ P_{\ket{101}} \\ P_{\ket{110}} \\ P_{\ket{111}} \end{pmatrix}.
+\end{align*}
+
+The expectation values of single-particle number operators can also be obtained from the  many-body lesser Green's Function at $t=t'$:
+\begin{align*}
+\braket{n_i} &= \sum_{\kappa: i \in \kappa} \braket{n_\kappa d_i^\dagger (t) d_i (t)} \\
+&= \sum_{\kappa: i \in \kappa} \braket{\mathscr{G}^{\kappa<}_{ii}} \\
+&= \sum_{\kappa: i \in \kappa} \sum_{\lambda \supseteq \kappa} P_\lambda \int^\infty_{-\infty} \frac{d\epsilon}{2\pi\imath} G^{\lambda<}_{ii} (\epsilon) \\
+&= \sum_{\kappa: i \in \kappa} \sum_{\lambda \supseteq \kappa} P_\lambda \int^\infty_{-\infty} \frac{d\epsilon}{2\pi\imath} \left[ \sum_\alpha f_\alpha(\epsilon) G^{\lambda+}_{ii} (\epsilon) \Gamma^\alpha G^{\lambda-}_{ii} (\epsilon)\right] \\
+&= W_{i,1} P_{\kappa_1} + W_{i, 2} P_{\kappa_2} + \ldots \\
+&= \sum_\kappa W_{i\kappa} P_\kappa,
+\end{align*} where the lesser self-energy is substituted from equation~\ref{eq:lesserself}. The matrix element $W_{i\beta}$ is defined as:
+\begin{align*}
+W_{i\beta} &= \sum_{\kappa: i \in \kappa} \Delta^\beta_\kappa \int^\infty_{-\infty} \frac{d\epsilon}{2\pi\imath} \left[ \sum_\alpha f_\alpha(\epsilon) G^{\lambda+}_{ii} (\epsilon) \Gamma^\alpha G^{\lambda-}_{ii} (\epsilon)\right],
+\end{align*} where $\Delta^\beta_\kappa$ ensures only those $\kappa$ that are in the superset of $\beta$ are counted (equation~\ref{eq:generalisednumberoperator}). Thus I obtain a matrix equation for the vector of expectation values of single-particle number operators:
+\begin{align}
+\braket{n} &= WP. \label{eq:nwp}
+\end{align}
+
+Equations~\ref{eq:nkp} and~\ref{eq:nwp} are both exact, so consistency requires that:
+\begin{align}
+WP &= KP. \label{eq:selfconsistency}
+\end{align}
+
+Now, it is not guaranteed that the solution to this equation is unique or equivalently that the null-space of $W-K$ is one-dimensional. In practise, one would start from an equilibrium situation and take the ground state occupation probability as the initial guess, so that the non-equilibrium interactions can be turned on adiabatically. In this way, we can solve the system adiabatically to obtain the non-equilibrium ground state. This can be interpreted as a variation of the Gell-Mann and Low theorem \cite{gellmannlow, molinari}.
+
+Since $W-K$ is a matrix with the amount of rows equal to the dimension of the Hamiltonian or equivalently the maximum number of electrons $N$. However, the number of columns is equal to the amount of many-body states $2^N$, so that the inverse of either $W$ or $K$ can't be found. A practical algorithm would start from an initial guess $P^0$, likely the (equilibrium) Boltzmann distribution. The next step is to calculate $WP^0$, which should equal $KP^1$. The next iteration $P^1$ is then found by a minimisation procedure. This self-consistent loop is repeated until it converges on the non-equilibrium steady state $P_\lambda$.
 
 
 
