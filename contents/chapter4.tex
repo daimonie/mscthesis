@@ -36,6 +36,7 @@ In section~\ref{sec:twosite}, I define the model both with and without spin. I c
 
 
 \section{Two site model} 
+The model comes in two flavors; with and without spin. 
 \label{sec:twosite}
 \subsection{Spinless two site model}
 The form of the two-site model including Stark effect has been confirmed with DFT calculations in the supplement of Ref.~\cite{perrinnano}. I  will first look at the model without including spin. The Hamiltonian including tunnelling terms is:
@@ -55,12 +56,12 @@ where $\Gamma$ is the molecule-lead coupling strength. The capacitive self-energ
 where $U$ is the capacitive interaction strength.  The model is depicted schematically in Figure~\ref{fig:twosite}, where I have explicitly drawn the capacitive interaction. The leads are at different heights due to applied bias. In this model, where capacitive interaction is between two electrons instead of the electrons and the entire molecular background, the capacitive interaction is just the Coulomb Interaction\footnote{As previously indicated in section~\ref{sec:mbgfno}, there are molecules for which the interaction term is slightly more complicated and we can directly get the results from a number of DFT calculations.}.
 
 
-\begin{figure}[!bt]
+\begin{figure}[h]
     \begin{subfigure}[b]{0.48\textwidth}
         \includegraphics[height=.20\textheight]{pdf/non_interacting_schematics.pdf}\caption{non\hyp{}interacting}\label{fig:twositea}
     \end{subfigure}
     ~
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[!tb]{0.48\textwidth}
         \includegraphics[height=.20\textheight]{pdf/interacting_schematics.pdf}\caption{Interacting}\label{fig:twositeb}
     \end{subfigure}
     \caption{Schematic pictures of the spinless two site model. The red dashed line denotes the Fermi-level. Figure~\ref{fig:twositea} shows the non\hyp{}interacting case, where $\Gamma$ is the molecule-lead coupling, $\epsilon \pm \frac{1}{2} \alpha V$ are the left (right) level and $\tau$ is the tunnelling strength between the levels. In Figure~\ref{fig:twositeb}, an electron (large green arrow) occupies the right level. The swirly line is meant to indicate an interaction with electrons on the left level, thereby raising the level with the capacitive interaction or charging energy $U$.} \label{fig:twosite}
@@ -104,35 +105,36 @@ and the capacitive self-energy is:
 \end{align*}
 where $\zeta U$ describes the strength of capacitive interaction between the left and right site (intersite), whereas $\xi U$ describes the strength of capacitive interaction on the left or right site (onsite).
 
-The definitions for the coupling matrices $\Gamma^{R,L}$ allow us to directly calculate the transmission analytically in terms of the retarded and advanced Green's Function:
+The definitions for the coupling matrices $\Gamma^{R,L}$ allow us to directly calculate the transmission analytically in terms of the retarded and advanced Green's Function \emph{if only a single state is occupied}:
 \begin{align*}
 T(\epsilon) &= \Gamma^2 \left( G^+_{13} G^-_{31} + G^+_{14} G^-_{41} + G^+_{23} G^-_{32} + G^+_{24} G^-_{42} \right),
 \end{align*}
-where $\Gamma$ is the WBL coupling constant.Note that there is in principle a maximum of $4$ peaks. Because $\left(G^+\right)_{ij}^\star = G^-_{ji}$ in the energy-domain, there is no quantum interference and the function is real valued, as it should be.
+where $\Gamma$ is the WBL coupling constant.Note that there is in principle a maximum of $4$ peaks. Because $\left(G^+\right)_{ij}^\star = G^-_{ji}$ in the energy-domain, there is no quantum interference and the function is real valued, as it should be. If the energy state is degenerate, the $G^\pm \rightarrow \mathscr{G}^\pm$ and quantum interference is possible.
 
 \section{Expectations}
 \label{sec:expectations}
+Expectations for both flavors (spinless, spinfull) are discussed. 
 \subsection{Spinless two-site model}
 In section~\ref{sec:twositetransmission}, I will look at selected transmission figures for $U=0.0, 0.05, 0.15$ and $0.5$. The many-body character of the new theory makes it imperative to look at the many-body energies before I can make predictions about the different figures. Recall that the low-temperature Boltzmann distribution specifies that only the lowest-energy many-body state is occupied.
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
     \includegraphics[height=.45\textheight]{pdf/energy/perrin_distribution_u0.pdf}
     \caption{Energy for the spinless two-site model at $U=0$. The subscripts $E_{ij}$ refer to the many-body state $\ket{i j}$. At $\epsilon_0 \approx 0$, there is one electron on the right level. Lowering $\epsilon_0$ past ~$-0.08$ indicates a shift to an occupation of both the left and right levels.  }
     \label{fig:perrinenergy0}
 \end{figure}
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
     \includegraphics[height=.45\textheight]{pdf/energy/perrin_distribution_u1.pdf}
     \caption{Energy for the spinless two-site model at $U=0.05$. The subscripts $E_{ij}$ refer to the many-body state $\ket{i j}$. At $\epsilon_0 \approx 0$, there is one electron on the right level. Lowering $\epsilon_0$ past ~$-0.12$ indicates a shift to an occupation of both the left and right levels.  }
     \label{fig:perrinenergy1}
 \end{figure}
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
     \includegraphics[height=.45\textheight]{pdf/energy/perrin_distribution_u2.pdf}
     \caption{Energy for the spinless two-site model at $U=0.15$. The subscripts $E_{ij}$ refer to the many-body state $\ket{i j}$. At $\epsilon_0 \approx 0$, there is one electron on the right level. Lowering $\epsilon_0$ past ~$-0.23$ indicates a shift to an occupation of both the left and right levels.  }
     \label{fig:perrinenergy2}
 \end{figure}
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
     \includegraphics[height=.45\textheight]{pdf/energy/perrin_distribution_u3.pdf}
     \caption{Energy for the spinless two-site model at $U=0.50$. The subscripts $E_{ij}$ refer to the many-body state $\ket{i j}$. At $\epsilon_0 \approx 0$, there is one electron on the right level. Lowering $\epsilon_0$ past ~$-0.58$ indicates a shift to an occupation of both the left and right levels, which is no longer visible in this picture  }
@@ -142,59 +144,59 @@ In section~\ref{sec:twositetransmission}, I will look at selected transmission f
 Figure~\ref{fig:perrinenergy0} shows the energies for the spinless model when $U=0$, which should be equivalent to the non-interacting model. We see that there is a `switch' from single to double occupation, but this will not cause the capacitive-self energy value to change, because it is zero at $U=0$. In that regard, Figure~\ref{fig:perrinenergy1} is more interesting, as $U=0.05$, causing the switch from $\ket{01}$ to $\ket{11}$ to have not only a different energy, but to cause different transport behaviour. In the first state, there will be one transmission peak at $\epsilon_R$ and one at $\epsilon_L + U$. However, in the second state the second peak is also raised to $\epsilon_R+U$. Since this moves the levels further off-resonance, the transmission peak will be of lower height. The same behaviour persists for Figure~\ref{fig:perrinenergy2} and Figure~\ref{fig:perrinenergy3}, where I note that the switch moves towards lower values of $\epsilon_0$, which is to be expected as the double occupation energy $E_{11} = 2\epsilon_0 + U$ - higher capacitive interaction strength will raise the double occupation energy.
  
 \subsection{Spinfull two-site model} 
-In this section, I present the energies of the spinfull model at $U=0.0, 0.05, 0.15$ and $0.5$. The parameters $\zeta,\xi$ greatly increase the parameter space for these figures. Here, I will present only the results for $\zeta=1.0$ and the combinations $(U, \xi) = (0.0, 0.0), (0.05, 1.0), (0.15, 1.00), (0.5, 0.50), (0.5, 20.0)$. These are selected to match the transmission figures presented in section~\ref{sec:twositetransmission}.
+In this section, I present the energies of the spinfull model at $U=0.0, $ $0.05, $ $0.15$ and $0.5$. The parameters $\zeta,\xi$ greatly increase the parameter space for these figures. Here, I will present only the results for $\zeta=1.0$ and the combinations $(U, \xi) = (0.0, 0.0),$ $ (0.05, 1.0), $ $(0.15, 1.00), $ $(0.5, 0.50), $ $(0.5, 20.0)$. These are selected to match the transmission figures presented in section~\ref{sec:twositetransmission}.
 
-The Fock-space of occupation states for the spinfull model has dimension $2^4$, so that the figures are full of information. 
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
     \includegraphics[height=.45\textheight]{pdf/energy/pespin_distribution_u0_k0.pdf}
     \caption{The energy $E_{ijkl}$ denotes the energy for the state $\ket{ijkl}$. In this figure, $U=0.00, \zeta=1.00, \xi=0.00$. The lowest energy state is $\ket{0011}$ for $\epsilon_0\gtrsim -0.18$, which then switches to $\ket{1011}$ or $\ket{0111}$. Then, as $\epsilon_0 \lesssim -.23$ there is a switch to $\ket{1111}$.}
     \label{fig:perspinenergy00}
 \end{figure} 
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
     \includegraphics[height=.45\textheight]{pdf/energy/pespin_distribution_u1_k2.pdf}
     \caption{The energy $E_{ijkl}$ denotes the energy for the state $\ket{ijkl}$. In this figure, $U=0.05, \zeta=1.00, \xi=1.00$. The lowest energy state is $\ket{0011}$ for $\epsilon_0\gtrsim -0.15$, which then switches to $\ket{1111}$.}
     \label{fig:perspinenergy12}
 \end{figure} 
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
     \includegraphics[height=.45\textheight]{pdf/energy/pespin_distribution_u2_k2.pdf}
     \caption{The energy $E_{ijkl}$ denotes the energy for the state $\ket{ijkl}$. In this figure, $U=0.15, \zeta=1.00, \xi=1.00$. The lowest energy state is $\ket{0001}$ or $\ket{0010}$ for $\epsilon_0\gtrsim -0.11$, which then switches to $\ket{0011}$ until $\epsilon_0\lesssim -0.33$ after which it is $\ket{1011}$ or $\ket{0111}$.}
     \label{fig:perspinenergy22}
 \end{figure} 
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
-    \includegraphics[height=.45\textheight]{pdf/energy/pespin_distribution_u3_k3.pdf}
-    \caption{The energy $E_{ijkl}$ denotes the energy for the state $\ket{ijkl}$. In this figure, $U=0.5, \zeta=1.00, \xi=1.50$. The lowest energy state is $\ket{0001}$ or $\ket{0010}$ for all visible $\epsilon_0$.}
-    \label{fig:perspinenergy33}
+    \includegraphics[height=.45\textheight]{pdf/energy/pespin_distribution_u3_k1.pdf}
+    \caption{The energy $E_{ijkl}$ denotes the energy for the state $\ket{ijkl}$. In this figure, $U=0.5, \zeta=1.00, \xi=1.50$. The lowest energy state is $\ket{0001}$ or $\ket{0010}$ for $\epsilon_0 \gtrsim -0.21$, which then switches to $\ket{0011}$.}
+    \label{fig:perspinenergy31}
 \end{figure} 
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
     \includegraphics[height=.45\textheight]{pdf/energy/pespin_distribution_u3_k4.pdf}
     \caption{The energy $E_{ijkl}$ denotes the energy for the state $\ket{ijkl}$. In this figure, $U=0.5, \zeta=1.00, \xi=20.0$. The lowest energy state is $\ket{0001}$ or $\ket{0010}$ for all visible $\epsilon_0$.}
     \label{fig:perspinenergy34}
 \end{figure}
 
-In Figures~\ref{fig:perspinenergy00},~\ref{fig:perspinenergy12},~\ref{fig:perspinenergy22},~\ref{fig:perspinenergy33},~\ref{fig:perspinenergy34} I see similar behaviour as in the spinless case. There are switches between different many-body states, which are expected to cause some transmission peaks to shift by $\zeta U$ or $\xi U$ or both. The specifics of the many-body states are indicated in their captions.
 
+The Fock-space of occupation states for the spinfull model has dimension $2^4$, so that there are that many energies in the figures. In Figures~\ref{fig:perspinenergy00},~\ref{fig:perspinenergy12},~\ref{fig:perspinenergy22},~\ref{fig:perspinenergy31},~\ref{fig:perspinenergy34} I see similar behaviour as in the spinless case. There are switches between different many-body states, which are expected to cause some transmission peaks to shift by $\zeta U$ or $\xi U$ or both. The specifics of the many-body states are indicated in their captions.
 \section{Transmission}
 \label{sec:twositetransmission}
-\section{Spinless two-site model}
+Transmissions for both flavors (spinless, spinfull) are discussed. 
+\subsection{Spinless two-site model}
 First, I want to look at the transmission for the spinless model. In Figure~\ref{fig:spinlesstransmissionu0} the non\hyp{}interacting transmission ($U=0$) for otherwise arbitrary but physical parameters is depicted. As you can see, the transmission peaks are exactly at the eigenvalues of the lead-molecule Hamiltonian $H_1 + H_\tau$. If I increase the capacitive interaction strength to $U=0.05$, depicted in Figure~\ref{fig:spinlesstransmissionu1}, two things happen. The peak value of $T(\epsilon)$ reduces from $.16$ to $.13$, because the sites are further removed from resonance. The second transmission peak shifts slightly to the right and is exactly $U$ removed from the corresponding eigenvalue. Further increasing $U$ to e.g. $U=0.5$ in Figure~\ref{fig:spinlesstransmissionu4} yields a more pronounced effect, which is otherwise the same; the peak height reduces and the rightmost peak is exactly $U$ removed from the corresponding eigenvalue.
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
     \includegraphics[height=.35\textheight,clip=true,trim=7cm 2cm 7cm 4cm]{pdf/trans/decospinlesstransmissionarbitraryu0.pdf}
     \caption{Transmission spectra for $\alpha=0.74$, $\tau=0.024$, $\Gamma=0.031$, $\epsilon_0 = - 0.05$, $V=0.50$ and $U=0.0$. This a set of parameters for which the system is non\hyp{}interacting . In this picture, the influence of the Stark effect pulling the levels out of resonance is clear in the reduction of peak height which is unity at zero bias.}
     \label{fig:spinlesstransmissionu0}
 \end{figure}
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
     \includegraphics[height=.35\textheight,clip=true,trim=7cm 2cm 7cm 4cm]{pdf/trans/decospinlesstransmissionarbitraryu1.pdf}
     \caption{Transmission spectra for $\alpha=0.74$, $\tau=0.024$, $\Gamma=0.031$, $\epsilon_0 = - 0.05$, $V=0.50$ and $U=0.05$. These parameters indicate a very-weakly interacting system. In comparison to Figure~\ref{fig:spinlesstransmissionu0}, the peak height is smaller and the rightmost peak is clearly displaced from the corresponding eigenvalue (diamond) by $U$. }
     \label{fig:spinlesstransmissionu1}
 \end{figure}
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
     \includegraphics[height=.35\textheight,clip=true,trim=7cm 2cm 7cm 4cm]{pdf/trans/decospinlesstransmissionarbitraryu4.pdf}
     \caption{Transmission spectra for $\alpha=0.74$, $\tau=0.024$, $\Gamma=0.031$, $\epsilon_0 = - 0.05$, $V=0.50$ and $U=0.05$. These parameters are for a strongly-interacting system. In comparison with Figure~\ref{fig:spinlesstransmissionu0} and Figure~\ref{fig:spinlesstransmissionu1}, the peaks have dropped significantly further and the rightmost peak is still exactly $U$ removed from the corresponding eigenvalue.}
@@ -202,7 +204,7 @@ First, I want to look at the transmission for the spinless model. In Figure~\ref
 \end{figure}
 
 All of the figures look as if they are non-interacting two-site spinless models, but the peak values differ. It is perhaps illustrative to consider Figure~\ref{fig:perrin_effective}. In this figure the effective parameters change almost linearly with increasing $U$. The effective parameters are those parameters for which the features of the transmission agree with a non-interacting model ignoring peak height.
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
     \includegraphics[height=.35\textheight]{pdf/trans/perrin_effective.pdf}
     \caption{In this figure, $\epsilon_0$ and $\tau$ are for a non-interacting model are fitted to an interacting model, leading to `effective' parameters. This ignores the fact that the peaks of an interacting are surpressed. The coupling $\Gamma$ is exactly the same, as is expected.}
@@ -212,40 +214,41 @@ All of the figures look as if they are non-interacting two-site spinless models,
 
 These figures indicate that a mismatch in peak values such as that found in Ref.~\cite{perrinnano} may well be explained in terms of capacitive interaction. Here, the shape would be fitting for a two-site model without capacitive interaction, but the amplitude element of capacitive interaction is merely seen as quantitative disagreement. This notion will be discussed further in section~\ref{sec:perrin}. 
 
-\section{Spinfull two-site model}
+\subsection{Spinfull two-site model}
 I now want to look at the transmission of the spinfull model \emph{in comparison} with that of the spinless model. First, recall that $\zeta$ describes the intersite interaction while $\xi$ the onsite interaction. Given the large amount of possible pictures, here I present only those that are interesting results that are distinct from the spinless model with the exception of Figure~\ref{fig:transmap34} which has extremely strong onsite interaction $\xi$ such that the two models are expected to converge.
 
 
 First, I want to look at the case where there is no onsite interaction, in which there are two copies of the system and no cross terms; electrons of different spin do not interact. Therefore, we expect the spinfull transmission to be simply twice the spinless transmission. While the occupation of the many-body makes switches, this does not lead to a different set of Green's Functions as $\Sigma^C=0$ for $U=0$. In Figure~\ref{fig:transmap00} we see that this expectation is confirmed. 
 
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
     \includegraphics[height=.38\textheight]{pdf/map/transmap_u0_k0.pdf}
     \caption{In this figure, $U=0.00, \zeta=1.00, \xi=0.00$. The two models agree very well, with the spinfull model having two non-interacting copies of the spinless model and thus twice the transmission.}
     \label{fig:transmap00}
 \end{figure}
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
     \includegraphics[height=.38\textheight]{pdf/map/transmap_u1_k2.pdf}
     \caption{In this figure, $U=0.05, \zeta=1.00, \xi=1.00$. A distinct difference is very clear, with a three-peak transmission spectrum making a short appearance. See the main text for explanation.}
     \label{fig:transmap12}
 \end{figure}
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
     \includegraphics[height=.38\textheight]{pdf/map/transmap_u2_k2.pdf}
     \caption{In this figure, $U=0.15, \zeta=1.00, \xi=1.00$. There is a very obvious difference, with three peak transmission spectra dominating the spinfull results. See the main text for explanation.}
     \label{fig:transmap22}
 \end{figure}
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
+    %this file had the wrong name
     \includegraphics[height=.38\textheight]{pdf/map/transmap_u3_k3.pdf}
     \caption{In this figure, $U=0.15, \zeta=1.00, \xi=1.00$. The is a very pronounced difference, with three transmission peaks above $\epsilon\approx -0.2$ and only a single peak below that level.  See the main text for explanation.}
-    \label{fig:transmap33}
+    \label{fig:transmap31}
 \end{figure}
-\begin{figure}[!bt]
+\begin{figure}[h]
     \centering
     \includegraphics[height=.38\textheight]{pdf/map/transmap_u3_k4.pdf}
-    \caption{In this figure, $U=0.15, \zeta=1.00, \xi=1.00$. The two models converge, which is expected for this $\xi$. See the main text for explanation.}
+    \caption{In this figure, $U=0.15, \zeta=1.00, \xi=20.00$. The two models converge, which is expected for this $\xi$. See the main text for explanation.}
     \label{fig:transmap34}
 \end{figure}
 
@@ -253,13 +256,196 @@ Evidence of the many-body character of both models is clear in Figure~\ref{fig:t
 
 Figure~\ref{fig:transmap22} is simply explained for the spinless model in terms of the many-body switches. The spinfull model is slightly more involved. Figure~\ref{fig:perspinenergy22} shows that the state is degenerate for $\epsilon_0 \gtrsim -0.1$, that the degeneracy is lifted initially but that it again becomes degenerate after $\epsilon_0 \lesssim -.36$. The degeneracy is clear in the transmission, because one of the \emph{three} peaks is weaker than the other two. 
 
-Figure~\ref{fig:transmap33} is more simply explained. Figure~\ref{fig:perspinenergy33} indicates that 
+Figure~\ref{fig:transmap31} is more simply explained. Figure~\ref{fig:perspinenergy31} indicates that there is a switch around $\epsilon_0 \approx -0.21$ which seems to agree well with the transmission spectrum. The extra electron causes a very large shift of $(1+\xi)U = 0.75$ in transmission peaks, so that the remaining peaks fall outside the energy window displayed here.
 
-
+Figure~\ref{fig:transmap34} is that figure for which the onsite energy $\xi U$ dominates so that only a single copy of the spinless model is active at any time. Therefore, not only do the peaks in transmission happen at the same location, but they are also of the same height.
 \section{Current parameter sweeps}
 \label{sec:twositeparamsweep}
+The most interesting parameter sweeps are those that affect the many-body states. The current through a single-molecule has a well known feature called the Coulomb Diamond \cite{seldenthuis, perrin} in a plot of the gate voltage versus the bias voltage and coloured by the current. The gate voltage corresponds approximately to the zero-bias level, $V_\text{gate} \approx \epsilon_0$. Each diamond corresponds to a different charge state. As I only present current parameter sweeps for the spinless case, for which throughout $-0.5 < \epsilon_0 < 0$ there are two occupied many-body states, we expect one diamond to form.
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=.38\textheight]{pdf/coulombd/current_map_u0.pdf}
+    \caption{In this figure, $U=0.00$. As there is no Coulomb interaction, there are no charge states and diamonds do not form. The distinct lines correspond to the bias window increasing to encompass a second transmission peak. The colours are based on the $^{10}\text{log}\left|I(V)\right|$, so that the NDC is implied because $I(V) = -I(-V)$.}
+    \label{fig:currentmap0}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=.38\textheight]{pdf/coulombd/current_map_u1.pdf}
+    \caption{In this figure, $U=0.05$. The Coulomb interaction is very weak, and there is indeed a very small diamond visible. Notice that the width of the diamond is exactly $U$. The triangular area to the left of the diamond corresponds to the next charge state. The distinct lines correspond to the bias window increasing to encompass a second transmission peak.The colours are based on the $^{10}\text{log}\left|I(V)\right|$, so that the NDC is implied because $I(V) = -I(-V)$.}
+    \label{fig:currentmap1}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=.38\textheight]{pdf/coulombd/current_map_u2.pdf}
+    \caption{In this figure, $U=0.15$. The Coulomb diamond is singificantly clearer and again has width $U$. The triangular area to the left of the diamond corresponds to the next charge state. The distinct lines correspond to the bias window increasing to encompass a second transmission peak.The colours are based on the $^{10}\text{log}\left|I(V)\right|$, so that the NDC is implied because $I(V) = -I(-V)$.}
+    \label{fig:currentmap2}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=.38\textheight]{pdf/coulombd/current_map_u3.pdf}
+    \caption{In this figure, $U=0.5$. The Coulomb diamond has width $U$ and thus covers the entire window .The triangular area to the left of the diamond is not visible. The distinct lines correspond to the bias window increasing to encompass a second transmission peak.The colours are based on the $^{10}\text{log}\left|I(V)\right|$, so that the NDC is implied because $I(V) = -I(-V)$.}
+    \label{fig:currentmap3}
+\end{figure}
+
+Figures~\ref{fig:currentmap0}, ~\ref{fig:currentmap1}, ~\ref{fig:currentmap2}, ~\ref{fig:currentmap3} show the onset of the Coulomb diamond and that is has width exactly equal to the capacitive interaction strength $U$. The left triangular area visible in most of the figures is the next charge state, which for the spinless model is the state $\ket{11}$ whereas the Coulomb diamond is associated with $\ket{01}$ (at positive bias). 
+
+I explored the characteristics of the Coulomb Diamond a bit more. Analytically, the corresponding charge state leads to the following Green's function (section~\ref{sec:twosite}):
+\begin{align*}
+G^{\ket{01}\pm} &= \left[ \epsilon \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} - \begin{bmatrix} \epsilon_0 + \frac{1}{2} \alpha V & -\tau \\
+-\tau & \epsilon_0 - \frac{1}{2} \alpha V\end{bmatrix} - \begin{pmatrix} U & 0 \\ 0 & 0 \end{pmatrix} \pm \frac{\imath}{2} \begin{pmatrix} \Gamma & 0 \\ 0 & \Gamma \end{pmatrix} \right]^{-1},
+\end{align*}
+so that the transmission peaks should be found at eigenvalues of $\begin{bmatrix} \epsilon_0 + \frac{1}{2} \alpha V+U & -\tau \\
+-\tau & \epsilon_0 - \frac{1}{2} \alpha V\end{bmatrix}$.
+
+Section~\ref{sec:twositetransmission} showed that the transmission peak locations change linearly with $\epsilon_0$, at least within a single charge state. Consider a state which starts on resonance, i.e. a transmission peak is within the bias window immediately. In this scenario, the leftmost transmission peak is within the bias window. Upon lowering $\epsilon_0$, the two transmission peaks shift slightly to the left. At higher bias, the intersection of the leftmost peak with the bias window is still at a lower bias voltage than that of the rightmost peak, but at a larger bias voltage than at higher $\epsilon_0$. As the lowering continues, the two values slowly approach each other. This is the corner of the Coulomb diamond.
+
+Next, the the rightmost peak has the lower bias voltage at which it intersects the bias window and this intersection value is shrinking. This continues until the point where the rightmost peak is completely inside the bias window. This closes the diamond. 
+
+The expectation is that the next charge state is then available, and indeed I find that the energies dictate the molecule now occupies the next charge state.
+
+The rate at which the transmission lines move outward depends almost entirely on $\alpha$. While it is technically the level-splitting $\Delta$, it is trivial that as the only growing term it will soon dominate that term, leading to $\Delta \approx \alpha V$. As such, I expect that the height of the Coulomb diamond depends mostly on $\alpha$. 
+
+Indeed, this is what we find Figures~\ref{fig:diamond25},~\ref{fig:diamond50},~\ref{fig:diamond75}. These figures also show the co-tunneling current within the diamond clearly. Here, the symmetry dictates that $I(V)=-I(-V)$, so that the co-tunneling current has a sign switch around $V=0$. Furthermore, the Stark effect pulls the sites further from each other, which leads to a reduction of the co-tunnelling current that is just barely visible.
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=.38\textheight]{pdf/coulombd/current_map_diamond_alpha_025.pdf}
+    \caption{In this figure, $U=0.35$ and $\alpha=0.25$. The colours are based on the $^{10}\text{log}\left|I(V)\right|$, so that the NDC is implied because $I(V) = -I(-V)$.}
+    \label{fig:diamond25}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=.38\textheight]{pdf/coulombd/current_map_diamond_alpha_05.pdf}
+    \caption{In this figure, $U=0.35$ and $\alpha=0.50$. The colours are based on the $^{10}\text{log}\left|I(V)\right|$, so that the NDC is implied because $I(V) = -I(-V)$.}
+    \label{fig:diamond50}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=.38\textheight]{pdf/coulombd/current_map_diamond_alpha_075.pdf}
+    \caption{In this figure, $U=0.35$ and $\alpha=0.75$. The colours are based on the $^{10}\text{log}\left|I(V)\right|$, so that the NDC is implied because $I(V) = -I(-V)$.}
+    \label{fig:diamond75}
+\end{figure}
+
 \section{Experimental fit}
 \label{sec:perrin}
+On inspection of the peak values of current when the many-body occupation is the first charge state, I found that the current was already less than it was in \citet{perrinnano} or the zero-charge state. In Figure~\ref{fig:imax}, I compare the peak current at certain capacitive interaction strength for the edge of the first and second charge states. The first charge state has the left and right sites at different energies, so that current is suppressed relative to the second charge state which has both levels at the same energy.
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=.38\textheight]{pdf/imax.pdf}
+    \caption{In this figure, $\alpha=0.50$, $\tau=0.02$, $\Gamma=0.01$, $\epsilon_0 = 0$ or $\epsilon_0=-U$. I show the maximum current versus the capacitive interaction, for the first charge state (red diamonds) and the second charge state (green triangles). Visible is that the second charge state has a current that is within one order of magnitude larger, likely because the left/right levels align. Both sets fit well to a fit to an inverse polynomial of $U$. See main text for explanation.}
+    \label{fig:imax}
+\end{figure}
+
+Figure~\ref{fig:imax} seems to indicate that the maximum current will flatten out, so that peak currents of approximately $10$ nA in the first charge state and approximately $5$ nA are expected for strong interaction $U \gtrsim 0.30$. This can be understood from the following. In the supplement to Ref.~\cite{perrinnano}, they compute the current for a two-site model in terms of the bonding ($\pi$) and anti-bonding ($\pi$) orbitals. The current is proportional to the inverse of the level splitting, $\left( \Delta^2 + \Gamma^2 \right)$. The level splitting for the interacting case can be found from the eigenvalues of e.g. $\begin{bmatrix} \epsilon_0 + \frac{1}{2} \alpha V+U & -\tau \\
+-\tau & \epsilon_0 - \frac{1}{2} \alpha V\end{bmatrix}$:
+\begin{align*}
+\Delta^2 &= U^2 + U \left(4\epsilon_0 - 2 \alpha V\right) + \alpha^2 V^2 - 4 \tau^2,
+\end{align*}
+so that the maximum current is proportional to the inverse of a second-order polynomial of $U$. The fits in Figure~\ref{fig:imax} show that this simply analysis yields the correct results. The second charge state is expected to yield a higher current, as $\Delta$ reduces by $4 \left|\epsilon_0 \right| U$. This agrees with the concept that the first charge state has misaligned levels, because that indicates a larger $\Delta$ and thus a lower current, whereas thee second charge state has a small $\Delta$ and a high current. However, I must caution that this analysis and Figure~\ref{fig:imax} concern only non-degenerate states.
+
+These results indicate that the Coulomb interaction energy is in principle able to tune the peak current. Note that the Coulomb interaction energy will at some point induce a switch to a different many-body state (section~\ref{sec:expectations}). I will look at the measurements by Mickael Perrin \cite{perrin, perrinnano}, whom has kindly given me one of his datasets to look at. 
+
+In figure~\ref{fig:perrindata}, a break junction measurement for different separation differences (gap sizes) is shown. As the separation distance increases, the current drops increasingly, until an apparent Coulomb gap opens suddenly around separation $s \approx 663$. As I showed in section~\ref{sec:expectations}, very sudden transmission changes can occur due to many-body state switches. I surmise a similar thing has happened here. As separation distance increases, we see that the $V=0$ flattish area starts increasing. At approximately $s\approx 663$, it suddenly widens and a rather clear Coulomb blockade is visible. While there is no good way to estimate the theoretical parameters from such an experiment, speculation is possible. If all parameters change slowly, then this could simultaneously explain both the peak current dropping and the opening of a flat area in between. For $s \lesssim 663$, the zero charge state is likely occupied, based on the current at $s = 638$ and the smooth change from there. The zero bias level $\epsilon_0$ slowly move off-resonance as separation increases, which is the opening of the plateau. Then, at $s \approx 663$, a many-body switch happens and the molecule is found in the first charge state. As $\epsilon_0 \neq 0 $ and $\epsilon_0 \neq -U$, we are inside the Coulomb diamond of the first charge state. Afterwards, the theme of slowly changing parameters continue and the gap widens. I must point out that in the current sweeps presented here, many-body switches always occurred at the tip of a diamond. However, I do think this speculation has merit all the same.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.99\textwidth,clip=true, trim=4cm 0cm 10cm 4cm]{pdf/perrin_experiment_abs.pdf}
+    \caption{Experimental data by \citet{perrinnano}, the colours are proportional to $^{10}\text{log}\left|I(V)\right|$. As elsewhere, $I(V) = -I(-V)$. The current is capped at the lower end to $10^{-10}$ A.}
+    \label{fig:perrindata}
+\end{figure}
+
+Next, I want to presents a few results that show clearly that the new theory is in better quantitative agreement with the results by \citet{perrinnano}. However, the current landscape at different parameters does not change smoothly, which makes it troublesome to \emph{fit} the predicted smoothly. Instead, I performed an automatic rough parameter scan and selected results manually.
+
+In particular, I have taken care to select results both in the first and second charge state, to show that both possibilities are relevant. First, I want to discuss the spinless results and then the spinfull results. For all of these figures, $\alpha=0.400$, $\Gamma=0.010$, $\tau=0.010$ unless otherwise noted. The experimental current is measured in the exact same way as Figure~\ref{fig:perrindata}, but only the (near) blockade-free region was used.
+
+Figure~\ref{fig:fitspinless0} with $U=0.20$, shows a very clear NDC with maximum current within a factor of two relative to the averaged experimental current. Figure~\ref{fig:fitspinless1} was included purely because it has a clear NDC combined with a feature that is perhaps odd to consider: a swirl halfway through the downward slope. At some parameters, such odd features are observed in our model. It is not entirely clear what their origin is, but I expect a many-body switch that is well within the bias window, but produces this feature because the peaks are very thin ($\Gamma \ll 1$).Figure~\ref{fig:fitspinless2} is very similar to the first figure, but this is the second charge state, which is within factor three (relative to the averaged experimental current). One difference in their characteristics is that the current away from the peak is significantly smaller, leading to better agreement. Figure~\ref{fig:fitspinless3} is also the second charge state, which has a better fit to the peak current but I think is in worse agreement due to the thinner peak. Figure~\ref{fig:fitspinless4} shows the current  first charge state of $U=0.300$, while Figure~\ref{fig:fitspinless5} shows the same for the second charge state. We observe that the second charge state has the lower current far away from the peak, which seems in better agreement to the experiment.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.95\textwidth, clip=true, trim=11cm 2cm 2cm 0cm]{pdf/fit/fit_spinless_0.pdf}
+    \caption{Experimental $I(V)$ (Magenta) versus calculated spinless current $I(V)$ (green). In this figure, $U=0.20$ and $\epsilon_0 = 0.00$. The current is scaled by $1.18$ so that it has the same peak height as the experimental current.}
+    \label{fig:fitspinless0}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.95\textwidth, clip=true, trim=11cm 2cm 2cm 0cm]{pdf/fit/fit_spinless_1.pdf}
+    \caption{Experimental $I(V)$ (Magenta) versus calculated spinless current $I(V)$ (green). In this figure, $U=0.20$, $\Gamma=0.001$ and $\epsilon_0 = -0.200$. The current is scaled by $30.19$ so that it has the same peak height as the experimental current. Note the odd swirl halfway through the negative slope. This seems to be related to the very low $\Gamma$.}
+    \label{fig:fitspinless1}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.95\textwidth, clip=true, trim=11cm 2cm 2cm 0cm]{pdf/fit/fit_spinless_2.pdf}
+    \caption{Experimental $I(V)$ (Magenta) versus calculated spinless current $I(V)$ (green). In this figure, $U=0.20$, $\epsilon_0 = -0.200$ and $\alpha=0.40$. The current is scaled by $0.35$ so that it has the same peak height as the experimental current. }
+    \label{fig:fitspinless2}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.95\textwidth, clip=true, trim=11cm 2cm 2cm 0cm]{pdf/fit/fit_spinless_3.pdf}
+    \caption{Experimental $I(V)$ (Magenta) versus calculated spinless current $I(V)$ (green). In this figure, $U=0.20$, $\epsilon_0 = -0.200$ and $\alpha=0.75$. The current is scaled by $0.71$ so that it has the same peak height as the experimental current. }
+    \label{fig:fitspinless3}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.95\textwidth, clip=true, trim=11cm 2cm 2cm 0cm]{pdf/fit/fit_spinless_4.pdf}
+    \caption{Experimental $I(V)$ (Magenta) versus calculated spinless current $I(V)$ (green). In this figure, $U=0.30$ and $\epsilon_0 = -0.00$. The current is scaled by $1.31$ so that it has the same peak height as the experimental current. }
+    \label{fig:fitspinless4}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.95\textwidth, clip=true, trim=11cm 2cm 2cm 0cm]{pdf/fit/fit_spinless_5.pdf}
+    \caption{Experimental $I(V)$ (Magenta) versus calculated spinless current $I(V)$ (green). In this figure, $U=0.30$ and $\epsilon_0 = -0.30$. The current is scaled by $0.37$ so that it has the same peak height as the experimental current.}
+    \label{fig:fitspinless5}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.95\textwidth, clip=true, trim=11cm 2cm 2cm 0cm]{pdf/fit/fit_spinfull_0.pdf}
+    \caption{Experimental $I(V)$ (Magenta) versus calculated spinfull current $I(V)$ (blue). In this figure, $U=0.30$ and $\epsilon_0 = -0.00$. The current is scaled by $1.69$ so that it has the same peak height as the experimental current.}
+    \label{fig:fitspinfull0}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.95\textwidth, clip=true, trim=11cm 2cm 2cm 0cm]{pdf/fit/fit_spinfull_1.pdf}
+    \caption{Experimental $I(V)$ (Magenta) versus calculated spinfull current $I(V)$ (green). In this figure, $U=0.30$ and $\epsilon_0 = -0.30$. The current is scaled by $0.88$ so that it has the same peak height as the experimental current.}
+    \label{fig:fitspinfull1}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.95\textwidth, clip=true, trim=11cm 2cm 2cm 0cm]{pdf/fit/fit_spinfull_2.pdf}
+    \caption{Experimental $I(V)$ (Magenta) versus calculated spinfull current $I(V)$ (green). In this figure, $U=0.50$ and $\epsilon_0 = -0.00$. The current is scaled by $1.81$ so that it has the same peak height as the experimental current.}
+    \label{fig:fitspinfull2}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.95\textwidth, clip=true, trim=11cm 2cm 2cm 0cm]{pdf/fit/fit_spinfull_3.pdf}
+    \caption{Experimental $I(V)$ (Magenta) versus calculated spinfull current $I(V)$ (green). In this figure, $U=0.50$ and $\epsilon_0 = -0.50$. The current is scaled by $0.95$ so that it has the same peak height as the experimental current.}
+    \label{fig:fitspinfull3}
+\end{figure}
+
+The second charge state having a larger current drop does not persist for spinfull results. Figure~\ref{fig:fitspinfull0} shows the first charge state for $U=0.30$, which already has a reasonable drop of its own. The second charge state is shown in Figure~\ref{fig:fitspinfull1}, which does have lower peak current, within a factor 2 of the experimental average. For $U=0.50$, the first charge state is very similar to the second, but is at $169$ \% while the second charge state is at $95$ \% of the experimental average.
+
+To conclude, the quantitative agreement with \citet{perrinnano} is significantly improved in the first and second charge states. While the peak voltages do not exactly agree, we only performed a very limited rough scan of the parameter space. The parameters can be tuned as shown for the tunnelling strength $\tau$ in Figure~\ref{fig:tauscanfirst} which shows a scan for $\tau$, where we note that while the peaks move to higher voltages for larger $\tau$, the current drop off also slows down. The same is largely true for the second charge state (Figure~\ref{fig:tauscansecond}). The molecule-lead coupling $\Gamma$ can also be changed, which leads to rapid current drop-off in the weak coupling limit as shown in Figure~\ref{fig:gammascan}.
+
+\begin{figure}[h]
+    \centering
+     \includegraphics[height=.38\textheight]{pdf/tauscanfirstcharge.pdf}
+    \caption{A current sweep for changing $\tau$ in the first charge state $\epsilon_0 = 0$ at capacitive interaction strength $U=0.35$. The colours are based on the $^{10}\text{log}\left|I(V)\right|$. Note that while the peaks move outward at higher $\tau$, the dropoff rate slows down greatly as well.}
+    \label{fig:tauscanfirst}
+\end{figure}
+\begin{figure}[h]
+    \centering
+     \includegraphics[height=.38\textheight]{pdf/tauscansecondcharge.pdf}
+    \caption{A current sweep for changing tunnelling strength $\tau$ in the first charge state $\epsilon_0 = -0.35$ at capacitive interaction strength $U=0.35$. The colours are based on the $^{10}\text{log}\left|I(V)\right|$. Note that while the peaks move outward at higher $\tau$, the dropoff rate slows down greatly as well.}
+    \label{fig:tauscansecond}
+\end{figure}
+ 
+
+\begin{figure}[h]
+    \centering
+     \includegraphics[height=.38\textheight]{pdf/gammascan.pdf}
+    \caption{A current sweep for changing $\Gamma$ in the second charge state $\epsilon_0 = -0.35$ at capacitive interaction strength $U=0.35$. The colours are based on the $^{10}\text{log}\left|I(V)\right|$. Note that the dropoff becomes more rapid for low $\Gamma$. The peaks seem to be moving outward for high coupling-strength.}
+    \label{fig:gammascan}
+\end{figure}
+
+
+
 %clearpage dumps all images in the stack. Also prevents images from skipping chapters.
 \clearpage
 \references{dissertation}

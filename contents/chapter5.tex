@@ -11,13 +11,13 @@
 
 %% The '0pt' option ensures that no extra vertical space follows this epigraph,
 %% since there is another epigraph after it.
-\epigraph[0pt]{
-    "quote1"
-}{attribution}
+%\epigraph[0pt]{
+%    "quote1"
+%}{attribution}
 
 \epigraph{
-    “quote2”
-}{attribution}
+    “I am the wisest of all, for I know that I know nothing.”
+}{Paraphrase of the Sokrates as he is described in Plato's Apology}
 
 \begin{abstract}
 abstract
@@ -25,9 +25,50 @@ abstract
 
 %% Start the actual chapter on a new page.
 \newpage
-\section{Discussion}
+\section{Introduction}
+Most theses do not accurately depict all of the work performed. Rather, it depicts the successful work and does not mention the blunders made. For instance, we were quite excited about a region of apparent resonance within the Coulomb diamond, only to find out that this a plotting artifact in those pictures. Perhaps one of the greater improvements in science possible would the a journal called "The international journal of complete blunders". A great amount of resources is spent in futility, simply because scientists do not often communicate what did not work.
+
+Even so, I think it is fair to say that the results as presented here are fairly consistent with intuition, theory and experiment. It gives a reasonable impression of the work done, both in derivation as in finding meaningful results in the two-site model. 
+
+I have presented the main results, which I will summarise in section~\ref{sec:summary}. I then discuss the results and the implications of my thesis in section~\ref{sec:discussion}. Finally, I provide an outlook in section~\ref{sec:outlook}.
+
+
 \section{Summary}
+\label{sec:summary}
+A brief overview of the experimental and theoretical status of the field was provided in chapter~\ref{ch:chapter_1}. In this chapter I listed a few of the experimental difficulties, outlined the other theoretical framework and the difficulty of treating capacitive interaction.
+
+A derivation of the non-equilibrium Green's Function Formalism was presented in chapter~\ref{ch:chapter_2}. I also looked explicitly at the EOM method of finding the analytic form of the Green's function for a family of device Hamiltonians, and gave an overview of the general transport calculation.
+
+In chapter~\ref{ch:chapter_3}, I looked interactions and how to incorporate them to the non-equilibrium Green's Function Formalism. In particular, I looked at electron-electron capacitive interaction and I presented Dr. Jos Seldenthuis his derivation of the capacitive self-energy and the resulting many-body picture of the Green's Function. I then provided an alternative, simpler derivation in the thermal limit. As it turned out, this derivation was also useful in deriving an elaborate expression for the incorporation of interaction with a single bosonic level (vibrations, phonons). 
+
+I then showed the explicit form of the capacitive-self energy for a two-site model, both with and without spin, in chapter~\ref{ch:chapter_4}. I looked at the many-body occupation and used this to make some predictions about the many-body effects. These predictions were confirmed in transmission diagrams. I then presented the clear Coulomb diamonds found in the current sweeps, and showed that these resulted from many-body switches or more commonly the charging of the many-body state. I explored the properties of the Coulomb-diamonds briefly. I then looked at experimental findings by Dr. Mickael Perrin, and showed that the quantitative results of the new theory are in better agreement with his findings. 
+\section{Discussion}
+\label{sec:discussion}
+The theoretical derivation of capacitive interaction is rather clear and leads to results that are quite intuitive. I also presented a derivation for phononic or photonic interaction, which shows that complicated interaction terms are accessible in the thermal limit, although this might lead to expansions that do not converge nicely.
+
+The results for the capacitive interaction show some features that are both expected and required, such as many-body switches in transmission and Coulomb diamonds that have of course been found in experiments \cite{seldenthuis}. 
+
+The quantitative agreement with \citet{perrinnano} is excellent, even though I have not here shown good qualitative agreement, largely because of time constraints. I did make it likely that parameters can be found for which the qualitative agreement improves.
+
 \section{Future Outlook}
+While some questions have been answered in my thesis, there are still open questions remaining. For instance, a more exact explanation of the full experiment presented in Figure~\ref{fig:perrindata}.
+
+Future research could investigate the phononic expansion of equation~\ref{eq:vibgf}, similar to what my thesis did for the capacitive interaction.
+
+A continuation of my thesis would be to investigate OPE3 \cite{frisenda}, which does not obey a simple toy-model as I presented here. However, as I pointed out for equation~\ref{eq:result}, the expression includes the effective single-particle Hamiltonian $H^\kappa = \mu^\kappa + \tau$ in a specific charge state $\ket{\kappa}$, which can be obtained from DFT calculations. Such an investigation would be very interesting, showing a novel direct application of DFT Hamiltonians within the non-equilibrium Green's Function formalism.
+
+A simpler example would be to do these capacitive non-equilibrium Green's Function calculations for systems of a few quantum dots, showing the full spectrum of Coulomb diamonds.
+
+It would be interesting to look at similar models with small differences in the Hamiltonian. Consider, for instance, a system where the levels are at $\epsilon_{1,2} = \epsilon_0 \pm \alpha{1,2} V$, that is a level with a non-symmetric Stark effect. 
+
+Ultimately, I have presented a novel extension to the non-equilibrium Green's Function formalism, that is applicable to a wide range of molecules and toy-models, which should be of immediate benefit to the theoretical calculations.
+
+
+
+
+
+
+\label{sec:outlook}
 %clearpage dumps all images in the stack. Also prevents images from skipping chapters.
 \clearpage
 \references{dissertation}
