@@ -331,13 +331,13 @@ In practise, a tunnelling matrix $\tau_{ij}$ is often spoken of to describe stat
 H_\tau &= \sum_{ij} \tau_{ij} d_i^\dagger d_j,
 \label{eq:tunnelling}
 \end{align}
-where $\tau_ij$ describes the tunnelling strength from state $i$ to $j$. The tunnelling matrix $\tau_{ij}$ has no diagonal terms, because $d_i^\dagger d_i = n_i$, which means that `diagonal' tunnelling elements are just the energy of that particular state.
+where $\tau_{ij}$ describes the tunnelling strength from state $i$ to $j$. The tunnelling matrix $\tau_{ij}$ has no diagonal terms, because $d_i^\dagger d_i = n_i$, which means that `diagonal' tunnelling elements are just the energy of that particular state.
 
 
-We already know how to include this term in the EOM to find the contribution to the Green's Function. First, we find its commutator with $d_i$:
+I have already shown how to include this term in the EOM to find the contribution to the Green's Function (equation~\ref{eq:eomgf}). First, I find its commutator with $d_i$:
 \begin{align*}
 \left[ d_l, \sum_{ij} \tau_{ij} d_i^\dagger d_j\right] &= \sum_j \tau_{lj} d_j,
-\end{align*}, which I add to the Heisenberg equation of motion for $\dot{d}_i$ (equation~\ref{eq:heisenbergdotd}): (equation~\ref{eq:eomgf}):
+\end{align*}which I add to the Heisenberg equation of motion for $\dot{d}_i$ (equation~\ref{eq:heisenbergdotd}):
 \begin{align*}
 \imath \hbar \dot{d}_i 
 &= \epsilon_i d_i +  \sum_{j} \tau_{ij} d_j + \sum_{k}V_{ki} c_{k},
@@ -345,11 +345,10 @@ We already know how to include this term in the EOM to find the contribution to 
 \begin{align*}
 \epsilon G_{ij}^+ &= \delta_{ij} + \epsilon_i G^+_{ij}+ \sum_k \tau_{ik} G_{kj} + \sum_k V_{ki} G^+_{ki},
 \end{align*}
-where we see quite clearly that it is a matrix product. Finally, we find the form of the retarded (advanced) Green's Functions including tunnelling:
+where it can be seen as a matrix product. Finally, I find the form of the retarded (advanced) Green's Functions including tunnelling:
 \begin{align*}
 G^\pm(\epsilon) &= \left(\epsilon - H_1 - \tau \pm \imath 0^+\right)^{-1},
 \end{align*} which explicitly includes the tunnelling Hamiltonian into the problem. Alternatively, I could have just included $\tau_{ij}$ as off-diagonal elements of $H_1$. However, this has also served the purpose of a demonstration.
-
 
 \section{Properties of Interest}
 \label{sec:properties}
@@ -360,24 +359,20 @@ A_{ij}(t, t') &= \frac{\imath}{\hbar} \left\{ d_i(t), d_j^\dagger(t')\right\} \\
 &= \imath \frac{G^+_{ij}(t, t') - G^-_{ij}(t, t')}{2\pi}.
 \label{eq:spectral}
 \end{align}
-
-The Fourier transform of the spectral function tells you the probability that a particle with a certain momentum has a specific energy. 
+The Fourier transform of the spectral function describes the probability that a particle with a certain momentum has a specific energy. 
 
 Making use of the fact that $\left(G^+\right)^\dagger = G^-$ in the energy domain, the spectral function can be found:
 \begin{align*}
 A_{ij}(t, t') &= \imath \frac{G^+_{ij}(t, t') - G^-_{ij}(t, t')}{2\pi}\\
-&= - \frac{1}{\pi} \text{Im}\left\{ G^+_{ij}(t, t')\right\}. \\
+&= - \frac{1}{\pi} \text{Im}\left\{ G^+_{ij}(t, t')\right\}, \\
 A &=- \frac{1}{\pi} \text{Im}\left\{ G^+\right\}.
 \end{align*}
-
-For a non\hyp{}interacting system ($\Sigma=0$), the spectral function is simply a diagonal matrix with delta functions at the eigenvalues of the Hamiltonian, hence the Density of states (DOS) is simply found:
+For a non\hyp{}interacting system ($\Sigma=0$), the spectral function is simply a diagonal matrix with delta functions at the eigenvalues of the Hamiltonian, hence the Density of States (DOS) is simply found:
 \begin{align}
 \text{DOS} &= \text{Tr}\left\{A\right\}.
 \label{eq:dos}
 \end{align}
-
-
-However, we are most often interested in the current. The derivation of the current is slightly more involved, but the end result is elegantly simple.
+However, the current is most often the property of interest. The derivation of the current is slightly more involved, but the end result is elegantly simple.
 
 Let us first partition the contact-momentum space, $k \rightarrow \alpha k$. This is just to include multiple contacts, where $\alpha = L, R$ represents a particular contact.  The current is just the charge times the rate of change of the particle number in the leads. Through the Heisenberg equation, I will derive a formula for the current contribution of one contact. I will then rewrite this to find an expression extremely similar to the famous Landauer formula within the non-equilibrium Green's function formalism.
 
@@ -385,76 +380,71 @@ I start from the rate of change for the number operator times the charge\footnot
 \begin{align*}
 I_\alpha &= - e \sum_{k} \partial_t \braket{c^\dagger_{\alpha k} c_{\alpha k}} \\
 &= \sum_k \frac{\imath e}{\hbar} \left[ c^\dagger_{\alpha k} c_{\alpha k}, H\right] \\
-&= \frac{\imath e}{\hbar}\sum_{k, i} \left\{ V_{\alpha ki} c^\dagger_{\alpha k} d_i - V^\star_{\alpha ki} d_i^\dagger c_{\alpha k}\right\} \\
-&= e \sum_{k, i}\left\{ V_{\alpha ki} G^<_{i\alpha k} - V_{\alpha ki}^\star G^>_{\alpha ki}\right\}\\
+&= \frac{\imath e}{\hbar}\sum_{k, i} \left\{ V_{\alpha ki} c^\dagger_{\alpha k} d_i - V^\star_{\alpha ki} d_i^\dagger c_{\alpha k}\right\},
+\end{align*} where I substitute the lesser (greater) Green's function:
+\begin{align*}
+I_\alpha&= e \sum_{k, i}\left\{ V_{\alpha ki} G^<_{i\alpha k} - V_{\alpha ki}^\star G^>_{\alpha ki}\right\}\\
 &= -2e \sum_{k, i} \text{Re}\left\{V^\star_{\alpha ki}G^<_{\alpha ki}\right\} \\
 &= -2e \sum_{k, i}\int \frac{d\epsilon}{2\pi\hbar} \text{Re}\left\{ V^\star_{\alpha ki} G^<_{\alpha ki} (\epsilon) \right\},
 \end{align*}
-where in the penultimate step, I have used that the lesser Green's function is minus the hermitian conjugate of the greater Green's function. The integral in the final step arises as a consequence of the Fourier-Transform.
+where in the penultimate step, I have used that the lesser Green's function is the skew-hermitian conjugate of the greater Green's function. The integral in the final step arises as a consequence of the Fourier-Transform.
 
-Replacing the contact-device Green's function $G^<_{\alpha ki}$ by a device-only Green's function, for which we found the expression in the last section (equation~\ref{eq:contactdevice}), and immediately substituting the self-energies in the resulting term, we find:
+Replacing the contact-device Green's function $G^<_{\alpha ki}$ by a device-only Green's function, for which we found the expression in the last section (equation~\ref{eq:contactdevice}), and immediately substituting the self-energies in the resulting term, I find:
 \begin{align*}
-\sum_{k} V^\star_{\alpha ki} G^<_{\alpha ki} &= \left[\Sigma^{\alpha+} G^< + \Sigma^{\alpha <} G^-\right]_{ii}
+\sum_{k} V^\star_{\alpha ki} G^<_{\alpha ki} &= \left[\Sigma^{\alpha+} G^< + \Sigma^{\alpha <} G^-\right]_{ii}.
 \end{align*}
-
 So, the sum over $k$ is absorbed into this expression and the sum over $i$ leads to a trace:
 \begin{align*}
-I_\alpha &= -\frac{2e}{\hbar} \int \frac{d\epsilon}{2\pi} \text{Re} \left\{ \text{Tr} \left \{ \Sigma^{\alpha+} G^< + \Sigma^{\alpha <} G^-\right\}\right\}
+I_\alpha &= -\frac{2e}{\hbar} \int \frac{d\epsilon}{2\pi} \text{Re} \left\{ \text{Tr} \left \{ \Sigma^{\alpha+} G^< + \Sigma^{\alpha <} G^-\right\}\right\}.
 \end{align*}
-
 Now, I want to find the real part of the trace. Here are a few of the things I will use:
 \begin{itemize}
 \item the lesser Green's function is purely imaginary (anti-Hermitian). 
-\item $(G^\pm)^\dagger = G^\mp$ in the energy-domain. Therefore, we can write $\text{Im} G^- = - \frac{1}{2} \left( G^+ - G^- \right)$.
-\item Given $A=a+\imath b, B = c + \imath d$, we find that $\text{Re}\left\{ AB \right\} = ac - db$.
-\item $\Sigma^< = \sum_\alpha \Sigma^{\alpha<}$
+\item $(G^\pm)^\dagger = G^\mp$ in the energy-domain. Therefore, I can write $\text{Im}\left\{ G^-\right\} = - \frac{1}{2} \left( G^+ - G^- \right)$.
+\item Given $A=a+\imath b, B = c + \imath d$, I find that $\text{Re}\left\{ AB \right\} = ac - db$.
+\item The lesser Green's Function is the sum of its constituents for each lead: $\Sigma^< = \sum_\alpha \Sigma^{\alpha<}$.
 \end{itemize}
 
 I then find that:
 \begin{align*}
-\text{Re}\left\{\text{Tr}\left\{ \Sigma^{\alpha+} G^<\right\}\right\} &= - \frac{\imath}{2} \text{Tr}\left\{ \Gamma^\alpha G^< \right\} \\
-\text{Re}\left\{\text{Tr}\left\{ \Sigma^{\alpha<} G^-\right\}\right\} &= - \frac{\imath}{2} \text{Tr}\left\{\Sigma^{\alpha<} \left(G^+ - G^-\right)\right\}
+\text{Re}\left\{\text{Tr}\left\{ \Sigma^{\alpha+} G^<\right\}\right\} &= - \frac{\imath}{2} \text{Tr}\left\{ \Gamma^\alpha G^< \right\} ,\\
+\text{Re}\left\{\text{Tr}\left\{ \Sigma^{\alpha<} G^-\right\}\right\} &= - \frac{\imath}{2} \text{Tr}\left\{\Sigma^{\alpha<} \left(G^+ - G^-\right)\right\}.
 \end{align*}
-
 Applying the Keldysh equation on the difference in the second term, I find for the current:
 \begin{align*}
-I_\alpha &= \frac{\imath e}{\hbar} \sum_\beta \int \frac{d\epsilon}{2\pi} \text{Tr}\left\{ \Gamma^\alpha G^+ \Sigma^{\beta <}G^- - \Sigma^{\alpha<}G^+\Gamma^\beta G^- \right\}
+I_\alpha &= \frac{\imath e}{\hbar} \sum_\beta \int \frac{d\epsilon}{2\pi} \text{Tr}\left\{ \Gamma^\alpha G^+ \Sigma^{\beta <}G^- - \Sigma^{\alpha<}G^+\Gamma^\beta G^- \right\}.
 \end{align*}
-
 Current conservation for a two-contact scenario ($\alpha=L,R$) requires that $2 I = I_L - I_R$. Using the cyclic property of the trace, I find that in the stationary case:
 \begin{align*}
 I &= \frac{\imath e}{\hbar} \int \frac{d\epsilon}{2\pi} \text{Tr}\left\{ \Gamma^L G^+ \Sigma^R G^- - \Sigma^L G^+ \Gamma^R G^-\right\},
 \end{align*}
 which, discarding the correlations between the device and the contacts, turns into the Landauer formula:
 \begin{align}
-I &= \frac{e}{\hbar} \int \frac{d\epsilon}{2\pi} \left[ f_L(\epsilon) - f_R(\epsilon)\right] T(\epsilon) \label{eq:landauer}\\
-T(\epsilon)&\equiv \text{Tr}\left\{ \Gamma^L G^+ \Gamma^R G^-\right\}\nonumber
+I &= \frac{e}{\hbar} \int \frac{d\epsilon}{2\pi} \left[ f_L(\epsilon) - f_R(\epsilon)\right] T(\epsilon) \label{eq:landauer},\\
+T(\epsilon)&\equiv \text{Tr}\left\{ \Gamma^L G^+ \Gamma^R G^-\right\}\nonumber.
 \end{align}
 
 \section{Synthesis: Common Application}
 \label{sec:synthesis}
 
 
-In my experience, the derivation of the non-equilibrium Green's Function Formalism does not immediately lead to clarity of its application. That is why I will now present a Synthesis.
+In my experience, the derivation of the non-equilibrium Green's Function Formalism does not immediately lead to clarity of its application. That is why I will now present a synthesis.
 
-The common application is to use a quantum chemistry computation to find the single-particle orbitals of the (extended) molecule. This produces the Hamiltonian $H_1$ (equation~\ref{eq:hamiltonian}). We add tunneling between the different states by use of a tunneling matrix $\tau_{ij}$, which immediately enters the NEGF as a self-energy matrix. 
+The common application is to use a quantum chemistry computation to find the single-particle orbitals of the (extended) molecule. This produces the Hamiltonian $H_1$ (equation~\ref{eq:hamiltonian}). We add tunnelling between the different states by use of a tunnelling matrix $\tau_{ij}$, which immediately enters the non-equilibrium Green's Function formalism as a self-energy matrix. 
 
-The contacts are described in the so-called Wide-Band Limit (WBL) as a constant self-energy matrix in the energy domain \cite{wbl}, based on two notions. First, that the density of those states in the leads that contribute to transport  is fairly constant near the Fermi energy. Second, that the broadening of transport-contributing states in the molecule due to the leads is also constant. Usually the WBL gives the best results in the weak-coupling regime.
+The contacts are described in the so-called Wide-Band Limit (WBL) as a constant self-energy matrix in the energy domain \cite{wbl}, based on two notions. First, that the density, of those states in the leads that contribute to transport, is fairly constant near the Fermi energy. Second, that the broadening of transport-contributing states in the molecule due to the leads is also constant. Usually the WBL gives the best results in the weak-coupling regime.
 
-The elements of the self-energy matrix in the WBL are most often $\frac{\imath \Gamma^{L,R}}{2}$ for the orbital states closest to the leads, and zero otherwise. The coupling constants $\Gamma^{L,R}$ can be directly interpreted as the broadening of the energy-eigenstates due to the presence of the leads. The lead-molecule self-energy is given by the matrices $\Sigma = \mp \frac{\imath}{2} \left( \Gamma^L + \Gamma^R \right)$. The Hamiltonian $H_1$ is assumed to be a diagonal matrix, with the energies $\epsilon_i$ on the diagonal. So, we can immediately write down the retarded (advanced) Green's function:
+The elements of the self-energy matrix in the WBL are most often $\frac{\imath \Gamma^{L,R}}{2}$ for the orbital states closest to the leads, and zero otherwise. The coupling constants $\Gamma^{L,R}$ can be directly interpreted as the broadening of the energy-eigenstates due to the presence of the leads. The lead-molecule self-energy is given by the matrices $\Sigma = \mp \frac{\imath}{2} \left( \Gamma^L + \Gamma^R \right)$. The Hamiltonian $H_1$ is assumed to be a diagonal matrix, with the energies $\epsilon_i$ on the diagonal. So, I can immediately write down the retarded (advanced) Green's function:
 \begin{align}
-G^\pm(\epsilon)_{ij} &= \left(\epsilon - \epsilon_i - \tau_{ij} \pm \frac{\imath}{2} \Gamma_{ij}\right)^{-1}
-\label{eq:commongf},
+G^\pm(\epsilon)_{ij} &= \left(\epsilon - \epsilon_i - \tau_{ij} \pm \frac{\imath}{2} \left[\Gamma^L + \Gamma^R\right]_{ij}\right)^{-1}.
+\label{eq:commongf}
 \end{align}
-through which we can find the transmission function:
+through which I can find the transmission function:
 \begin{align}
-T(\epsilon) &= \text{Tr}\left\{\Gamma^L G^+ \Gamma^R G^-\right\}
+T(\epsilon) &= \text{Tr}\left\{\Gamma^L G^+ \Gamma^R G^-\right\}.
 \label{eq:commonte}
 \end{align}
-
-And we can write down the current using equation~\ref{eq:landauer}, often symmetrically distributing the voltage over the leads and taking the low-temperature limit, so that we integrate $T(\epsilon)$ from $-\frac{V}{2}$ to $\frac{V}{2}$. 
-
-
+And the current can be found using equation~\ref{eq:landauer}, often symmetrically distributing the voltage over the leads and taking the low-temperature limit, so that the transmission is integrated from $-\frac{V}{2}$ to $\frac{V}{2}$. 
 
 %clearpage dumps all images in the stack. Also prevents images from skipping chapters.
 \clearpage
