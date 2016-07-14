@@ -1,12 +1,8 @@
 \chapter{Incorporating interactions}
 \label{ch:chapter_3}
 
-\epigraph{
-    “Everything starts somewhere, although many physicists disagree.”
-}{Sir Terry Pratchett}
-
 \begin{abstract}
-In this chapter, I include interactions into the non-equilibrium Green's Function formalism. In particular, we focus on capacitive interactions (e.g. Coulomb interaction) as these are the primary investigation of this thesis. We formulate a many\hyp{}body Green's function that incorporates capacitive interaction. Additionally, some attention is given to electron-phonon interactions, leading to a very similar many-body Green's function that incorporates these interactions.
+In this chapter, I include interactions into the non-equilibrium Green's Function formalism. In particular, I focus on capacitive interactions (e.g. Coulomb interaction) as these are the primary investigation of this thesis. I formulate a many\hyp{}body Green's function that incorporates capacitive interaction. I also find a self-consistency equation for the non-equilibrium density matrix. Additionally, some attention is given to electron-phonon interactions, leading to a very similar many-body Green's function that incorporates these interactions.
 \end{abstract}
 
 %% Start the actual chapter on a new page.
@@ -25,7 +21,7 @@ Nevertheless, this is the point where people have often turned away from that de
 The outline of this chapter is as follows. First, we discuss a generalised number operator for many-body states in section~\ref{sec:gno}. Next, I calculate the capacitive self-energy in section~\ref{sec:capacitive}. The result is defined as a matrix-inverse which seems ill-defined, so I develop the expression in section~\ref{sec:mbgfno}. A matrix equation defining the non-equilibrium density of states and a self-consistent scheme to solve it are given in section~\ref{sec:densitymatrix}.The expression for current is given in section~\ref{sec:calcprop}. Finally, we discuss the novel interaction treatment in section~\ref{sec:discussioncapacitive}.
 
 Then we briefly consider vibrational interactions and include these in a similar manner as the capacitive interactions in section~\ref{sec:phononic}. We discuss the result and a preliminary figure in section~\ref{sec:phononicdiscussion}. However, we do not continue with vibrational modes because of time constraints.
-\section{Generalised number operator}
+\section{Generalised Number Operator}
 \label{sec:gno}
 
 
@@ -97,7 +93,7 @@ where comparison with the Dyson equation (equation~\ref{eq:dyson}) shows us that
 \label{eq:selfenergycapacitive}
 \end{align}While I can now express the Green's function as $G^\pm = \left[ \epsilon - \epsilon_i - \tau - \Sigma^c \pm \imath 0^+\right]^{-1}$, the capacitive self-energy is still an operator while the other contributions are matrices. Additionally, I am taking the inverse of a series of number operators. 
 
-\section{The many-body Green's Function and number operators}
+\section{The Many-Body Green's Function and Number Operators}
 \label{sec:mbgfno}
 The matrix inverse in the previous section might seem ill-defined, because we took the inverse of a series of number operators. However, we can get a well-defined expression by Taylor expanding the matrix inverse in $B$, e.g.:
 \begin{align}
@@ -158,7 +154,7 @@ in which
 \mu^\lambda_{ij} &= \delta_{ij} \left( \epsilon_i + \sum_{p\in\lambda} U_{ip} \right) \label{eq:result},
 \end{align} in which $H^\kappa = \mu^\kappa + \tau$ is recognised as the effective single-particle Hamiltonian of the system in the many-body state $\kappa$. This can be directly obtained from DFT calculations. This is a very useful fact, as some molecules are hard to capture otherwise, e.g. Ref.~\cite{frisenda}. In particular, \emph{many} DFT calculations together can give us (a good approximation of) the full shape of $H^\kappa$, leading to a more complete description of transport through the formulae derived above. In particular the formalism should be more accurate for excitations, and could potentially explain coulomb blockades. This is a useful result for molecules that aren't accurately described as a set of weakly coupled moieties.
 
-\section{Calculating properties}
+\section{Calculating Properties}
 \label{sec:calcprop}
 A simpler derivation for the expectation value of the Green's Function is possible. We use the definition of equation~\ref{eq:mbgfmatrix}. The expectation value makes good use of the properties of the generalised number operator (equation~\ref{eq:generalisednumberoperator}). First, recall the expectation value of the many-body wavefunction $\ket{\Psi}$:
 \begin{align*}
@@ -203,7 +199,7 @@ T^\kappa(\epsilon) &\equiv \text{Tr}\left\{ \Gamma^L \mathscr{G}^{\kappa+} \Gamm
 
 
 
-\section{Density matrix}
+\section{Density Matrix}
 \label{sec:densitymatrix}
 Many quantum problems are concerned with finding the density matrix of the system, a problem that is only enhanced in non-equilibrium situations. This is even more troublesome when interaction is included. In this section I outline a convenient method for the calculation of the density matrix $\rho(t)$, more accurately its diagonal $P_\kappa$.
 
@@ -254,7 +250,7 @@ Since $W-K$ is a matrix with the amount of rows equal to the dimension of the Ha
 
 
 
-\section{Discussion of capacitive interactions}
+\section{Discussion of Capacitive Interactions}
 \label{sec:discussioncapacitive}
 It is of interest to consider how our approximation and the result (eq~\ref{eq:result}) compare to other results, for instance the BBGKY hierarchy (see Ref.~\cite{diventra}).
 
@@ -394,7 +390,7 @@ This means that we have found a closed form of the vibrational many-body Green's
  \sum_{y=x[2]}^x Q^x_y \sum_{p=0}^{y} P^{m,n}_{p,y} \braket{\left. n-p \right| m-y+p} \label{eq:vibgf}
 \end{align}
 
-\section{Discussion of vibrational interaction}
+\section{Discussion of Vibrational Interaction}
 \label{sec:phononicdiscussion}
 
 Note again that the Taylor expansion is effectively the diagrammatic expansion we also used to derive the Dyson equation. This is a very telling result, because it gives an explanation for the result.
@@ -406,7 +402,7 @@ Contrary to fermionic operators, powers of bosonic operators do lead to high mul
 
 First, note that the overlap goes to zero as $m\gg 1$ due to the inverse proportionality to $\sqrt{m}$. The first term will remain valid in that limit, but only for $n\approx m$, indicating that only few-phonon transitions are possible. If this is combined with the multiplicity of high-order diagrams, this expresses the well-known problem that Feynman diagrammatic expansions are not guaranteed to have vanishing high-order terms \cite{mattuck}.
 
-I think it hopeful that there are various exponentionally decaying terms in the full expansion. Combined with the possibility of high-order terms hitting vacuum, I think it is reasonably certain that the near-diagonal high-order terms will be cancelled by these decaying terms. However, that puts a requirement of $ \lambda \hbar \omega < 1$. Given the typical excitation energies of $~100$ meV, this allows for electron-phonon coupling up to $3-5$, which seems sufficient in the low temperature limit. In the ground-state Franck-Condon filled contour (Fig.~\ref{fig:fc}), we saw that this includes most of the relevant part of the picture.
+I think it hopeful that there are various exponentially decaying terms in the full expansion. Combined with the possibility of high-order terms hitting vacuum, I think it is reasonably certain that the near-diagonal high-order terms will be cancelled by these decaying terms. However, that puts a requirement of $ \lambda \hbar \omega < 1$. Given the typical excitation energies of $~100$ meV, this allows for electron-phonon coupling up to $3-5$, which seems sufficient in the low temperature limit. In the ground-state Franck-Condon filled contour (Fig.~\ref{fig:fc}), we saw that this includes most of the relevant part of the picture.
 
 I also think that the expectation value helps to filter high-order contributions, simply because either $n-p$ or $m-y+p$ will hit zero, meaning that all possible phonons are released and higher terms are not possible. 
 
